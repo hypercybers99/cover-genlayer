@@ -1,0 +1,21 @@
+{
+  "fixture": "status-s3-outage-20.md",
+  "slug": "s3",
+  "run_index": 5,
+  "key": "s3_run_5",
+  "tx_hash": "0xc45f2a7d31d1ecd621dfa794262b2ef117d2c5ead09759a6fbe0c4251a40e508",
+  "latency_seconds": "14.79",
+  "prompt_sha256": "4d7d1ad1b041fe391182f20abc4e50487deed4cc2d580cb51041efd45d1fbe41",
+  "probe_address": "0x8ED26b3925D50EabFFbCe6778315eBCbaB4e7745",
+  "status_name": "ACCEPTED",
+  "result_name": "MAJORITY_AGREE",
+  "raw_output": "The task: extract status and duration from the page text. The page text contains a current incident block:\n\n\"Incident: Intermittent gateway timeouts.\nStatus: Major outage.\nDuration: 20 minutes.\"\n\nStatus is \"Major outage\" ? maps to OUTAGE. Duration: 20 minutes ? minutes = 20.\n\nQuote must be copied character-for-character and include both the stated status and the stated duration number. So quote should include \"Status: Major outage.\" and \"Duration: 20 minutes.\" Let me construct a quote up to 300 chars.\n\nQuote: \"Status: Major outage.\\nDuration: 20 minutes.\" ? but should the quote be copied character-for-character from page text? The page text as given uses \"\\n\" between lines. I can include the newline as \\n in JSON string. Alternatively include the incident line too. Let's do:\n\n\"Status: Major outage.\\nDuration: 20 minutes.\"\n\nThat's character-for-character from the page (the newline separates lines). That includes both status and duration number.\n\nOutput JSON only:\n\n{\"status\": \"OUTAGE\", \"minutes\": 20, \"quote\": \"Status: Major outage.\\nDuration: 20 minutes.\"}{\"status\": \"OUTAGE\", \"minutes\": 20, \"quote\": \"Status: Major outage.\\nDuration: 20 minutes.\"}",
+  "parsed_valid": false,
+  "extracted_status": "UNCLEAR",
+  "extracted_minutes": 0,
+  "extracted_quote": "",
+  "quote_ok": false,
+  "computed_outcome": "REVIEW",
+  "expected_outcome": "NO_PAY",
+  "matched": false
+}

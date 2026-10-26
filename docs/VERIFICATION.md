@@ -36,13 +36,36 @@ This document records the exact method and cryptographic evidence verifying cont
 - *(Historical Note: `0xBa2689DA2A56c80A00DFC7F4e4863b3cb902609D` was the Iteration 0 probe where the deploy transaction hash was not captured to an individual receipt file; `0xFF6dF478E40b66AAC3Af5271C66b94B750E6E58f` was an intermediate retry deployment where the deploy completed in 5.69s but was superseded).*
 
 ### Production Contracts (Cover & CoverGuard):
-- Pending deployment in Milestone 4.
+
+#### 1. Cover
+- **Address**: `0x41f8c399e2709333AEAD1F8Ac0B1E5248eC288Bd`
+- **Deploy Tx Hash**: `0xa1716bdbd49effa2e7bb7d2330ea8cb3f1162c5020cb921f980335255a3b7492` (saved in `docs/evidence/onchain/cover_deploy_receipt.json`)
+- **Deploy Latency**: 10.73 s
+- **Explorer URL**: [https://explorer-studio.genlayer.com/address/0x41f8c399e2709333AEAD1F8Ac0B1E5248eC288Bd](https://explorer-studio.genlayer.com/address/0x41f8c399e2709333AEAD1F8Ac0B1E5248eC288Bd)
+- **Source SHA-256**: `33e8661c77e8042cc6bf1166e4bde8293e0948e1215d2e39721d6a8fb844e8b0`
+- **Contract Code Payload Dump**:
+  - First 16 bytes: `232076302e322e31360a23207b202244`
+  - Last 16 bytes:  `6f72733d28222c222c20223a2229290a`
+  - Deployed byte length: 32,953 bytes | Local byte length: 32,953 bytes
+  - Byte-for-byte identical diff: MATCH (diff is empty)
+
+#### 2. CoverGuard
+- **Address**: `0x85C0F67F1Cd82aBcCfABb289E6c215c78D17b3eF`
+- **Deploy Tx Hash**: `0xa7ece9780281e84f6d118de02b14a62cbe9abe9d73b5068521fa36d85f7ee101` (saved in `docs/evidence/onchain/cover_guard_deploy_receipt.json`)
+- **Deploy Latency**: 9.67 s
+- **Explorer URL**: [https://explorer-studio.genlayer.com/address/0x85C0F67F1Cd82aBcCfABb289E6c215c78D17b3eF](https://explorer-studio.genlayer.com/address/0x85C0F67F1Cd82aBcCfABb289E6c215c78D17b3eF)
+- **Source SHA-256**: `b2682e9e48b67a0ac95148b25d0e10694fad671359144d2b79368f8b921f7d53`
+- **Contract Code Payload Dump**:
+  - First 16 bytes: `232076302e322e31360a23207b202244`
+  - Last 16 bytes:  `202020202072657475726e206169640a`
+  - Deployed byte length: 6,771 bytes | Local byte length: 6,771 bytes
+  - Byte-for-byte identical diff: MATCH (diff is empty)
 
 ---
 
 ## 3. Verification Method
 
-Source code verification on GenLayer Studionet is conducted by computing the SHA256 digest of the UTF-8 encoded Python source file and comparing it against the transaction payload submitted during contract deployment.
+Source code verification on GenLayer Studionet is conducted by decoding the `contract_code` field from the deployment transaction payload submitted to the network, dumping the first and last 16 bytes, and performing an exact binary diff against the source file in `contracts/*.py`.
 All source contracts strictly adhere to the GenVM header requirements:
 ```python
 # v0.2.16
@@ -50,4 +73,4 @@ All source contracts strictly adhere to the GenVM header requirements:
 
 from genlayer import *
 ```
-No envelope byte drift was observed between local files and submitted deployment code.
+No envelope byte drift exists between local files and submitted deployment code.

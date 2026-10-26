@@ -1,0 +1,21 @@
+{
+  "fixture": "status-s7-no-duration.md",
+  "slug": "s7",
+  "run_index": 8,
+  "key": "s7_run_8",
+  "tx_hash": "0xb97b9d8bcca4a6dec9de4a909455bebf8c53a3a079393051ad36f4d8fe452715",
+  "latency_seconds": "14.89",
+  "prompt_sha256": "4d7d1ad1b041fe391182f20abc4e50487deed4cc2d580cb51041efd45d1fbe41",
+  "probe_address": "0x8ED26b3925D50EabFFbCe6778315eBCbaB4e7745",
+  "status_name": "ACCEPTED",
+  "result_name": "MAJORITY_AGREE",
+  "raw_output": "{\"status\": \"OUTAGE\", \"minutes\": 0, \"quote\": \"Status: Major outage.\"}",
+  "parsed_valid": true,
+  "extracted_status": "OUTAGE",
+  "extracted_minutes": 0,
+  "extracted_quote": "Status: Major outage.",
+  "quote_ok": true,
+  "computed_outcome": "REVIEW",
+  "expected_outcome": "REVIEW",
+  "matched": true
+}

@@ -1,0 +1,21 @@
+{
+  "fixture": "status-s5-operational-reformatted.html",
+  "slug": "s5",
+  "run_index": 3,
+  "key": "s5_run_3",
+  "tx_hash": "0x68d175f41a0701dd863efeeaa6beb4b124bc83df79fffefacc0ffa66c85ec1df",
+  "latency_seconds": "32.36",
+  "prompt_sha256": "4d7d1ad1b041fe391182f20abc4e50487deed4cc2d580cb51041efd45d1fbe41",
+  "probe_address": "0x8ED26b3925D50EabFFbCe6778315eBCbaB4e7745",
+  "status_name": "ACCEPTED",
+  "result_name": "MAJORITY_AGREE",
+  "raw_output": "{\"status\": \"OPERATIONAL\", \"minutes\": 0, \"quote\": \"Status: All systems operational. No incident in progress.\"}",
+  "parsed_valid": true,
+  "extracted_status": "OPERATIONAL",
+  "extracted_minutes": 0,
+  "extracted_quote": "Status: All systems operational. No incident in progress.",
+  "quote_ok": true,
+  "computed_outcome": "NO_PAY",
+  "expected_outcome": "NO_PAY",
+  "matched": true
+}

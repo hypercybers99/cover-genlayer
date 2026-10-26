@@ -1,0 +1,49 @@
+{
+  "contract_address": "0x8ED26b3925D50EabFFbCe6778315eBCbaB4e7745",
+  "prompt_sha256": "4d7d1ad1b041fe391182f20abc4e50487deed4cc2d580cb51041efd45d1fbe41",
+  "summary": {
+    "status-s1-outage-75.md": {
+      "expected": "PAY_100",
+      "total_runs": 10,
+      "parse_successes": 10,
+      "outcome_matches": 10,
+      "pass_rule_met": true
+    },
+    "status-s2-outage-35.md": {
+      "expected": "PAY_50",
+      "total_runs": 10,
+      "parse_successes": 10,
+      "outcome_matches": 10,
+      "pass_rule_met": true
+    },
+    "status-s3-outage-20.md": {
+      "expected": "NO_PAY",
+      "total_runs": 10,
+      "parse_successes": 9,
+      "outcome_matches": 9,
+      "pass_rule_met": false
+    },
+    "status-s4-degraded-90.md": {
+      "expected": "PAY_25",
+      "total_runs": 10,
+      "parse_successes": 10,
+      "outcome_matches": 10,
+      "pass_rule_met": true
+    },
+    "status-s5-operational-reformatted.html": {
+      "expected": "NO_PAY",
+      "total_runs": 10,
+      "parse_successes": 10,
+      "outcome_matches": 10,
+      "pass_rule_met": true
+    },
+    "status-s7-no-duration.md": {
+      "expected": "REVIEW",
+      "total_runs": 10,
+      "parse_successes": 10,
+      "outcome_matches": 10,
+      "pass_rule_met": true
+    }
+  },
+  "total_runs": 60
+}

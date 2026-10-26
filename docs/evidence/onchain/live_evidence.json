@@ -1,0 +1,628 @@
+{
+  "deployments": {
+    "network": "studionet",
+    "chain_id": 61999,
+    "rpc": "https://studio.genlayer.com/api",
+    "explorer_urls": {
+      "cover": "https://explorer-studio.genlayer.com/address/0x41f8c399e2709333AEAD1F8Ac0B1E5248eC288Bd",
+      "cover_guard": "https://explorer-studio.genlayer.com/address/0x85C0F67F1Cd82aBcCfABb289E6c215c78D17b3eF"
+    },
+    "addresses": {
+      "cover": "0x41f8c399e2709333AEAD1F8Ac0B1E5248eC288Bd",
+      "cover_guard": "0x85C0F67F1Cd82aBcCfABb289E6c215c78D17b3eF"
+    },
+    "deploy_txs": {
+      "cover": "0xa1716bdbd49effa2e7bb7d2330ea8cb3f1162c5020cb921f980335255a3b7492",
+      "cover_guard": "0xa7ece9780281e84f6d118de02b14a62cbe9abe9d73b5068521fa36d85f7ee101"
+    },
+    "prompt_sha256": "4d7d1ad1b041fe391182f20abc4e50487deed4cc2d580cb51041efd45d1fbe41",
+    "source_shas": {
+      "cover": "33e8661c77e8042cc6bf1166e4bde8293e0948e1215d2e39721d6a8fb844e8b0",
+      "cover_guard": "b2682e9e48b67a0ac95148b25d0e10694fad671359144d2b79368f8b921f7d53"
+    },
+    "source_verification": {
+      "cover": {
+        "first16": "232076302e322e31360a23207b202244",
+        "last16": "6f72733d28222c222c20223a2229290a",
+        "byteLength": 32953,
+        "match": true
+      },
+      "cover_guard": {
+        "first16": "232076302e322e31360a23207b202244",
+        "last16": "202020202072657475726e206169640a",
+        "byteLength": 6771,
+        "match": true
+      }
+    },
+    "latencies": {
+      "cover": "10.73",
+      "cover_guard": "9.67"
+    }
+  },
+  "transactions": [
+    {
+      "label": "claim_demo_credits_underwriter",
+      "function": "claim_demo_credits",
+      "tx_hash": "0x73ab2a99447258b229ea66d8af3ad49dcbf922d20ca459d58a90c89bac0c22c0",
+      "status_name": "ACCEPTED",
+      "result_name": "MAJORITY_AGREE",
+      "leader_result": "SUCCESS",
+      "error_payload": "[object Object]",
+      "latency_seconds": "9.56",
+      "expected_success": true
+    },
+    {
+      "label": "claim_demo_credits_buyer",
+      "function": "claim_demo_credits",
+      "tx_hash": "0x5bb3e7926d2a4c7741b5b31c72b239b01af7234f69187ed7d78b27617a4d8624",
+      "status_name": "ACCEPTED",
+      "result_name": "MAJORITY_AGREE",
+      "leader_result": "SUCCESS",
+      "error_payload": "[object Object]",
+      "latency_seconds": "5.74",
+      "expected_success": true
+    },
+    {
+      "label": "create_product",
+      "function": "create_product",
+      "tx_hash": "0xe850f3cbe1089d3d52998c848b90090abdb82d985fb2a3d1918239f0d54ddfa1",
+      "status_name": "ACCEPTED",
+      "result_name": "MAJORITY_AGREE",
+      "leader_result": "SUCCESS",
+      "error_payload": "[object Object]",
+      "latency_seconds": "5.91",
+      "expected_success": true
+    },
+    {
+      "label": "fund_product",
+      "function": "fund_product",
+      "tx_hash": "0x26473854c5c9373fe89dad44898fc6c01bf48eaf6788236dc53d9c458beef277",
+      "status_name": "ACCEPTED",
+      "result_name": "MAJORITY_AGREE",
+      "leader_result": "SUCCESS",
+      "error_payload": "[object Object]",
+      "latency_seconds": "9.56",
+      "expected_success": true
+    },
+    {
+      "label": "buy_policy_Pa",
+      "function": "buy",
+      "tx_hash": "0xe327c2d625a1d8acfc96be2213c9c205e235e6beff8a64caa3d4c1e5e21229a2",
+      "status_name": "ACCEPTED",
+      "result_name": "MAJORITY_AGREE",
+      "leader_result": "SUCCESS",
+      "error_payload": "[object Object]",
+      "latency_seconds": "21.20",
+      "expected_success": true
+    },
+    {
+      "label": "buy_policy_Pb",
+      "function": "buy",
+      "tx_hash": "0x8c821f18ce4766676c0011f367253d38aee67b5e14c38bfefa61980c3ce1eb5b",
+      "status_name": "ACCEPTED",
+      "result_name": "MAJORITY_AGREE",
+      "leader_result": "SUCCESS",
+      "error_payload": "[object Object]",
+      "latency_seconds": "41.78",
+      "expected_success": true
+    },
+    {
+      "label": "buy_policy_Pc",
+      "function": "buy",
+      "tx_hash": "0xb454d3910c693093bc98218d39826a2274c067b5dfbbd647493b6643120ea0dc",
+      "status_name": "ACCEPTED",
+      "result_name": "MAJORITY_AGREE",
+      "leader_result": "SUCCESS",
+      "error_payload": "[object Object]",
+      "latency_seconds": "24.93",
+      "expected_success": true
+    },
+    {
+      "label": "buy_policy_Pd",
+      "function": "buy",
+      "tx_hash": "0x79155320e3429cc6be0220c0c1f16267c6ef7f0f9cfbaab28c35edfaf809badb",
+      "status_name": "ACCEPTED",
+      "result_name": "MAJORITY_AGREE",
+      "leader_result": "SUCCESS",
+      "error_payload": "[object Object]",
+      "latency_seconds": "17.04",
+      "expected_success": true
+    },
+    {
+      "label": "update_source_s8",
+      "function": "update_source",
+      "tx_hash": "0x2d43b11abfe03b88a6ba8de119139e8b9077c0c3c9d804e44eb7d397874d0d7c",
+      "status_name": "ACCEPTED",
+      "result_name": "MAJORITY_AGREE",
+      "leader_result": "SUCCESS",
+      "error_payload": "[object Object]",
+      "latency_seconds": "5.61",
+      "expected_success": true
+    },
+    {
+      "label": "buy_refused_s8",
+      "function": "buy",
+      "tx_hash": "0x0b9a8da907ceb716e470812ea58991227165309c0f5d14bab5dff22e29a1c7e0",
+      "status_name": "ACCEPTED",
+      "result_name": "MAJORITY_AGREE",
+      "leader_result": "ERROR",
+      "error_payload": "z����ky�r�zk�\n޲�+�֭�˧rW���i��!j�",
+      "latency_seconds": "20.81",
+      "expected_success": false
+    },
+    {
+      "label": "update_source_s0",
+      "function": "update_source",
+      "tx_hash": "0x0a5b8afb79f0954b5802d0da33c7d1ff95f80a2dec6ca485e949f176531e5984",
+      "status_name": "ACCEPTED",
+      "result_name": "MAJORITY_AGREE",
+      "leader_result": "SUCCESS",
+      "error_payload": "[object Object]",
+      "latency_seconds": "5.58",
+      "expected_success": true
+    },
+    {
+      "label": "guard_attest_Pa_before",
+      "function": "attest",
+      "tx_hash": "0xbbe012ee7f4fe9f38d0d42062a4c820f91bc58ded089c7637c9b32fd28fc878b",
+      "status_name": "ACCEPTED",
+      "result_name": "MAJORITY_AGREE",
+      "leader_result": "SUCCESS",
+      "error_payload": "[object Object]",
+      "latency_seconds": "13.29",
+      "expected_success": true
+    },
+    {
+      "label": "update_source_s1",
+      "function": "update_source",
+      "tx_hash": "0x9f021772c9a4aec712acca001b4a883773863fb26a5c410c6e6aabda32dd839d",
+      "status_name": "ACCEPTED",
+      "result_name": "MAJORITY_AGREE",
+      "leader_result": "SUCCESS",
+      "error_payload": "[object Object]",
+      "latency_seconds": "5.63",
+      "expected_success": true
+    },
+    {
+      "label": "settle_Pa_s1_PAY_100",
+      "function": "settle",
+      "tx_hash": "0x33143d04a0b302ffe13c292adfe16b84ec013cf051c5142aaa21f89339d0ce21",
+      "status_name": "ACCEPTED",
+      "result_name": "MAJORITY_AGREE",
+      "leader_result": "SUCCESS",
+      "error_payload": "[object Object]",
+      "latency_seconds": "13.27",
+      "expected_success": true
+    },
+    {
+      "label": "update_source_s2",
+      "function": "update_source",
+      "tx_hash": "0x64a2d268a7257baf73bfa15f3bc060318fccca5f5e39446eba1c3cd7f31f2c32",
+      "status_name": "ACCEPTED",
+      "result_name": "MAJORITY_AGREE",
+      "leader_result": "SUCCESS",
+      "error_payload": "[object Object]",
+      "latency_seconds": "5.78",
+      "expected_success": true
+    },
+    {
+      "label": "settle_Pb_s2_PAY_50",
+      "function": "settle",
+      "tx_hash": "0xa290a9894e003d55e013d1a82300179fc919781b35c5fbb3aae1f79ad625fd17",
+      "status_name": "ACCEPTED",
+      "result_name": "MAJORITY_AGREE",
+      "leader_result": "SUCCESS",
+      "error_payload": "[object Object]",
+      "latency_seconds": "17.19",
+      "expected_success": true
+    },
+    {
+      "label": "update_source_s4",
+      "function": "update_source",
+      "tx_hash": "0xe3ec252725a8e5364fa8cd526bee7a72b7ca8931b3c3eec5c8dc0188b514c524",
+      "status_name": "ACCEPTED",
+      "result_name": "MAJORITY_AGREE",
+      "leader_result": "SUCCESS",
+      "error_payload": "[object Object]",
+      "latency_seconds": "5.64",
+      "expected_success": true
+    },
+    {
+      "label": "settle_Pc_s4_PAY_25",
+      "function": "settle",
+      "tx_hash": "0x7ceac64048ee4f5dde3f6cfef680de85ebf47faef365af074cbb85727a8a8367",
+      "status_name": "ACCEPTED",
+      "result_name": "MAJORITY_AGREE",
+      "leader_result": "SUCCESS",
+      "error_payload": "[object Object]",
+      "latency_seconds": "20.96",
+      "expected_success": true
+    },
+    {
+      "label": "update_source_s3",
+      "function": "update_source",
+      "tx_hash": "0xc31d21cd2ae3948389f1c52861d07c14eeb38b98c22485b4e88dfe2f830544f7",
+      "status_name": "ACCEPTED",
+      "result_name": "MAJORITY_AGREE",
+      "leader_result": "SUCCESS",
+      "error_payload": "[object Object]",
+      "latency_seconds": "9.44",
+      "expected_success": true
+    },
+    {
+      "label": "settle_Pd_s3_NO_PAY",
+      "function": "settle",
+      "tx_hash": "0x24bbe91782cffe184f597cc94c14631ad939fd014ce4795d14f9a8a5b3d3e9fd",
+      "status_name": "ACCEPTED",
+      "result_name": "MAJORITY_AGREE",
+      "leader_result": "SUCCESS",
+      "error_payload": "[object Object]",
+      "latency_seconds": "17.11",
+      "expected_success": true
+    },
+    {
+      "label": "update_source_s5",
+      "function": "update_source",
+      "tx_hash": "0x921ed5e5245c7166a46db93602d719599dacff46ad8e752b9d4692cf777a331d",
+      "status_name": "ACCEPTED",
+      "result_name": "MAJORITY_AGREE",
+      "leader_result": "SUCCESS",
+      "error_payload": "[object Object]",
+      "latency_seconds": "9.59",
+      "expected_success": true
+    },
+    {
+      "label": "settle_Pd_s5_NO_PAY",
+      "function": "settle",
+      "tx_hash": "0x04dd63bfb3d15ebb3b922e5dcc257b7807f37b132888dfb51154a49328d6b5ec",
+      "status_name": "ACCEPTED",
+      "result_name": "MAJORITY_AGREE",
+      "leader_result": "SUCCESS",
+      "error_payload": "[object Object]",
+      "latency_seconds": "32.24",
+      "expected_success": true
+    },
+    {
+      "label": "update_source_s6",
+      "function": "update_source",
+      "tx_hash": "0x78e1b70dbfca49a9ba0dfd8e1c20bfbc07615cbbb3fcd6b69acaee7cf64a2d55",
+      "status_name": "ACCEPTED",
+      "result_name": "MAJORITY_AGREE",
+      "leader_result": "SUCCESS",
+      "error_payload": "[object Object]",
+      "latency_seconds": "5.69",
+      "expected_success": true
+    },
+    {
+      "label": "settle_Pd_s6_REVIEW_tripwire",
+      "function": "settle",
+      "tx_hash": "0x81efa427ca0942d5762165a8dc7c70027fe09a92483850b2ef472213a0e95873",
+      "status_name": "ACCEPTED",
+      "result_name": "MAJORITY_AGREE",
+      "leader_result": "SUCCESS",
+      "error_payload": "[object Object]",
+      "latency_seconds": "9.46",
+      "expected_success": true
+    },
+    {
+      "label": "update_source_s7",
+      "function": "update_source",
+      "tx_hash": "0xf0ad2084b033215485de209ed8d624c7033f0a72f534ecd6941a2a9e325cfe94",
+      "status_name": "ACCEPTED",
+      "result_name": "MAJORITY_AGREE",
+      "leader_result": "SUCCESS",
+      "error_payload": "[object Object]",
+      "latency_seconds": "5.83",
+      "expected_success": true
+    },
+    {
+      "label": "settle_Pd_s7_REVIEW_no_duration",
+      "function": "settle",
+      "tx_hash": "0xa7f8dbe0629cd3870c4615e273d311c261bc9db0b8969d212b43f13f6a798fc2",
+      "status_name": "ACCEPTED",
+      "result_name": "MAJORITY_AGREE",
+      "leader_result": "SUCCESS",
+      "error_payload": "[object Object]",
+      "latency_seconds": "9.52",
+      "expected_success": true
+    },
+    {
+      "label": "update_source_s0_again",
+      "function": "update_source",
+      "tx_hash": "0x42b1fa05c35f7feddb56fca7935ce4dafd0055377b19128aef330adf65e95774",
+      "status_name": "ACCEPTED",
+      "result_name": "MAJORITY_AGREE",
+      "leader_result": "SUCCESS",
+      "error_payload": "[object Object]",
+      "latency_seconds": "9.48",
+      "expected_success": true
+    },
+    {
+      "label": "settle_Pd_s0_PAGE_UNCHANGED",
+      "function": "settle",
+      "tx_hash": "0xb5f21ae4eedd97d8c792c1a7bdc7402212be9604ce692ba224842f63f13e832c",
+      "status_name": "ACCEPTED",
+      "result_name": "MAJORITY_AGREE",
+      "leader_result": "SUCCESS",
+      "error_payload": "[object Object]",
+      "latency_seconds": "13.32",
+      "expected_success": true
+    },
+    {
+      "label": "settle_Pd_duplicate_observation",
+      "function": "settle",
+      "tx_hash": "0x407f195d936281afc075f98630364c028008bd5f06fd059c3f330949549278fc",
+      "status_name": "ACCEPTED",
+      "result_name": "MAJORITY_AGREE",
+      "leader_result": "ERROR",
+      "error_payload": "v�e�ƭz��z�ڶ*'",
+      "latency_seconds": "9.52",
+      "expected_success": false
+    },
+    {
+      "label": "update_source_404",
+      "function": "update_source",
+      "tx_hash": "0x0dd8ed2d3fd511e7053ac1fc5de27a7ea507eab12390917388177e93510fc205",
+      "status_name": "ACCEPTED",
+      "result_name": "MAJORITY_AGREE",
+      "leader_result": "SUCCESS",
+      "error_payload": "[object Object]",
+      "latency_seconds": "5.56",
+      "expected_success": true
+    },
+    {
+      "label": "settle_404_error",
+      "function": "settle",
+      "tx_hash": "0x943863525e44c8a927be4d9dc978126e4ce8bbf190449a6232196a55c17294a1",
+      "status_name": "UNDETERMINED",
+      "result_name": "MAJORITY_DISAGREE",
+      "leader_result": "ERROR",
+      "error_payload": "\u001d4ϲ֭���m4�N",
+      "latency_seconds": "20.90",
+      "expected_success": false
+    },
+    {
+      "label": "update_source_s9",
+      "function": "update_source",
+      "tx_hash": "0x7db67fafd5e14ff0e8b1ac86e88f2ed0e10f8f2d9ae95dd39267eb5a8b34f2dc",
+      "status_name": "ACCEPTED",
+      "result_name": "MAJORITY_AGREE",
+      "leader_result": "SUCCESS",
+      "error_payload": "[object Object]",
+      "latency_seconds": "5.65",
+      "expected_success": true
+    },
+    {
+      "label": "settle_s9_too_short",
+      "function": "settle",
+      "tx_hash": "0xdbaa2adc7afbf50dcab27d429eb9a7c20d74cf31092c44f0529411da707d06e7",
+      "status_name": "UNDETERMINED",
+      "result_name": "MAJORITY_DISAGREE",
+      "leader_result": "ERROR",
+      "error_payload": "��\u001e�z�i֛�",
+      "latency_seconds": "40.15",
+      "expected_success": false
+    },
+    {
+      "label": "update_source_mismatch",
+      "function": "update_source",
+      "tx_hash": "0x7e5d94cc7b58998639f0d318bb70ee0bdff5e078a746ca3b040f3f36f87570b4",
+      "status_name": "ACCEPTED",
+      "result_name": "MAJORITY_AGREE",
+      "leader_result": "ERROR",
+      "error_payload": "��-��b��-����ɚ��h��]j׿���q",
+      "latency_seconds": "5.88",
+      "expected_success": false
+    },
+    {
+      "label": "restore_source_s0",
+      "function": "update_source",
+      "tx_hash": "0x9f2dd2a8543e9397d637f93fff724c6d44598da7f21868977cdce5bab4359d70",
+      "status_name": "ACCEPTED",
+      "result_name": "MAJORITY_AGREE",
+      "leader_result": "SUCCESS",
+      "error_payload": "[object Object]",
+      "latency_seconds": "5.61",
+      "expected_success": true
+    },
+    {
+      "label": "cancel_policy_Pd",
+      "function": "cancel",
+      "tx_hash": "0xc939f7a8def403ad66cd9b3f09ec404f9ee040c9a07ad7a56d52b218e3d3434f",
+      "status_name": "ACCEPTED",
+      "result_name": "MAJORITY_AGREE",
+      "leader_result": "SUCCESS",
+      "error_payload": "[object Object]",
+      "latency_seconds": "6.20",
+      "expected_success": true
+    },
+    {
+      "label": "withdraw_unreserved",
+      "function": "withdraw_unreserved",
+      "tx_hash": "0xc0ff82503bfc64002a36d056a7c20f2a52acc8368db65a6e7640cf0b3848c1c8",
+      "status_name": "ACCEPTED",
+      "result_name": "MAJORITY_AGREE",
+      "leader_result": "SUCCESS",
+      "error_payload": "[object Object]",
+      "latency_seconds": "5.81",
+      "expected_success": true
+    },
+    {
+      "label": "withdraw_over_unreserved",
+      "function": "withdraw_unreserved",
+      "tx_hash": "0x396571b5ecd24203250a6581365276e5be9d0233c8d551767f637e2cdd396f04",
+      "status_name": "ACCEPTED",
+      "result_name": "MAJORITY_AGREE",
+      "leader_result": "ERROR",
+      "error_payload": "�+av��{\u0017\u001ey�.���z��",
+      "latency_seconds": "9.44",
+      "expected_success": false
+    },
+    {
+      "label": "guard_attest_Pa_paid_error",
+      "function": "attest",
+      "tx_hash": "0xf426d1a4294681ef640557d23d5e6d1f597563854b6fa993fe459d3f4c13775e",
+      "status_name": "ACCEPTED",
+      "result_name": "MAJORITY_AGREE",
+      "leader_result": "ERROR",
+      "error_payload": "��\\���y�� ",
+      "latency_seconds": "5.54",
+      "expected_success": false
+    }
+  ],
+  "readbacks": {
+    "pool_health_initial": {
+      "coverage_ratio_bps": "10000",
+      "free": "600",
+      "pool_balance": "600",
+      "product_id": "1",
+      "reserved": "0",
+      "schema_version": "1"
+    },
+    "is_covered_before": {
+      "coverage": "100",
+      "covered": "true",
+      "policy_status": "ACTIVE",
+      "product_id": "1",
+      "reason": "OK"
+    },
+    "is_covered_after": {
+      "coverage": "100",
+      "covered": "false",
+      "policy_status": "PAID",
+      "product_id": "1",
+      "reason": "PAID"
+    },
+    "is_covered_for_correct": false,
+    "is_covered_for_forged": false,
+    "underwriter_balance": "450",
+    "buyer_balance": "1135",
+    "pool_health_final": {
+      "coverage_ratio_bps": "10000",
+      "free": "415",
+      "pool_balance": "415",
+      "product_id": "1",
+      "reserved": "0",
+      "schema_version": "1"
+    },
+    "stats": {
+      "next_policy": "5",
+      "next_product": "2",
+      "next_settlement": "9",
+      "schema_version": "1",
+      "total_minted": "2000"
+    },
+    "settlement_1": {
+      "caller": "0x428682a3e6075c0b7fbab73ccc7d36c10a94d11d",
+      "gate": "JUDGED",
+      "id": "1",
+      "leader_reported": "true",
+      "minutes": "75",
+      "norm_hash16": "0e6cfd744a521e5b",
+      "outcome": "PAY_100",
+      "policy_id": "1",
+      "quote": "Status: Major outage.\nDuration: 75 minutes.",
+      "schema_version": "1",
+      "seq": "1",
+      "status": "OUTAGE",
+      "tripwire": false,
+      "url_used": "https://raw.githubusercontent.com/huzyow155/cover-fixtures/92c69bc636517656b9e7ee031a503adfb2d26bb4/status-s1-outage-75.md"
+    },
+    "settlement_2": {
+      "caller": "0x428682a3e6075c0b7fbab73ccc7d36c10a94d11d",
+      "gate": "JUDGED",
+      "id": "2",
+      "leader_reported": "true",
+      "minutes": "35",
+      "norm_hash16": "2179a3467f9e3891",
+      "outcome": "PAY_50",
+      "policy_id": "2",
+      "quote": "Status: Major outage.\nDuration: 35 minutes.",
+      "schema_version": "1",
+      "seq": "1",
+      "status": "OUTAGE",
+      "tripwire": false,
+      "url_used": "https://raw.githubusercontent.com/huzyow155/cover-fixtures/92c69bc636517656b9e7ee031a503adfb2d26bb4/status-s2-outage-35.md"
+    },
+    "settlement_3": {
+      "caller": "0x428682a3e6075c0b7fbab73ccc7d36c10a94d11d",
+      "gate": "JUDGED",
+      "id": "3",
+      "leader_reported": "true",
+      "minutes": "90",
+      "norm_hash16": "d28d6ec1ed315ad0",
+      "outcome": "PAY_25",
+      "policy_id": "3",
+      "quote": "Status: Degraded performance.\nDuration: 90 minutes.",
+      "schema_version": "1",
+      "seq": "1",
+      "status": "DEGRADED",
+      "tripwire": false,
+      "url_used": "https://raw.githubusercontent.com/huzyow155/cover-fixtures/92c69bc636517656b9e7ee031a503adfb2d26bb4/status-s4-degraded-90.md"
+    },
+    "settlement_4": {
+      "caller": "0x428682a3e6075c0b7fbab73ccc7d36c10a94d11d",
+      "gate": "JUDGED",
+      "id": "4",
+      "leader_reported": "true",
+      "minutes": "20",
+      "norm_hash16": "f47ac23f328063cf",
+      "outcome": "NO_PAY",
+      "policy_id": "4",
+      "quote": "Status: Major outage.\nDuration: 20 minutes.",
+      "schema_version": "1",
+      "seq": "1",
+      "status": "OUTAGE",
+      "tripwire": false,
+      "url_used": "https://raw.githubusercontent.com/huzyow155/cover-fixtures/92c69bc636517656b9e7ee031a503adfb2d26bb4/status-s3-outage-20.md"
+    },
+    "settlement_5": {
+      "caller": "0x428682a3e6075c0b7fbab73ccc7d36c10a94d11d",
+      "gate": "JUDGED",
+      "id": "5",
+      "leader_reported": "true",
+      "minutes": "0",
+      "norm_hash16": "0ac02a08c4c02ae1",
+      "outcome": "NO_PAY",
+      "policy_id": "4",
+      "quote": "Status: All systems operational. No incident in progress.\nDuration: 0 minutes.",
+      "schema_version": "1",
+      "seq": "1",
+      "status": "OPERATIONAL",
+      "tripwire": false,
+      "url_used": "https://raw.githubusercontent.com/huzyow155/cover-fixtures/92c69bc636517656b9e7ee031a503adfb2d26bb4/status-s5-operational-reformatted.html"
+    },
+    "settlement_6": {
+      "caller": "0x428682a3e6075c0b7fbab73ccc7d36c10a94d11d",
+      "gate": "TRIPWIRE",
+      "id": "6",
+      "leader_reported": "true",
+      "minutes": "0",
+      "norm_hash16": "22e65b66ca5e3625",
+      "outcome": "REVIEW",
+      "policy_id": "4",
+      "quote": "",
+      "schema_version": "1",
+      "seq": "1",
+      "status": "UNCLEAR",
+      "tripwire": true,
+      "url_used": "https://raw.githubusercontent.com/huzyow155/cover-fixtures/92c69bc636517656b9e7ee031a503adfb2d26bb4/status-s6-injection.md"
+    },
+    "settlement_7": {
+      "caller": "0x428682a3e6075c0b7fbab73ccc7d36c10a94d11d",
+      "gate": "JUDGED",
+      "id": "7",
+      "leader_reported": "true",
+      "minutes": "0",
+      "norm_hash16": "be2a49167146f040",
+      "outcome": "REVIEW",
+      "policy_id": "4",
+      "quote": "Status: Major outage.",
+      "schema_version": "1",
+      "seq": "1",
+      "status": "OUTAGE",
+      "tripwire": false,
+      "url_used": "https://raw.githubusercontent.com/huzyow155/cover-fixtures/92c69bc636517656b9e7ee031a503adfb2d26bb4/status-s7-no-duration.md"
+    }
+  }
+}

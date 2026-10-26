@@ -1,0 +1,21 @@
+{
+  "fixture": "status-s4-degraded-90.md",
+  "slug": "s4",
+  "run_index": 5,
+  "key": "s4_run_5",
+  "tx_hash": "0x8b406237f76723a2277882b2f92a2089836a0fbc8b2b27cc22f0822c3442ab3e",
+  "latency_seconds": "14.93",
+  "prompt_sha256": "4d7d1ad1b041fe391182f20abc4e50487deed4cc2d580cb51041efd45d1fbe41",
+  "probe_address": "0x8ED26b3925D50EabFFbCe6778315eBCbaB4e7745",
+  "status_name": "ACCEPTED",
+  "result_name": "MAJORITY_AGREE",
+  "raw_output": "{\"status\":\"DEGRADED\",\"minutes\":90,\"quote\":\"Status: Degraded performance.\\nDuration: 90 minutes.\"}",
+  "parsed_valid": true,
+  "extracted_status": "DEGRADED",
+  "extracted_minutes": 90,
+  "extracted_quote": "Status: Degraded performance.\nDuration: 90 minutes.",
+  "quote_ok": true,
+  "computed_outcome": "PAY_25",
+  "expected_outcome": "PAY_25",
+  "matched": true
+}

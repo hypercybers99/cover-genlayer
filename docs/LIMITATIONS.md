@@ -29,3 +29,7 @@ It records design trade-offs, scope boundaries, and operational constraints of t
 ## 5. Model Variance and Consensus Threshold
 - **Multi-Validator Majority Consensus**: Non-deterministic execution runs across independent GenLayer validators. By comparing only the strict consensus token `<OUTCOME>|<norm_hash16>`, validators remain unaffected by minor differences in leader-extracted quotes or explanation phrasing.
 - **Conservative Fail-Safe**: Any model hallucination, unparseable output, duplicate JSON keys, or injection trigger safely collapses to `REVIEW` (zero payout, policy remains active).
+
+## 6. Empirical Robustness Limitations (Iteration 1)
+- **Occasional LLM Chain-of-Thought / Prose Output**: In empirical testing across 60 on-chain runs on Studionet (Iteration 1), 59 runs (98.3%) parsed strictly as JSON and matched the pre-registered target outcome. However, on fixture `status-s3-outage-20.md`, 1 out of 10 runs (Run 5) outputted conversational chain-of-thought text before appending JSON.
+- **Fail-Safe Operation**: When this occurred, the strict schema parser rejected the non-JSON preamble (`valid = false`), and the deterministic contract logic safely defaulted to `REVIEW` with zero payout. While this maintains complete fund safety (no erroneous payout), `status-s3-outage-20.md` missed the pre-registered 10/10 strict parse threshold (achieving 9/10 parse, 9/10 outcome match). This empirical limitation is disclosed honestly without altering deterministic parser gates.

@@ -1,0 +1,21 @@
+{
+  "fixture": "status-s3-outage-20.md",
+  "slug": "s3",
+  "run_index": 1,
+  "key": "s3_run_1",
+  "tx_hash": "0x432d6d057481869ec9f6e4ea161ead514de9d7cdd2daaa2cad2498bf48def651",
+  "latency_seconds": "14.85",
+  "prompt_sha256": "4d7d1ad1b041fe391182f20abc4e50487deed4cc2d580cb51041efd45d1fbe41",
+  "probe_address": "0x8ED26b3925D50EabFFbCe6778315eBCbaB4e7745",
+  "status_name": "ACCEPTED",
+  "result_name": "MAJORITY_AGREE",
+  "raw_output": "{\"status\":\"OUTAGE\",\"minutes\":20,\"quote\":\"Status: Major outage.\\nDuration: 20 minutes.\"}",
+  "parsed_valid": true,
+  "extracted_status": "OUTAGE",
+  "extracted_minutes": 20,
+  "extracted_quote": "Status: Major outage.\nDuration: 20 minutes.",
+  "quote_ok": true,
+  "computed_outcome": "NO_PAY",
+  "expected_outcome": "NO_PAY",
+  "matched": true
+}

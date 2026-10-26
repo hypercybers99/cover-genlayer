@@ -90,3 +90,35 @@ Executed on Studionet against ProbeExtract (`0xBa2689DA2A56c80A00DFC7F4e4863b3cb
 3. **Conclusion & Required Iteration**:
    - Because `status-s4-degraded-90.md` achieved only 7/10 matches, the pre-registered pass rule was missed.
    - Prompt Iteration 1 is required to instruct the model that when `minutes > 0`, the quote must encompass both the stated status and the stated duration clause.
+
+---
+
+## 6. Empirical Results: Iteration 1 (Prompt SHA 4d7d1ad1b041fe391182f20abc4e50487deed4cc2d580cb51041efd45d1fbe41)
+
+Executed on Studionet against ProbeExtract (`0x8ED26b3925D50EabFFbCe6778315eBCbaB4e7745`) under pre-registered rule `docs/ROBUSTNESS_RULE_ITER1.md`.
+All 60 on-chain write transactions completed successfully without RPC timeout or dropped transactions.
+
+### Results Summary Table (Iteration 1):
+
+| Fixture Page | Target Outcome | Total Runs | Strict Parse Success | Outcome Matches | Pass Rule Met? |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| `status-s1-outage-75.md` | `PAY_100` | 10 | 10 / 10 (100%) | 10 / 10 (100%) | **PASS** |
+| `status-s2-outage-35.md` | `PAY_50` | 10 | 10 / 10 (100%) | 10 / 10 (100%) | **PASS** |
+| `status-s3-outage-20.md` | `NO_PAY` | 10 | 9 / 10 (90%) | 9 / 10 (90%) | **FAIL** (Parse was 9/10, rule requires 10/10) |
+| `status-s4-degraded-90.md` | `PAY_25` | 10 | 10 / 10 (100%) | 10 / 10 (100%) | **PASS** (Improved from 7/10 in Iter 0) |
+| `status-s5-operational-reformatted.html` | `NO_PAY` | 10 | 10 / 10 (100%) | 10 / 10 (100%) | **PASS** |
+| `status-s7-no-duration.md` | `REVIEW` | 10 | 10 / 10 (100%) | 10 / 10 (100%) | **PASS** (Completed all 10 runs) |
+
+### Iteration 1 Findings & Failure Diagnosis:
+1. **s4 Degraded Fix**: `status-s4-degraded-90.md` achieved **10 / 10 parse** and **10 / 10 outcome match** (100%), proving that the updated quote constraint eliminated quote truncation.
+2. **s3 Single Miss (Run 5)**:
+   - In Run 5, the model outputted 1,162 characters of conversational preamble / chain-of-thought before appending the JSON object:
+     `"The task: extract status and duration from the page text. The page text contains a current incident block: ... Status is 'Major outage' -> maps to OUTAGE ... Output JSON only: {\"status\": \"OUTAGE\", \"minutes\": 20, \"quote\": \"Status: Major outage.\nDuration: 20 minutes.\"}"`
+   - Classification: Unenforced preamble / chain-of-thought.
+   - Fail-Safe Behavior: The deterministic parser strictly rejected the leading prose (`parsed_valid = false`), and the contract's defensive gate safely produced `REVIEW` instead of an erroneous state transition.
+3. **Overall Reliability**:
+   - Total runs: 60.
+   - Parse success: 59 / 60 (98.3%).
+   - Outcome accuracy: 59 / 60 (98.3%).
+   - 5 out of 6 pages passed all pre-registered criteria (10/10 parse, >=9/10 match).
+   - Because `status-s3-outage-20.md` missed the strict 10/10 parse rule by 1 run, this limitation is plainly disclosed in `docs/LIMITATIONS.md` and the final build report.
