@@ -112,26 +112,81 @@ async function main() {
   const guardDeployLat = ((Date.now() - tg0) / 1000).toFixed(2);
   console.log(`CoverGuard deployed at: ${guardAddress} in ${guardDeployLat}s`);
 
+  // Ensure docs/evidence/onchain directory exists
+  const onchainDir = path.join(__dirname, '../../docs/evidence/onchain');
+  if (!fs.existsSync(onchainDir)) fs.mkdirSync(onchainDir, { recursive: true });
+
+  fs.writeFileSync(path.join(onchainDir, 'cover_deploy_receipt.json'), JSON.stringify(coverDeployReceipt, null, 2));
+  fs.writeFileSync(path.join(onchainDir, 'cover_guard_deploy_receipt.json'), JSON.stringify(guardDeployReceipt, null, 2));
+
+  // Extract deployed source code from deploy transactions to verify byte-for-byte fidelity
+  async function verifyDeployedSource(txHash, localPath, outName) {
+    const res = await fetch('https://studio.genlayer.com/api', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        jsonrpc: '2.0',
+        method: 'eth_getTransactionByHash',
+        params: [txHash],
+        id: 1
+      })
+    });
+    const d = await res.json();
+    const b64 = d.result?.data?.contract_code || "";
+    const rawBuf = Buffer.from(b64, 'base64');
+    const localBuf = fs.readFileSync(localPath);
+
+    const first16 = rawBuf.subarray(0, 16).toString('hex');
+    const last16 = rawBuf.subarray(Math.max(0, rawBuf.length - 16)).toString('hex');
+    console.log(`\n[Source Verification: ${outName}]`);
+    console.log(`  First 16 bytes: ${first16}`);
+    console.log(`  Last 16 bytes:  ${last16}`);
+    console.log(`  Deployed byte length: ${rawBuf.length} | Local byte length: ${localBuf.length}`);
+
+    const extractedFile = path.join(onchainDir, `${outName}_extracted.py`);
+    fs.writeFileSync(extractedFile, rawBuf);
+
+    const match = rawBuf.equals(localBuf);
+    console.log(`  Byte-for-byte identical match: ${match}`);
+    return { first16, last16, byteLength: rawBuf.length, match };
+  }
+
+  const coverVerify = await verifyDeployedSource(deployCoverTx, coverPath, 'Cover');
+  const guardVerify = await verifyDeployedSource(deployGuardTx, guardPath, 'CoverGuard');
+
   // Write deployments.json
   const deployments = {
     network: "studionet",
     chain_id: 61999,
     rpc: "https://studio.genlayer.com/api",
-    explorer_base: "https://explorer-studio.genlayer.com/address/",
-    cover: {
-      address: coverAddress,
-      deploy_tx: deployCoverTx,
-      source_sha256: coverSha256,
-      latency_seconds: coverDeployLat,
+    explorer_urls: {
+      cover: `https://explorer-studio.genlayer.com/address/${coverAddress}`,
+      cover_guard: `https://explorer-studio.genlayer.com/address/${guardAddress}`,
     },
-    cover_guard: {
-      address: guardAddress,
-      deploy_tx: deployGuardTx,
-      source_sha256: guardSha256,
-      latency_seconds: guardDeployLat,
+    addresses: {
+      cover: coverAddress,
+      cover_guard: guardAddress,
     },
+    deploy_txs: {
+      cover: deployCoverTx,
+      cover_guard: deployGuardTx,
+    },
+    prompt_sha256: "4d7d1ad1b041fe391182f20abc4e50487deed4cc2d580cb51041efd45d1fbe41",
+    source_shas: {
+      cover: coverSha256,
+      cover_guard: guardSha256,
+    },
+    source_verification: {
+      cover: coverVerify,
+      cover_guard: guardVerify,
+    },
+    latencies: {
+      cover: coverDeployLat,
+      cover_guard: guardDeployLat,
+    }
   };
   fs.writeFileSync(path.join(__dirname, 'deployments.json'), JSON.stringify(deployments, null, 2));
+  fs.writeFileSync(path.join(onchainDir, 'deployments.json'), JSON.stringify(deployments, null, 2));
 
   const evidence = {
     deployments,
@@ -160,6 +215,8 @@ async function main() {
     if (expectSuccess) {
       verifyReceiptSuccess(receipt, label);
     }
+
+    fs.writeFileSync(path.join(onchainDir, `${label}_receipt.json`), JSON.stringify(receipt, null, 2));
 
     const rec = {
       label,
@@ -404,6 +461,7 @@ async function main() {
 
   const outEvidencePath = path.join(__dirname, '../../docs/evidence/live_evidence.json');
   fs.writeFileSync(outEvidencePath, JSON.stringify(evidence, null, 2));
+  fs.writeFileSync(path.join(onchainDir, 'live_evidence.json'), JSON.stringify(evidence, null, 2));
   console.log("\n==================================================================");
   console.log("All Milestone 4 live on-chain runs completed successfully!");
   console.log("Saved evidence to:", outEvidencePath);

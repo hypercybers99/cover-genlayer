@@ -28,9 +28,12 @@ This document records the exact method and cryptographic evidence verifying cont
 - Verified Local SHA256: `c233f4eca4c77d345c80ff4dc02852787dcb1ef18f890831681d964ecc4491c5`
 
 ### ProbeExtract Contract:
-- Address: `0xBa2689DA2A56c80A00DFC7F4e4863b3cb902609D`
-- Deployed during Milestone 3 robustness batch (task-260). The deploy transaction hash was not captured to an individual receipt file; only the contract address was recorded in the execution log.
-- (Note: `0xFF6dF478E40b66AAC3Af5271C66b94B750E6E58f` was an intermediate deployment from a retry attempt where the deploy completed in 5.69s but subsequent writes were halted by RPC rate limiting).
+- **Iteration 1 Address**: `0x8ED26b3925D50EabFFbCe6778315eBCbaB4e7745`
+- **Deploy Tx Hash**: `0x2ccd7793c97cd1f2438ad3a3ade4a4dbba07d01f47ff9e9f2bcba497005b2509` (saved in `docs/evidence/probe_extract_deploy_receipt.json`)
+- **Deploy Latency**: 8.91 s
+- **Explorer URL**: [https://explorer-studio.genlayer.com/address/0x8ED26b3925D50EabFFbCe6778315eBCbaB4e7745](https://explorer-studio.genlayer.com/address/0x8ED26b3925D50EabFFbCe6778315eBCbaB4e7745)
+- **Source SHA-256**: `bfac8564471acc9c43b8e7efc2309f1e4da94064435554c42fdc4587fb0da39a`
+- *(Historical Note: `0xBa2689DA2A56c80A00DFC7F4e4863b3cb902609D` was the Iteration 0 probe where the deploy transaction hash was not captured to an individual receipt file; `0xFF6dF478E40b66AAC3Af5271C66b94B750E6E58f` was an intermediate retry deployment where the deploy completed in 5.69s but was superseded).*
 
 ### Production Contracts (Cover & CoverGuard):
 - Pending deployment in Milestone 4.
