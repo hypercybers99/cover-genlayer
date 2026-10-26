@@ -1,14 +1,14 @@
-# Pre-Registered Robustness Plan
+# Pre-Registered Robustness Plan & Empirical Results
 
-This document defines the pre-registered robustness testing plan and pass rules for **Cover**'s LLM extraction step on GenLayer Studionet.
-This file is committed BEFORE any robustness probe transactions are executed on-chain.
+This document defines the pre-registered robustness testing plan, pass rules, and empirical results for **Cover**'s LLM extraction step on GenLayer Studionet.
+The initial plan (Sections 1-4) was committed in commit `e2531e8` BEFORE any robustness probe transactions were executed on-chain.
 
 ---
 
 ## 1. Scope & Setup
 
 The robustness harness tests whether the LLM extraction step reliably parses and classifies status pages across repeated non-deterministic runs.
-A standalone `ProbeExtract` contract is deployed to Studionet, exposing `extract_page(page_text: str) -> str`.
+A standalone `ProbeExtract` contract is deployed to Studionet, exposing `extract_page(key: str, page_text: str) -> None`.
 The harness runs **10 independent runs** for each of the following 6 fixture pages:
 - `status-s1-outage-75.md`: Expected `PAY_100` (status OUTAGE, minutes 75)
 - `status-s2-outage-35.md`: Expected `PAY_50` (status OUTAGE, minutes 35)
@@ -21,9 +21,9 @@ Total scheduled runs: 60 on-chain write transactions.
 
 ---
 
-## 2. Production Prompt Specification
+## 2. Production Prompt Specification (Iteration 0)
 
-The exact production prompt text from `contracts/Cover.py`:
+The exact production prompt text from `contracts/Cover.py` at commit `e2531e8`:
 
 ```json
 {
@@ -32,7 +32,7 @@ The exact production prompt text from `contracts/Cover.py`:
 }
 ```
 
-Instructions SHA256:
+Instructions SHA-256:
 `934c9c22b9c7b953d6a4db1cbb7a610996841be63a4087dc261ea944fca89cf2`
 
 ---
@@ -41,9 +41,52 @@ Instructions SHA256:
 
 1. **Parse Success**: Exactly **10 / 10 runs** per page must parse successfully via `parse_extraction` without schema error.
 2. **Outcome Accuracy**: At least **9 / 10 runs** per page must yield the hand-computed pre-registered outcome when evaluated through the contract's `decide(...)` logic.
-3. **Iteration Rule**: If a page fails the 9/10 rule, at most 2 prompt iterations are permitted. Every iteration must be logged in `docs/DESIGN.md` with the failure reason and re-tested across the full 10-run batch under an updated rule file.
+3. **Iteration Rule**: If a page fails the 9/10 rule, at most 2 prompt iterations are permitted. Every iteration must be logged in `docs/DESIGN.md` with the failure reason and re-tested across the full 10-run batch under an updated rule file committed first.
 
 ---
 
 ## 4. Evaluation Method
-Every raw output received from Studionet is recorded verbatim in `docs/evidence/robustness_runs.json` and evaluated offline using the parity-tested `decide` and `quote_in_page` implementation directly mirroring `contracts/Cover.py`.
+Every raw output received from Studionet is recorded verbatim in `docs/evidence/robustness/iter0/runs.json` and evaluated offline using the parity-tested `decide` and `quote_in_page` implementation directly mirroring `contracts/Cover.py`.
+
+---
+
+## 5. Empirical Results: Iteration 0 (Commit e2531e8)
+
+Executed on Studionet against ProbeExtract (`0xBa2689DA2A56c80A00DFC7F4e4863b3cb902609D`). 54 runs completed before task-260 was halted by RPC rate limiting on s7 run 5.
+
+### Results Summary Table:
+
+| Fixture Page | Target Outcome | Total Runs | Strict Parse Success | Outcome Matches | Pass Rule Met? |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| `status-s1-outage-75.md` | `PAY_100` | 10 | 10 / 10 (100%) | 9 / 10 (90%) | **PASS** |
+| `status-s2-outage-35.md` | `PAY_50` | 10 | 10 / 10 (100%) | 10 / 10 (100%) | **PASS** |
+| `status-s3-outage-20.md` | `NO_PAY` | 10 | 10 / 10 (100%) | 9 / 10 (90%) | **PASS** |
+| `status-s4-degraded-90.md` | `PAY_25` | 10 | 10 / 10 (100%) | 7 / 10 (70%) | **FAIL** (Rule requires >= 9/10) |
+| `status-s5-operational-reformatted.html` | `NO_PAY` | 10 | 10 / 10 (100%) | 10 / 10 (100%) | **PASS** |
+| `status-s7-no-duration.md` | `REVIEW` | 4 | 4 / 4 (100%) | 4 / 4 (100%) | **INCOMPLETE** (4/10 runs) |
+
+### Failure Diagnosis for Iteration 0:
+1. **Parse Success (54/54 = 100%)**:
+   - Zero JSON syntax errors, zero duplicate keys, zero extra keys, zero markdown fence pollution across all 54 runs.
+   - Parse failures: 0 / 54.
+
+2. **Miss Analysis & Raw Outputs**:
+   - **`status-s1-outage-75.md` Run 2** (Miss: computed `REVIEW` vs expected `PAY_100`):
+     - Raw output: `{"status":"OUTAGE","minutes":75,"quote":"Status: Major outage."}`
+     - Classification: Quote truncated; omitted adjacent line `Duration: 75 minutes.`. Because `75` was not in quote, `number_in_quote` failed.
+   - **`status-s3-outage-20.md` Run 6** (Miss: computed `REVIEW` vs expected `NO_PAY`):
+     - Raw output: `{"status": "OUTAGE", "minutes": 20, "quote": "A transient fiber disruption between availability zones caused brief gateway partition."}`
+     - Classification: Quote extracted incident summary rather than status and duration line. Lacked `20`, so `number_in_quote` failed.
+   - **`status-s4-degraded-90.md` Run 2** (Miss: computed `REVIEW` vs expected `PAY_25`):
+     - Raw output: `{"status": "DEGRADED", "minutes": 90, "quote": "Status: Degraded performance."}`
+     - Classification: Quote omitted duration number `90`. `number_in_quote` failed.
+   - **`status-s4-degraded-90.md` Run 6** (Miss: computed `REVIEW` vs expected `PAY_25`):
+     - Raw output: `{"status": "DEGRADED", "minutes": 90, "quote": "Status: Degraded performance."}`
+     - Classification: Quote omitted duration number `90`. `number_in_quote` failed.
+   - **`status-s4-degraded-90.md` Run 7** (Miss: computed `REVIEW` vs expected `PAY_25`):
+     - Raw output: `{"status": "DEGRADED", "minutes": 90, "quote": "Status: Degraded performance."}`
+     - Classification: Quote omitted duration number `90`. `number_in_quote` failed.
+
+3. **Conclusion & Required Iteration**:
+   - Because `status-s4-degraded-90.md` achieved only 7/10 matches, the pre-registered pass rule was missed.
+   - Prompt Iteration 1 is required to instruct the model that when `minutes > 0`, the quote must encompass both the stated status and the stated duration clause.
