@@ -23,7 +23,7 @@ The single closest existing project in Web3 is **Etherisc Flight Delay** (`Fligh
 
 ### Mechanism Comparison:
 - **Etherisc**: A traveler purchases flight delay cover. An off-chain oracle service periodically polls a proprietary aviation database API (FlightStats). When the flight status API returns delay minutes > 45, the oracle pushes a transaction on-chain to trigger an automated payout.
-- **Cover**: An underwriter creates a cover pool against a public dependency status page (e.g. Nimbus Cloud). A buyer buys coverage. When the service goes down, anyone can call `settle`. GenLayer validators directly fetch the public HTTP web page, use an on-chain LLM to extract incident status and duration, verify the extracted quote character-by-character against the raw web text using deterministic Python string functions, and execute the payout directly in the same block.
+- **Cover**: An underwriter creates a cover pool against a public dependency status page (e.g. Nimbus Cloud). A buyer buys coverage. When the service goes down, anyone can call `settle`. GenLayer validators directly fetch the public HTTP web page, use an on-chain LLM to extract incident status and duration, verify the extracted quote character-by-character against the raw web text using deterministic Python string functions, and execute the payout directly within the transaction call.
 
 ---
 
