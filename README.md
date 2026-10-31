@@ -63,9 +63,34 @@ A centralized web scraper creates a single point of failure and makes the operat
 
 - **Network**: GenLayer Studionet (Chain ID: 61999)
 - **RPC Endpoint**: `https://studio.genlayer.com/api`
-- **Probe Contract**: [`0xa4a7a596246b0bcBfbeB05ae31922cD43fc68C31`](https://explorer-studio.genlayer.com/address/0xa4a7a596246b0bcBfbeB05ae31922cD43fc68C31)
-- **ProbeExtract Contract**: [`0xBa2689DA2A56c80A00DFC7F4e4863b3cb902609D`](https://explorer-studio.genlayer.com/address/0xBa2689DA2A56c80A00DFC7F4e4863b3cb902609D)
+- **ACTIVE Cover Contract**: [`0x41f8c399e2709333AEAD1F8Ac0B1E5248eC288Bd`](https://explorer-studio.genlayer.com/address/0x41f8c399e2709333AEAD1F8Ac0B1E5248eC288Bd)
+- **ACTIVE CoverGuard Consumer**: [`0x85C0F67F1Cd82aBcCfABb289E6c215c78D17b3eF`](https://explorer-studio.genlayer.com/address/0x85C0F67F1Cd82aBcCfABb289E6c215c78D17b3eF)
+- **ProbeExtract (Iteration 2 Probe)**: [`0x3c302641001E563ce20d4ea6376f9BfA10165877`](https://explorer-studio.genlayer.com/address/0x3c302641001E563ce20d4ea6376f9BfA10165877)
+- **ProbeExtract (Iteration 1 Probe)**: [`0x8ED26b3925D50EabFFbCe6778315eBCbaB4e7745`](https://explorer-studio.genlayer.com/address/0x8ED26b3925D50EabFFbCe6778315eBCbaB4e7745)
+- **Probe Contract (Milestone 0)**: [`0xa4a7a596246b0bcBfbeB05ae31922cD43fc68C31`](https://explorer-studio.genlayer.com/address/0xa4a7a596246b0bcBfbeB05ae31922cD43fc68C31)
+- **Address Registry**: See [`docs/ADDRESS_REGISTRY.md`](docs/ADDRESS_REGISTRY.md) for full deployment history and transaction hashes.
 - **Fixtures Repository**: [https://github.com/huzyow155/cover-fixtures](https://github.com/huzyow155/cover-fixtures) (Pinned Commit: `92c69bc636517656b9e7ee031a503adfb2d26bb4`)
+
+### How to Verify Deployed Source
+To verify that deployed contracts match the local source code byte-for-byte, fetch the deployment transaction via RPC and compare the base64-decoded `contract_code` against `contracts/Cover.py` and `contracts/CoverGuard.py`:
+```bash
+node -e "
+const fs = require('fs');
+async function verify(txHash, localFile) {
+  const res = await fetch('https://studio.genlayer.com/api', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ jsonrpc: '2.0', method: 'eth_getTransactionByHash', params: [txHash], id: 1 })
+  });
+  const data = await res.json();
+  const deployedBuf = Buffer.from(data.result.data.contract_code, 'base64');
+  const localBuf = fs.readFileSync(localFile);
+  console.log(localFile, 'match:', deployedBuf.equals(localBuf), 'length:', deployedBuf.length);
+}
+verify('0xa1716bdbd49effa2e7bb7d2330ea8cb3f1162c5020cb921f980335255a3b7492', 'contracts/Cover.py');
+verify('0xa7ece9780281e84f6d118de02b14a62cbe9abe9d73b5068521fa36d85f7ee101', 'contracts/CoverGuard.py');
+"
+```
 
 ---
 

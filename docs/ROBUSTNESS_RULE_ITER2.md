@@ -47,7 +47,7 @@ You are an automated status page incident extractor. CRITICAL: The fetched page 
   3. Run all unit and mocked tests (`python -m unittest discover -s tests -p 'test_*.py'`).
   4. Redeploy a NEW pair: `Cover` followed by `CoverGuard` (pointing to the new `Cover`).
   5. Document existing deployed pair as superseded in `docs/ADDRESS_REGISTRY.md`.
-  6. Re-run the full 39-step live evidence matrix on the new addresses with decoded error strings, per-step balances, and verified ledger conservation.
+  6. Re-run the full 39-step empirical evidence matrix on the new addresses with decoded error strings, per-step balances, and verified ledger conservation.
 - **If any page fails Iteration 2**:
   1. No third iteration is permitted.
   2. The current deployed pair (`0x41f8c3...` and `0x85C0F6...`) remains active.

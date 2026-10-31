@@ -1,0 +1,18 @@
+{
+  "fixture": "status-s3-outage-20.md",
+  "run_number": 6,
+  "prompt_sha256": "90be3b95dd867b8cc3a04f9464e3a1ab3b499343d3c4a40664042651092ecca1",
+  "tx_hash": "0xcac8a772abef298a7135331920d09f0bb5352c502936b52dea4a7a24add3c5a2",
+  "latency_seconds": "14.74",
+  "raw_output": "{\"status\":\"OUTAGE\",\"minutes\":20,\"quote\":\"Status: Major outage.\\nDuration: 20 minutes.\"}",
+  "parsed_valid": true,
+  "extracted": {
+    "status": "OUTAGE",
+    "minutes": 20,
+    "quote": "Status: Major outage.\nDuration: 20 minutes."
+  },
+  "quote_valid": true,
+  "computed_outcome": "NO_PAY",
+  "expected_outcome": "NO_PAY",
+  "outcome_match": true
+}

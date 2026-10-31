@@ -1,0 +1,19 @@
+{
+  "fixture": "status-s4-degraded-90.md",
+  "run_number": 10,
+  "prompt_sha256": "90be3b95dd867b8cc3a04f9464e3a1ab3b499343d3c4a40664042651092ecca1",
+  "tx_hash": "0x36fb8f2155d0028815a020ec6abffb0556628ad202b94233c9c95ef8e38b0928",
+  "latency_seconds": "140.00",
+  "raw_output": "",
+  "parsed_valid": false,
+  "extracted": {
+    "status": "UNCLEAR",
+    "minutes": 0,
+    "quote": ""
+  },
+  "quote_valid": false,
+  "computed_outcome": "REVIEW",
+  "expected_outcome": "PAY_25",
+  "outcome_match": false,
+  "external_failure": "Receipt timeout on Studionet: tx stuck in PROPOSING / NO_MAJORITY"
+}

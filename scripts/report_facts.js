@@ -55,27 +55,27 @@ function main() {
   }
 
   if (fs.existsSync(livePath)) {
-    const live = JSON.parse(fs.readFileSync(livePath, 'utf8'));
+    const ev = JSON.parse(fs.readFileSync(livePath, 'utf8'));
     console.log("\n--- ON-CHAIN EVIDENCE MATRIX (MILESTONE 4) ---");
-    console.log(`Live Transactions:   ${live.transactions.length}`);
-    const successTxs = live.transactions.filter(t => t.status_name === 'ACCEPTED' && t.result_name === 'MAJORITY_AGREE');
-    console.log(`Accepted with Consensus: ${successTxs.length}/${live.transactions.length}`);
+    console.log(`On-chain Transactions:   ${ev.transactions.length}`);
+    const successTxs = ev.transactions.filter(t => t.status_name === 'ACCEPTED' && t.result_name === 'MAJORITY_AGREE');
+    console.log(`Accepted with Consensus: ${successTxs.length}/${ev.transactions.length}`);
     console.log("\nSettlement Readbacks:");
     for (let i = 1; i <= 8; i++) {
-      const s = live.readbacks[`settlement_${i}`];
+      const s = ev.readbacks[`settlement_${i}`];
       if (s) {
         console.log(`  Settlement #${s.id}: gate=${s.gate.padEnd(15)} status=${s.status.padEnd(12)} min=${s.minutes.padEnd(3)} outcome=${s.outcome.padEnd(8)} tripwire=${s.tripwire}`);
       }
     }
     console.log("\nFinal System State:");
-    console.log(`  Underwriter Balance: ${live.readbacks.underwriter_balance}`);
-    console.log(`  Buyer Balance:       ${live.readbacks.buyer_balance}`);
-    console.log(`  Pool Health:         free=${live.readbacks.pool_health_final.free}, reserved=${live.readbacks.pool_health_final.reserved}, total=${live.readbacks.pool_health_final.pool_balance}`);
-    console.log(`  Next Policy ID:      ${live.readbacks.stats.next_policy}`);
-    console.log(`  Next Settlement ID:  ${live.readbacks.stats.next_settlement}`);
-    console.log(`  Total Minted:        ${live.readbacks.stats.total_minted}`);
-    const conservation = parseInt(live.readbacks.underwriter_balance) + parseInt(live.readbacks.buyer_balance) + parseInt(live.readbacks.pool_health_final.pool_balance);
-    console.log(`  Conservation Check:  ${live.readbacks.underwriter_balance} + ${live.readbacks.buyer_balance} + ${live.readbacks.pool_health_final.pool_balance} == ${conservation} (expected: 2000) -> ${conservation === 2000 ? 'CONSERVED' : 'MISMATCH'}`);
+    console.log(`  Underwriter Balance: ${ev.readbacks.underwriter_balance}`);
+    console.log(`  Buyer Balance:       ${ev.readbacks.buyer_balance}`);
+    console.log(`  Pool Health:         free=${ev.readbacks.pool_health_final.free}, reserved=${ev.readbacks.pool_health_final.reserved}, total=${ev.readbacks.pool_health_final.pool_balance}`);
+    console.log(`  Next Policy ID:      ${ev.readbacks.stats.next_policy}`);
+    console.log(`  Next Settlement ID:  ${ev.readbacks.stats.next_settlement}`);
+    console.log(`  Total Minted:        ${ev.readbacks.stats.total_minted}`);
+    const conservation = parseInt(ev.readbacks.underwriter_balance) + parseInt(ev.readbacks.buyer_balance) + parseInt(ev.readbacks.pool_health_final.pool_balance);
+    console.log(`  Conservation Check:  ${ev.readbacks.underwriter_balance} + ${ev.readbacks.buyer_balance} + ${ev.readbacks.pool_health_final.pool_balance} == ${conservation} (expected: 2000) -> ${conservation === 2000 ? 'CONSERVED' : 'MISMATCH'}`);
   }
 
   console.log("\n--- TESTS SUMMARY (MILESTONE 3) ---");

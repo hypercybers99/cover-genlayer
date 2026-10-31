@@ -1,0 +1,18 @@
+{
+  "fixture": "status-s3-outage-20.md",
+  "run_number": 1,
+  "prompt_sha256": "90be3b95dd867b8cc3a04f9464e3a1ab3b499343d3c4a40664042651092ecca1",
+  "tx_hash": "0xe076ad4bacf7f1295641f8d124ca83c34644229ff683c45f7663bb6f246a9eca",
+  "latency_seconds": "14.82",
+  "raw_output": "{\"status\": \"OUTAGE\", \"minutes\": 20, \"quote\": \"Incident: Intermittent gateway timeouts. Status: Major outage. Duration: 20 minutes.\"}",
+  "parsed_valid": true,
+  "extracted": {
+    "status": "OUTAGE",
+    "minutes": 20,
+    "quote": "Incident: Intermittent gateway timeouts. Status: Major outage. Duration: 20 minutes."
+  },
+  "quote_valid": true,
+  "computed_outcome": "NO_PAY",
+  "expected_outcome": "NO_PAY",
+  "outcome_match": true
+}

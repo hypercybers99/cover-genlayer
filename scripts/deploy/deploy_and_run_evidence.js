@@ -463,7 +463,7 @@ async function main() {
   fs.writeFileSync(outEvidencePath, JSON.stringify(evidence, null, 2));
   fs.writeFileSync(path.join(onchainDir, 'live_evidence.json'), JSON.stringify(evidence, null, 2));
   console.log("\n==================================================================");
-  console.log("All Milestone 4 live on-chain runs completed successfully!");
+  console.log("All Milestone 4 on-chain runs completed successfully!");
   console.log("Saved evidence to:", outEvidencePath);
   console.log("==================================================================");
 }

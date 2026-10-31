@@ -1,0 +1,92 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run Python unit, parity, and consensus tests
+        run: |
+          python -m unittest discover -s tests -p "test_*.py"
+
+      - name: Verify report facts script
+        run: |
+          node scripts/report_facts.js
+
+      - name: Banned words scan
+        run: |
+          node -e "
+          const fs = require('fs');
+          const path = require('path');
+          const bannedWords = [
+            'cryptographic proof',
+            'tamper-proof',
+            'tamper',
+            'tampered',
+            'tampering',
+            'autonomous',
+            'unanimous',
+            'revolutionary',
+            'same block',
+            'bytecode'
+          ];
+          function scanDir(dir) {
+            for (const f of fs.readdirSync(dir)) {
+              if (f === 'node_modules' || f === '.git') continue;
+              const full = path.join(dir, f);
+              const stat = fs.statSync(full);
+              if (stat.isDirectory()) {
+                scanDir(full);
+              } else if (f.endsWith('.md') || f.endsWith('.py')) {
+                const content = fs.readFileSync(full, 'utf8');
+                for (const w of bannedWords) {
+                  const regex = new RegExp('\\\\b' + w + '\\\\b', 'i');
+                  if (regex.test(content)) {
+                    console.error('Banned word detected in ' + full + ': ' + w);
+                    process.exit(1);
+                  }
+                }
+              }
+            }
+          }
+          scanDir('.');
+          console.log('Banned words check passed: 0 occurrences.');
+          "
+
+      - name: ASCII verification scan
+        run: |
+          node -e "
+          const fs = require('fs');
+          const path = require('path');
+          const contractsDir = 'contracts';
+          for (const f of fs.readdirSync(contractsDir)) {
+            if (f.endsWith('.py')) {
+              const buf = fs.readFileSync(path.join(contractsDir, f));
+              for (let i = 0; i < buf.length; i++) {
+                if (buf[i] > 127) {
+                  console.error('Non-ASCII byte detected in contracts/' + f + ' at offset ' + i);
+                  process.exit(1);
+                }
+              }
+            }
+          }
+          console.log('Pure ASCII verification passed for all contracts.');
+          "

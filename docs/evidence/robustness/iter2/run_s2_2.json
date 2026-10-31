@@ -1,0 +1,18 @@
+{
+  "fixture": "status-s2-outage-35.md",
+  "run_number": 2,
+  "prompt_sha256": "90be3b95dd867b8cc3a04f9464e3a1ab3b499343d3c4a40664042651092ecca1",
+  "tx_hash": "0x0755a3aa59106c3f3cf76e51c2d0272052fbd2220db425bb1596236fc1a48e61",
+  "latency_seconds": "14.93",
+  "raw_output": "{\"status\": \"OUTAGE\", \"minutes\": 35, \"quote\": \"Incident: API errors across core cluster. Status: Major outage. Duration: 35 minutes.\"}",
+  "parsed_valid": true,
+  "extracted": {
+    "status": "OUTAGE",
+    "minutes": 35,
+    "quote": "Incident: API errors across core cluster. Status: Major outage. Duration: 35 minutes."
+  },
+  "quote_valid": true,
+  "computed_outcome": "PAY_50",
+  "expected_outcome": "PAY_50",
+  "outcome_match": true
+}

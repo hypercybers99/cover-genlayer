@@ -1,0 +1,18 @@
+{
+  "fixture": "status-s2-outage-35.md",
+  "run_number": 9,
+  "prompt_sha256": "90be3b95dd867b8cc3a04f9464e3a1ab3b499343d3c4a40664042651092ecca1",
+  "tx_hash": "0x6afcf530bb6f5924906ef5fdf4d2337e3437626960dea7172b000242ffa463c2",
+  "latency_seconds": "14.90",
+  "raw_output": "{\"status\": \"OUTAGE\", \"minutes\": 35, \"quote\": \"Status: Major outage.\\nDuration: 35 minutes.\"}",
+  "parsed_valid": true,
+  "extracted": {
+    "status": "OUTAGE",
+    "minutes": 35,
+    "quote": "Status: Major outage.\nDuration: 35 minutes."
+  },
+  "quote_valid": true,
+  "computed_outcome": "PAY_50",
+  "expected_outcome": "PAY_50",
+  "outcome_match": true
+}
