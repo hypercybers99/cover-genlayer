@@ -1,53 +1,48 @@
 {
   "contract_address": "0x3c302641001E563ce20d4ea6376f9BfA10165877",
   "prompt_sha256": "90be3b95dd867b8cc3a04f9464e3a1ab3b499343d3c4a40664042651092ecca1",
-  "summary": {
-    "status-s1-outage-75.md": {
-      "expected": "PAY_100",
-      "total_runs": 10,
-      "parse_successes": 10,
-      "outcome_matches": 10,
-      "pass_rule_met": true
+  "batches": {
+    "s1": {
+      "total": 10,
+      "parsed": 10,
+      "matches": 10,
+      "pass": true
     },
-    "status-s2-outage-35.md": {
-      "expected": "PAY_50",
-      "total_runs": 10,
-      "parse_successes": 10,
-      "outcome_matches": 10,
-      "pass_rule_met": true
+    "s2": {
+      "total": 10,
+      "parsed": 10,
+      "matches": 10,
+      "pass": true
     },
-    "status-s3-outage-20.md": {
-      "expected": "NO_PAY",
-      "total_runs": 10,
-      "parse_successes": 10,
-      "outcome_matches": 10,
-      "pass_rule_met": true
+    "s3": {
+      "total": 10,
+      "parsed": 10,
+      "matches": 10,
+      "pass": true
     },
-    "status-s4-degraded-90.md": {
-      "expected": "PAY_25",
-      "total_runs": 10,
-      "parse_successes": 9,
-      "outcome_matches": 9,
-      "pass_rule_met": false,
-      "miss_explanation": "Run 10 encountered receipt timeout (tx stuck in PROPOSING on Studionet); 9/9 completed runs parsed and matched."
+    "s4": {
+      "total": 10,
+      "parsed": 9,
+      "matches": 9,
+      "pass": false
     },
-    "status-s5-operational-reformatted.html": {
-      "expected": "NO_PAY",
-      "total_runs": 0,
-      "parse_successes": 0,
-      "outcome_matches": 0,
-      "pass_rule_met": false,
-      "miss_explanation": "not measured (Studionet consensus stalled on new writes)"
+    "s5": {
+      "total": 10,
+      "parsed": 10,
+      "matches": 10,
+      "pass": true
     },
-    "status-s7-no-duration.md": {
-      "expected": "REVIEW",
-      "total_runs": 0,
-      "parse_successes": 0,
-      "outcome_matches": 0,
-      "pass_rule_met": false,
-      "miss_explanation": "not measured (Studionet consensus stalled on new writes)"
+    "s7": {
+      "total": 10,
+      "parsed": 10,
+      "matches": 10,
+      "pass": true
+    },
+    "s4_rerun": {
+      "total": 10,
+      "parsed": 10,
+      "matches": 10,
+      "pass": true
     }
-  },
-  "total_completed_runs": 39,
-  "total_attempted_runs": 40
+  }
 }

@@ -1,0 +1,19 @@
+{
+  "fixture": "status-s7-no-duration.md",
+  "batch": "s7",
+  "run_number": 6,
+  "prompt_sha256": "90be3b95dd867b8cc3a04f9464e3a1ab3b499343d3c4a40664042651092ecca1",
+  "tx_hash": "0x27c76c5d74977549fa96879275287a4632bf0e6ee681448682f06d2c458c4d56",
+  "latency_seconds": "19.33",
+  "raw_output": "{\"status\": \"OUTAGE\", \"minutes\": 0, \"quote\": \"Incident: Core routing degradation. Status: Major outage. Impact started at 10:15 UTC and ongoing through 12:45 UTC. No explicit duration in minutes has been computed for this unresolved incident.\"}",
+  "parsed_valid": true,
+  "extracted": {
+    "status": "OUTAGE",
+    "minutes": 0,
+    "quote": "Incident: Core routing degradation. Status: Major outage. Impact started at 10:15 UTC and ongoing through 12:45 UTC. No explicit duration in minutes has been computed for this unresolved incident."
+  },
+  "quote_valid": false,
+  "computed_outcome": "REVIEW",
+  "expected_outcome": "REVIEW",
+  "outcome_match": true
+}

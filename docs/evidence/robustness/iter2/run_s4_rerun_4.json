@@ -1,0 +1,19 @@
+{
+  "fixture": "status-s4-degraded-90.md",
+  "batch": "s4_rerun",
+  "run_number": 4,
+  "prompt_sha256": "90be3b95dd867b8cc3a04f9464e3a1ab3b499343d3c4a40664042651092ecca1",
+  "tx_hash": "0x9575481420986de53a2ee34d9d17997617bd41f3e1e756aabfa850ec77908f9f",
+  "latency_seconds": "10.53",
+  "raw_output": "{\"status\": \"DEGRADED\", \"minutes\": 90, \"quote\": \"Incident: Latency spike in storage subsystem. Status: Degraded performance. Duration: 90 minutes.\"}",
+  "parsed_valid": true,
+  "extracted": {
+    "status": "DEGRADED",
+    "minutes": 90,
+    "quote": "Incident: Latency spike in storage subsystem. Status: Degraded performance. Duration: 90 minutes."
+  },
+  "quote_valid": true,
+  "computed_outcome": "PAY_25",
+  "expected_outcome": "PAY_25",
+  "outcome_match": true
+}

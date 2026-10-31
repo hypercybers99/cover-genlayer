@@ -1,0 +1,19 @@
+{
+  "fixture": "status-s5-operational-reformatted.html",
+  "batch": "s5",
+  "run_number": 2,
+  "prompt_sha256": "90be3b95dd867b8cc3a04f9464e3a1ab3b499343d3c4a40664042651092ecca1",
+  "tx_hash": "0xf8cf0161c5833142df9b242e76f6c90b0f1bf8ee8bdf4d696faae027d1995662",
+  "latency_seconds": "10.80",
+  "raw_output": "{\"status\": \"OPERATIONAL\", \"minutes\": 0, \"quote\": \"Status: All systems operational. No incident in progress. Duration: 0 minutes.\"}",
+  "parsed_valid": true,
+  "extracted": {
+    "status": "OPERATIONAL",
+    "minutes": 0,
+    "quote": "Status: All systems operational. No incident in progress. Duration: 0 minutes."
+  },
+  "quote_valid": true,
+  "computed_outcome": "NO_PAY",
+  "expected_outcome": "NO_PAY",
+  "outcome_match": true
+}
