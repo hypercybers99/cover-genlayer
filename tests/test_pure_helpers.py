@@ -213,6 +213,24 @@ class TestPureHelpers(unittest.TestCase):
         with self.assertRaises(gl.vm.UserError):
             validate_product_url("https://192.168.1.1/page.md")  # IP literal
 
+    def test_prompt_sha256(self):
+        import hashlib
+        import json
+        import re
+        cover_path = os.path.join(root_dir, "contracts", "Cover.py")
+        with open(cover_path, "r", encoding="utf-8") as f:
+            content = f.read()
+        m = re.search(r'"instructions": \(([\s\S]*?)\),\s*"page_text"', content)
+        self.assertIsNotNone(m, "Prompt instructions block not found in contracts/Cover.py")
+        lines = [json.loads(line.strip()) for line in m.group(1).split("\n") if line.strip().startswith('"')]
+        instructions = "".join(lines)
+        h = hashlib.sha256(instructions.encode("utf-8")).hexdigest()
+        self.assertEqual(
+            h,
+            "90be3b95dd867b8cc3a04f9464e3a1ab3b499343d3c4a40664042651092ecca1",
+            f"Prompt SHA256 {h} does not match Iteration 2 pre-registered hash",
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
