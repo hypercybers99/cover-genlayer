@@ -87,8 +87,8 @@ async function main() {
 
   const coverPath = path.join(__dirname, '../../contracts/Cover.py');
   const guardPath = path.join(__dirname, '../../contracts/CoverGuard.py');
-  const coverCode = fs.readFileSync(coverPath, 'utf8');
-  const guardCode = fs.readFileSync(guardPath, 'utf8');
+  const coverCode = fs.readFileSync(coverPath, 'utf8').replace(/\r\n/g, '\n');
+  const guardCode = fs.readFileSync(guardPath, 'utf8').replace(/\r\n/g, '\n');
   const coverSha256 = crypto.createHash('sha256').update(coverCode, 'utf8').digest('hex');
   const guardSha256 = crypto.createHash('sha256').update(guardCode, 'utf8').digest('hex');
 
@@ -112,12 +112,16 @@ async function main() {
   const guardDeployLat = ((Date.now() - tg0) / 1000).toFixed(2);
   console.log(`CoverGuard deployed at: ${guardAddress} in ${guardDeployLat}s`);
 
-  // Ensure docs/evidence/onchain directory exists
+  // Ensure directories exist
   const onchainDir = path.join(__dirname, '../../docs/evidence/onchain');
+  const sourceDir = path.join(__dirname, '../../docs/evidence/source');
   if (!fs.existsSync(onchainDir)) fs.mkdirSync(onchainDir, { recursive: true });
+  if (!fs.existsSync(sourceDir)) fs.mkdirSync(sourceDir, { recursive: true });
 
   fs.writeFileSync(path.join(onchainDir, 'cover_deploy_receipt.json'), JSON.stringify(coverDeployReceipt, null, 2));
   fs.writeFileSync(path.join(onchainDir, 'cover_guard_deploy_receipt.json'), JSON.stringify(guardDeployReceipt, null, 2));
+  fs.writeFileSync(path.join(sourceDir, 'cover_deploy_receipt.json'), JSON.stringify(coverDeployReceipt, null, 2));
+  fs.writeFileSync(path.join(sourceDir, 'cover_guard_deploy_receipt.json'), JSON.stringify(guardDeployReceipt, null, 2));
 
   // Extract deployed source code from deploy transactions to verify byte-for-byte fidelity
   async function verifyDeployedSource(txHash, localPath, outName) {
@@ -134,7 +138,7 @@ async function main() {
     const d = await res.json();
     const b64 = d.result?.data?.contract_code || "";
     const rawBuf = Buffer.from(b64, 'base64');
-    const localBuf = fs.readFileSync(localPath);
+    const localBuf = Buffer.from(fs.readFileSync(localPath, 'utf8').replace(/\r\n/g, '\n'), 'utf8');
 
     const first16 = rawBuf.subarray(0, 16).toString('hex');
     const last16 = rawBuf.subarray(Math.max(0, rawBuf.length - 16)).toString('hex');
@@ -143,8 +147,8 @@ async function main() {
     console.log(`  Last 16 bytes:  ${last16}`);
     console.log(`  Deployed byte length: ${rawBuf.length} | Local byte length: ${localBuf.length}`);
 
-    const extractedFile = path.join(onchainDir, `${outName}_extracted.py`);
-    fs.writeFileSync(extractedFile, rawBuf);
+    fs.writeFileSync(path.join(onchainDir, `${outName}_extracted.py`), rawBuf);
+    fs.writeFileSync(path.join(sourceDir, `${outName}_extracted.py`), rawBuf);
 
     const match = rawBuf.equals(localBuf);
     console.log(`  Byte-for-byte identical match: ${match}`);
@@ -171,7 +175,7 @@ async function main() {
       cover: deployCoverTx,
       cover_guard: deployGuardTx,
     },
-    prompt_sha256: "4d7d1ad1b041fe391182f20abc4e50487deed4cc2d580cb51041efd45d1fbe41",
+    prompt_sha256: "90be3b95dd867b8cc3a04f9464e3a1ab3b499343d3c4a40664042651092ecca1",
     source_shas: {
       cover: coverSha256,
       cover_guard: guardSha256,
@@ -187,12 +191,59 @@ async function main() {
   };
   fs.writeFileSync(path.join(__dirname, 'deployments.json'), JSON.stringify(deployments, null, 2));
   fs.writeFileSync(path.join(onchainDir, 'deployments.json'), JSON.stringify(deployments, null, 2));
+  fs.writeFileSync(path.join(sourceDir, 'deployments.json'), JSON.stringify(deployments, null, 2));
 
   const evidence = {
     deployments,
     transactions: [],
     readbacks: {},
+    balance_snapshots: [],
   };
+
+  async function snapshotBalances(stepName) {
+    let uBal = 0, bBal = 0, pBal = 0, rBal = 0;
+    try {
+      const uRes = await clientUnderwriter.readContract({
+        address: coverAddress,
+        functionName: "balance_of",
+        args: [underwriter.address],
+      });
+      uBal = parseInt(uRes, 10);
+    } catch (e) {}
+
+    try {
+      const bRes = await clientBuyer.readContract({
+        address: coverAddress,
+        functionName: "balance_of",
+        args: [buyer.address],
+      });
+      bBal = parseInt(bRes, 10);
+    } catch (e) {}
+
+    try {
+      const phRes = await clientUnderwriter.readContract({
+        address: coverAddress,
+        functionName: "pool_health",
+        args: ["1"],
+      });
+      const phObj = JSON.parse(phRes);
+      pBal = parseInt(phObj.pool_balance, 10);
+      rBal = parseInt(phObj.reserved, 10);
+    } catch (e) {}
+
+    const total = uBal + bBal + pBal;
+    const snap = {
+      step: stepName,
+      underwriter: uBal,
+      buyer: bBal,
+      pool_balance: pBal,
+      reserved: rBal,
+      total_minted: total,
+    };
+    evidence.balance_snapshots.push(snap);
+    console.log(`  [Snapshot ${stepName}]: Underwriter=${uBal}, Buyer=${bBal}, Pool=${pBal}, Res=${rBal}, Total=${total}`);
+    return snap;
+  }
 
   async function executeWrite(client, label, addr, fn, args, expectSuccess = true) {
     console.log(`\n--- Write: ${label} (${fn}) ---`);
@@ -236,10 +287,13 @@ async function main() {
   // --- Step A: Setup & Funding ---
   console.log("\n================ STEP A: SETUP & CREDITS ================");
   await executeWrite(clientUnderwriter, "claim_demo_credits_underwriter", coverAddress, "claim_demo_credits", []);
+  await snapshotBalances("claim_underwriter");
+
   await executeWrite(clientBuyer, "claim_demo_credits_buyer", coverAddress, "claim_demo_credits", []);
+  await snapshotBalances("claim_buyer");
 
   const pinnedSha = "92c69bc636517656b9e7ee031a503adfb2d26bb4";
-  const rawBase = `https://raw.githubusercontent.com/huzyow155/cover-fixtures/${pinnedSha}/`;
+  const rawBase = `https://raw.githubusercontent.com/hypercybers99/cover-fixtures/${pinnedSha}/`;
   const s0Url = rawBase + "status-s0-operational.md";
   const s1Url = rawBase + "status-s1-outage-75.md";
   const s2Url = rawBase + "status-s2-outage-35.md";
@@ -259,9 +313,11 @@ async function main() {
     "create_product",
     ["Nimbus Cloud Outage Cover", s0Url, "major outage lasting at least 60 minutes", 60, 30, 1000]
   );
+  await snapshotBalances("create_product");
 
   // Fund product pool with 600 credits
   await executeWrite(clientUnderwriter, "fund_product", coverAddress, "fund_product", ["1", 600]);
+  await snapshotBalances("fund_product");
 
   // Read pool health
   const poolHealthA = await clientUnderwriter.readContract({
@@ -276,12 +332,19 @@ async function main() {
   console.log("\n================ STEP B: BUY POLICIES ================");
   // Buy Pa (coverage 100, premium 10)
   await executeWrite(clientBuyer, "buy_policy_Pa", coverAddress, "buy", ["1", 100]);
+  await snapshotBalances("buy_Pa");
+
   // Buy Pb (coverage 100, premium 10)
   await executeWrite(clientBuyer, "buy_policy_Pb", coverAddress, "buy", ["1", 100]);
+  await snapshotBalances("buy_Pb");
+
   // Buy Pc (coverage 100, premium 10)
   await executeWrite(clientBuyer, "buy_policy_Pc", coverAddress, "buy", ["1", 100]);
+  await snapshotBalances("buy_Pc");
+
   // Buy Pd (coverage 100, premium 10)
   await executeWrite(clientBuyer, "buy_policy_Pd", coverAddress, "buy", ["1", 100]);
+  await snapshotBalances("buy_Pd");
 
   // Refused Buy: update source to s8 (already down) and attempt buy -> must fail
   await executeWrite(clientUnderwriter, "update_source_s8", coverAddress, "update_source", ["1", s8Url]);
@@ -308,34 +371,42 @@ async function main() {
   // Settle Pa against s1 (75 min outage) -> PAY_100
   await executeWrite(clientUnderwriter, "update_source_s1", coverAddress, "update_source", ["1", s1Url]);
   await executeWrite(clientBuyer, "settle_Pa_s1_PAY_100", coverAddress, "settle", ["1"]);
+  await snapshotBalances("settle_Pa_PAY_100");
 
   // Settle Pb against s2 (35 min outage) -> PAY_50
   await executeWrite(clientUnderwriter, "update_source_s2", coverAddress, "update_source", ["1", s2Url]);
   await executeWrite(clientBuyer, "settle_Pb_s2_PAY_50", coverAddress, "settle", ["2"]);
+  await snapshotBalances("settle_Pb_PAY_50");
 
   // Settle Pc against s4 (90 min degraded) -> PAY_25
   await executeWrite(clientUnderwriter, "update_source_s4", coverAddress, "update_source", ["1", s4Url]);
   await executeWrite(clientBuyer, "settle_Pc_s4_PAY_25", coverAddress, "settle", ["3"]);
+  await snapshotBalances("settle_Pc_PAY_25");
 
   // Settle Pd against s3 (20 min outage) -> NO_PAY (remains ACTIVE)
   await executeWrite(clientUnderwriter, "update_source_s3", coverAddress, "update_source", ["1", s3Url]);
   await executeWrite(clientBuyer, "settle_Pd_s3_NO_PAY", coverAddress, "settle", ["4"]);
+  await snapshotBalances("settle_Pd_NO_PAY_s3");
 
   // Settle Pd against s5 (reformatted html operational) -> NO_PAY
   await executeWrite(clientUnderwriter, "update_source_s5", coverAddress, "update_source", ["1", s5Url]);
   await executeWrite(clientBuyer, "settle_Pd_s5_NO_PAY", coverAddress, "settle", ["4"]);
+  await snapshotBalances("settle_Pd_NO_PAY_s5");
 
   // Settle Pd against s6 (injection prompt) -> REVIEW (tripwire)
   await executeWrite(clientUnderwriter, "update_source_s6", coverAddress, "update_source", ["1", s6Url]);
   await executeWrite(clientBuyer, "settle_Pd_s6_REVIEW_tripwire", coverAddress, "settle", ["4"]);
+  await snapshotBalances("settle_Pd_REVIEW_s6");
 
   // Settle Pd against s7 (no duration) -> REVIEW
   await executeWrite(clientUnderwriter, "update_source_s7", coverAddress, "update_source", ["1", s7Url]);
   await executeWrite(clientBuyer, "settle_Pd_s7_REVIEW_no_duration", coverAddress, "settle", ["4"]);
+  await snapshotBalances("settle_Pd_REVIEW_s7");
 
   // Settle Pd against s0 -> PAGE_UNCHANGED gate (NO_PAY)
   await executeWrite(clientUnderwriter, "update_source_s0_again", coverAddress, "update_source", ["1", s0Url]);
   await executeWrite(clientBuyer, "settle_Pd_s0_PAGE_UNCHANGED", coverAddress, "settle", ["4"]);
+  await snapshotBalances("settle_Pd_PAGE_UNCHANGED");
 
   // Duplicate observation error on repeat settle of Pd on s0
   const dupRes = await executeWrite(clientBuyer, "settle_Pd_duplicate_observation", coverAddress, "settle", ["4"], false);
@@ -366,9 +437,11 @@ async function main() {
   console.log("\n================ STEP F: CANCEL & WITHDRAW ================");
   // Cancel Pd
   await executeWrite(clientBuyer, "cancel_policy_Pd", coverAddress, "cancel", ["4"]);
+  await snapshotBalances("cancel_Pd");
 
   // Withdraw unreserved from pool
   await executeWrite(clientUnderwriter, "withdraw_unreserved", coverAddress, "withdraw_unreserved", ["1", 50]);
+  await snapshotBalances("withdraw_50");
 
   // Over-withdraw error
   const overWithdrawRes = await executeWrite(clientUnderwriter, "withdraw_over_unreserved", coverAddress, "withdraw_unreserved", ["1", 10000], false);
@@ -462,6 +535,7 @@ async function main() {
   const outEvidencePath = path.join(__dirname, '../../docs/evidence/live_evidence.json');
   fs.writeFileSync(outEvidencePath, JSON.stringify(evidence, null, 2));
   fs.writeFileSync(path.join(onchainDir, 'live_evidence.json'), JSON.stringify(evidence, null, 2));
+  fs.writeFileSync(path.join(sourceDir, 'live_evidence.json'), JSON.stringify(evidence, null, 2));
   console.log("\n==================================================================");
   console.log("All Milestone 4 on-chain runs completed successfully!");
   console.log("Saved evidence to:", outEvidencePath);
