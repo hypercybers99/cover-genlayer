@@ -1,0 +1,40 @@
+{
+  "network": "studionet",
+  "chain_id": 61999,
+  "rpc": "https://studio.genlayer.com/api",
+  "explorer_urls": {
+    "cover": "https://explorer-studio.genlayer.com/address/0x4d12d00d527869a6a6f95358A11589ecf3C347e3",
+    "cover_guard": "https://explorer-studio.genlayer.com/address/0x6Ad8554F4Ca7eA3681c6a06b822B0d5c59993724"
+  },
+  "addresses": {
+    "cover": "0x4d12d00d527869a6a6f95358A11589ecf3C347e3",
+    "cover_guard": "0x6Ad8554F4Ca7eA3681c6a06b822B0d5c59993724"
+  },
+  "deploy_txs": {
+    "cover": "0x311652e1597eba4cb1d90581980c076c0ecb5708ab051756af3fbfa0db804b94",
+    "cover_guard": "0xda046cfaaa78a30b40e226840e1032ee6b637307874b7704a92be72d44321b97"
+  },
+  "prompt_sha256": "90be3b95dd867b8cc3a04f9464e3a1ab3b499343d3c4a40664042651092ecca1",
+  "source_shas": {
+    "cover": "a1f8ceb89f55db9aa6fe55fb60f4783643212eb127e9c2f76b59266c921d89cc",
+    "cover_guard": "b2682e9e48b67a0ac95148b25d0e10694fad671359144d2b79368f8b921f7d53"
+  },
+  "source_verification": {
+    "cover": {
+      "first16": "232076302e322e31360a23207b202244",
+      "last16": "6f72733d28222c222c20223a2229290a",
+      "byteLength": 33253,
+      "match": true
+    },
+    "cover_guard": {
+      "first16": "232076302e322e31360a23207b202244",
+      "last16": "202020202072657475726e206169640a",
+      "byteLength": 6771,
+      "match": true
+    }
+  },
+  "latencies": {
+    "cover": "10.62",
+    "cover_guard": "9.53"
+  }
+}
