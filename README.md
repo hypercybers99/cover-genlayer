@@ -69,7 +69,7 @@ A centralized web scraper creates a single point of failure and makes the operat
 - **ProbeExtract (Iteration 1 Probe)**: [`0x8ED26b3925D50EabFFbCe6778315eBCbaB4e7745`](https://explorer-studio.genlayer.com/address/0x8ED26b3925D50EabFFbCe6778315eBCbaB4e7745)
 - **Probe Contract (Milestone 0)**: [`0xa4a7a596246b0bcBfbeB05ae31922cD43fc68C31`](https://explorer-studio.genlayer.com/address/0xa4a7a596246b0bcBfbeB05ae31922cD43fc68C31)
 - **Address Registry**: See [`docs/ADDRESS_REGISTRY.md`](docs/ADDRESS_REGISTRY.md) for full deployment history and transaction hashes.
-- **Fixtures Repository**: [https://github.com/huzyow155/cover-fixtures](https://github.com/huzyow155/cover-fixtures) (Pinned Commit: `92c69bc636517656b9e7ee031a503adfb2d26bb4`)
+- **Fixtures Repository**: [https://github.com/hypercybers99/cover-fixtures](https://github.com/hypercybers99/cover-fixtures) (Pinned Commit: `92c69bc636517656b9e7ee031a503adfb2d26bb4`)
 
 ### How to Verify Deployed Source
 To verify that deployed contracts match the local source code byte-for-byte, fetch the deployment transaction via RPC and compare the base64-decoded `contract_code` against `contracts/Cover.py` and `contracts/CoverGuard.py`:
