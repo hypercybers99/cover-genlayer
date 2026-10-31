@@ -63,8 +63,8 @@ A centralized web scraper creates a single point of failure and makes the operat
 
 - **Network**: GenLayer Studionet (Chain ID: 61999)
 - **RPC Endpoint**: `https://studio.genlayer.com/api`
-- **ACTIVE Cover Contract**: [`0x41f8c399e2709333AEAD1F8Ac0B1E5248eC288Bd`](https://explorer-studio.genlayer.com/address/0x41f8c399e2709333AEAD1F8Ac0B1E5248eC288Bd)
-- **ACTIVE CoverGuard Consumer**: [`0x85C0F67F1Cd82aBcCfABb289E6c215c78D17b3eF`](https://explorer-studio.genlayer.com/address/0x85C0F67F1Cd82aBcCfABb289E6c215c78D17b3eF)
+- **ACTIVE Cover Contract**: [`0x4d12d00d527869a6a6f95358A11589ecf3C347e3`](https://explorer-studio.genlayer.com/address/0x4d12d00d527869a6a6f95358A11589ecf3C347e3)
+- **ACTIVE CoverGuard Consumer**: [`0x6Ad8554F4Ca7eA3681c6a06b822B0d5c59993724`](https://explorer-studio.genlayer.com/address/0x6Ad8554F4Ca7eA3681c6a06b822B0d5c59993724)
 - **ProbeExtract (Iteration 2 Probe)**: [`0x3c302641001E563ce20d4ea6376f9BfA10165877`](https://explorer-studio.genlayer.com/address/0x3c302641001E563ce20d4ea6376f9BfA10165877)
 - **ProbeExtract (Iteration 1 Probe)**: [`0x8ED26b3925D50EabFFbCe6778315eBCbaB4e7745`](https://explorer-studio.genlayer.com/address/0x8ED26b3925D50EabFFbCe6778315eBCbaB4e7745)
 - **Probe Contract (Milestone 0)**: [`0xa4a7a596246b0bcBfbeB05ae31922cD43fc68C31`](https://explorer-studio.genlayer.com/address/0xa4a7a596246b0bcBfbeB05ae31922cD43fc68C31)
