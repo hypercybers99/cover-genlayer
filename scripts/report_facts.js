@@ -8,6 +8,7 @@ function main() {
 
   const probePath = path.join(__dirname, 'deploy/probe_results.json');
   const robIter1Path = path.join(__dirname, '../docs/evidence/robustness/iter1/summary.json');
+  const robIter2Path = path.join(__dirname, '../docs/evidence/robustness/iter2/summary.json');
   const depPath = path.join(__dirname, 'deploy/deployments.json');
   const livePath = path.join(__dirname, '../docs/evidence/live_evidence.json');
 
@@ -26,7 +27,7 @@ function main() {
 
   if (fs.existsSync(depPath)) {
     const dep = JSON.parse(fs.readFileSync(depPath, 'utf8'));
-    console.log("\n--- PRODUCTION DEPLOYMENTS (MILESTONE 4) ---");
+    console.log("\n--- ACTIVE PRODUCTION DEPLOYMENT (MILESTONE 4) ---");
     console.log(`Network:             ${dep.network} (Chain ID: ${dep.chain_id})`);
     console.log(`RPC Endpoint:        ${dep.rpc}`);
     console.log(`Cover Address:       ${dep.addresses.cover}`);
@@ -40,18 +41,14 @@ function main() {
     console.log(`Prompt SHA-256:      ${dep.prompt_sha256}`);
   }
 
-  if (fs.existsSync(robIter1Path)) {
-    const rob = JSON.parse(fs.readFileSync(robIter1Path, 'utf8'));
-    console.log("\n--- ROBUSTNESS EVALUATION ITERATION 1 (RULE 9) ---");
-    console.log(`Probe Contract:      ${rob.contract_address}`);
-    console.log(`Prompt SHA-256:      ${rob.prompt_sha256}`);
-    console.log(`Total Verified Runs: ${rob.total_runs}`);
-    let passCount = 0;
-    for (const [fix, s] of Object.entries(rob.summary)) {
-      console.log(`  - ${fix.padEnd(40)}: expected=${s.expected.padEnd(8)} parse=${s.parse_successes}/${s.total_runs} matches=${s.outcome_matches}/${s.total_runs} pass_rule=${s.pass_rule_met}`);
-      if (s.pass_rule_met) passCount++;
+  if (fs.existsSync(robIter2Path)) {
+    const rob2 = JSON.parse(fs.readFileSync(robIter2Path, 'utf8'));
+    console.log("\n--- ROBUSTNESS EVALUATION ITERATION 2 (RULE 9) ---");
+    console.log(`Probe Contract:      ${rob2.contract_address}`);
+    console.log(`Prompt SHA-256:      ${rob2.prompt_sha256}`);
+    for (const [batch, b] of Object.entries(rob2.batches)) {
+      console.log(`  - ${batch.padEnd(20)}: total=${b.total} parse=${b.parsed}/${b.total} matches=${b.matches}/${b.total} pass=${b.pass}`);
     }
-    console.log(`Summary: ${passCount}/6 fixture pages passed pre-registered rule.`);
   }
 
   if (fs.existsSync(livePath)) {
@@ -60,6 +57,22 @@ function main() {
     console.log(`On-chain Transactions:   ${ev.transactions.length}`);
     const successTxs = ev.transactions.filter(t => t.status_name === 'ACCEPTED' && t.result_name === 'MAJORITY_AGREE');
     console.log(`Accepted with Consensus: ${successTxs.length}/${ev.transactions.length}`);
+
+    if (ev.balance_snapshots && ev.balance_snapshots.length > 0) {
+      console.log("\nMeasured Per-Step Balance Snapshots:");
+      console.log("Step Name".padEnd(30), "Underwriter".padEnd(14), "Buyer".padEnd(10), "Pool".padEnd(8), "Reserved".padEnd(10), "Total");
+      for (const s of ev.balance_snapshots) {
+        console.log(
+          s.step.padEnd(30),
+          String(s.underwriter).padEnd(14),
+          String(s.buyer).padEnd(10),
+          String(s.pool_balance).padEnd(8),
+          String(s.reserved).padEnd(10),
+          String(s.total_minted)
+        );
+      }
+    }
+
     console.log("\nSettlement Readbacks:");
     for (let i = 1; i <= 8; i++) {
       const s = ev.readbacks[`settlement_${i}`];
