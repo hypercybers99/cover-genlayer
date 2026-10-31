@@ -1,0 +1,1386 @@
+[
+  {
+    "txHash": "0xe92e705f332fc1e8924b4383a94a0ebff3e5628374c38cd3a66b0c307b5e1223",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:08:55.624Z"
+  },
+  {
+    "txHash": "0xc911a755f52614073204246cdbebf6e64918895e4c7a3b225271bd27c2c3d864",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:08:56.063Z"
+  },
+  {
+    "txHash": "0xca9107861586467463b2ec5be0451fd6d7acefaa143dcdc820ec0a5146256f0a",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:08:56.490Z"
+  },
+  {
+    "txHash": "0xd7f82413457853e627bb5e92104156b6acdca393f6e1bed7368c1e696e5ea53e",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:08:57.021Z"
+  },
+  {
+    "txHash": "0x6c576550c13893ee45809289c076a306e9609c7becd3fc0cac20a3acb49ebca1",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:08:57.438Z"
+  },
+  {
+    "txHash": "0x0313b0e12b6ad95a749b960933394d51cc6e69505c4476c58efe6d2172ffa20e",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:08:57.877Z"
+  },
+  {
+    "txHash": "0x92d5c6186b97e6390e42bec6d2d7e6ae8d23228d07e8926f57600dd103d6a684",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:08:58.289Z"
+  },
+  {
+    "txHash": "0x64db500b1767fffb157fa9c60be2a20dce3dcdfc709b5c57f564c9b6a986474e",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:08:58.751Z"
+  },
+  {
+    "txHash": "0x6516e6f4846567fefb38b7f2a7aad44bdb859d46eff9963d6d12f6acc2bb4c5e",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:08:59.193Z"
+  },
+  {
+    "txHash": "0x578ac20a937ea0e4c32d55e841aeb98de7275489fa9439f0270b3b62d576e947",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "ERROR",
+    "fetch_time_utc": "2026-10-31T16:08:59.611Z"
+  },
+  {
+    "txHash": "0x225eeddc8ab6e1310972146c32209ed2209cb38161bbd77357950ec493606a16",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:00.031Z"
+  },
+  {
+    "txHash": "0x406c6f0b48a9a51fcda0d0f851823851e32662221f4e522618a301f8c25acb33",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:00.502Z"
+  },
+  {
+    "txHash": "0xa8560112df9e87a6cf6ebb2e47e8116beca39f86a57a50934a26cad72af14c78",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:00.974Z"
+  },
+  {
+    "txHash": "0xd3b080ddcb88ab3d1a4365cb3f0924e506451fe764f0413219850c428ea8d395",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:01.385Z"
+  },
+  {
+    "txHash": "0xb85113485c9a2d44acd61e56167633a22920471f407f567b32c1440c475e907f",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:01.808Z"
+  },
+  {
+    "txHash": "0xfe110b4523c9c7eccc3865a737c871167bbfc9b234177387dbb5f507dbe32198",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:02.214Z"
+  },
+  {
+    "txHash": "0xc2f53540edda4df99b1d84d9f0b84bf600040b05d793410edbc7cbf9203a6ecb",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:02.621Z"
+  },
+  {
+    "txHash": "0x802f3d3aa60cce8f22d0e45554c31b06b750d20921459bb30f021e520b7d0130",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:03.064Z"
+  },
+  {
+    "txHash": "0xc072a383e992f809243eea19b7d999dee737dd7ee18a4679f63e0ca59b0d2b09",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:03.463Z"
+  },
+  {
+    "txHash": "0x5561defaf8ee9fdadc1ba61d37de7fa5902679ca97d1deba4b692854fa983054",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:03.898Z"
+  },
+  {
+    "txHash": "0xb0e785081822f961cfe32c56ce4d5665ad0692aa344c3629dc67b7804e6a24d0",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:04.327Z"
+  },
+  {
+    "txHash": "0x0feb08c5220585f10390fcee90a4e93dabc4d5ee48d52463be3dbd23bc0c5a5e",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:04.750Z"
+  },
+  {
+    "txHash": "0x4e5c09b6f82f10260d97f148fe837f6ee631e3900e4edef7f1401ae9227fe50b",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:05.179Z"
+  },
+  {
+    "txHash": "0x0335bd4704b713b421abf1a95a6990ed7a9b3b5bf42794ed0e063349bc8516e5",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:05.582Z"
+  },
+  {
+    "txHash": "0x705028b673d14867802568fcea147ec825eee185f6ae359713bca06a5397950d",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:05.995Z"
+  },
+  {
+    "txHash": "0x8ec2f35633ff26d029c7b624382863305a7572cfe1161cb1060c8e9c807b94fc",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:06.404Z"
+  },
+  {
+    "txHash": "0x7aaea28af5374527f157380b54f7b238c86e79427ea1291ff69a6ff121f4f7d6",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:06.813Z"
+  },
+  {
+    "txHash": "0x5eaeca207649e0079b9b70fac6bdcbed052a6b4fe24839879921c016ad1cee5e",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:07.215Z"
+  },
+  {
+    "txHash": "0x570c5b96e5ec28e50907140892cabb613c1b78a4de8ba157d50112827efa504b",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "ERROR",
+    "fetch_time_utc": "2026-10-31T16:09:07.621Z"
+  },
+  {
+    "txHash": "0x1e3b38fc5ca963c1e2b606643dc495c3df5e232fcfe83abd54becc8afa0295b1",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:08.090Z"
+  },
+  {
+    "txHash": "0x1711e6c7a4c3713e93cc366ac6760c46028bbb6c442a9d911b3b018814eb3390",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_DISAGREE",
+    "leader_result": "ERROR",
+    "fetch_time_utc": "2026-10-31T16:09:08.675Z"
+  },
+  {
+    "txHash": "0x52a33f1699763721fc762c6fe778f71968fa84693e9f3a5e5d33275475e07d7e",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:09.115Z"
+  },
+  {
+    "txHash": "0xf175fdf1898ee6d224f1a65083c516866fbd4f279cd2f22b5a2aff77892c4dde",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_DISAGREE",
+    "leader_result": "ERROR",
+    "fetch_time_utc": "2026-10-31T16:09:09.542Z"
+  },
+  {
+    "txHash": "0x7263927d2916767531a7d6336f1dd096129f2a54007d7d0e611d23cfdb1f79f8",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "ERROR",
+    "fetch_time_utc": "2026-10-31T16:09:10.015Z"
+  },
+  {
+    "txHash": "0x48abe2104945bc204a99abd7f2c5a52967398cd6d28bf14f7bb6d030fc1c911b",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:10.420Z"
+  },
+  {
+    "txHash": "0x98a4e82c54113dac6fe1b8c7c26c351b1f6ff8614f3dfa91f9a4f5a1a50dd807",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:10.825Z"
+  },
+  {
+    "txHash": "0x972bca48e082540ff7893bad40202ca0d8b7e83930c7fcc3ee91dd2b4f9539bf",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:11.230Z"
+  },
+  {
+    "txHash": "0x021bc24260223f7207dc63084acd9e9f03c21109730fc322f2a9a4cdd4439a9d",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "ERROR",
+    "fetch_time_utc": "2026-10-31T16:09:11.633Z"
+  },
+  {
+    "txHash": "0xc5468ec358e70ea98e2a9e7de4a953171400818c48f8fa260adb08874223ecdf",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "ERROR",
+    "fetch_time_utc": "2026-10-31T16:09:12.057Z"
+  },
+  {
+    "txHash": "0x311652e1597eba4cb1d90581980c076c0ecb5708ab051756af3fbfa0db804b94",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:12.643Z"
+  },
+  {
+    "txHash": "0xda046cfaaa78a30b40e226840e1032ee6b637307874b7704a92be72d44321b97",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:13.056Z"
+  },
+  {
+    "txHash": "0x2ccd7793c97cd1f2438ad3a3ade4a4dbba07d01f47ff9e9f2bcba497005b2509",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:13.467Z"
+  },
+  {
+    "txHash": "0x2b769e40979fb2842aa877495d1d7ed16fd0be6522fed97e258e420d2e45ff9f",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:13.892Z"
+  },
+  {
+    "txHash": "0x86c3b6f695321840c0bf7bc8469383299eb5ae1eab95afc5a5127eaccad2199d",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:14.485Z"
+  },
+  {
+    "txHash": "0x8d40fabb5ab4a8d79d5a5e90611ff05bb7e8cc0a44be9b8fae6a9ddfcda14900",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:14.947Z"
+  },
+  {
+    "txHash": "0x69ac9cd3545116d27e81a495b336235ca99bb3a1486de497573fc9deff0cbaed",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:15.391Z"
+  },
+  {
+    "txHash": "0x7b66e570d78c5d60d8254d6bdfe7fb218296f586acb8b25f947f0107726c1d17",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:15.877Z"
+  },
+  {
+    "txHash": "0x75e4b9429f442a4e5a9974a042467f1a6a83b551a8dda3fd02e1b0e3e684eb2e",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:16.343Z"
+  },
+  {
+    "txHash": "0x35be9d7303c246326638986da1f703767fddb3e7553af8a407f9c167af0bc59b",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:16.754Z"
+  },
+  {
+    "txHash": "0x0f4b1af91068ea54af14f6be99f91f113bb83a37bcad24dafc7775859f6058e0",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:17.170Z"
+  },
+  {
+    "txHash": "0x598926eb1fc731820a913012fde7a2a3cc5916ba83c092411c6e498cbea164bb",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:17.591Z"
+  },
+  {
+    "txHash": "0x927f8e079f52205b349bec7691a8778a42e5092bbc801e36865f096a05bacd13",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:18.000Z"
+  },
+  {
+    "txHash": "0x99a60ecfec832dff126c56af67e5191337154431fd91f4e7d74c86be642bbf39",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:18.419Z"
+  },
+  {
+    "txHash": "0x57e2b216f47161d769fe6b20e44b573d4c96766245b1c7be1c1be40a0d47d54f",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:18.830Z"
+  },
+  {
+    "txHash": "0xb0b662cb037ddedbed034c249614522440278741c7be1f97063729b50bf501f2",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:19.500Z"
+  },
+  {
+    "txHash": "0xcfbf9140cd88b6a72944b72e2336d4005929d821b37eb0682120dfea4f64b4cd",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:19.988Z"
+  },
+  {
+    "txHash": "0x818838dfa4951b117ac6e5bf0c8a10d4a4c282463bda57a39b37ea7b19f0eeb0",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:20.440Z"
+  },
+  {
+    "txHash": "0x5e5ad58e4bd51e9c2d978896dec2c3887562ba406ecbf626f18556cc2de1d322",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:20.877Z"
+  },
+  {
+    "txHash": "0x26f55f289bc33b7e2a2e5d4d2fb349715543e5a334e6002783a966abb70672ee",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:21.341Z"
+  },
+  {
+    "txHash": "0x9a18c9e2b791ba37a263a2377746f2608956088ca076f01ca23c66235637adfc",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:21.757Z"
+  },
+  {
+    "txHash": "0x8d0a989feff1dce3845b1b5eecee8ed1df7c4cd2f3776673a69cc0319c5aba1a",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:22.163Z"
+  },
+  {
+    "txHash": "0x59606deb18ee20dee573d66f60081ab6e9f0dd94e28474afd46aa9ce6cf52999",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:22.572Z"
+  },
+  {
+    "txHash": "0x432d6d057481869ec9f6e4ea161ead514de9d7cdd2daaa2cad2498bf48def651",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:22.984Z"
+  },
+  {
+    "txHash": "0x9ec4659545b69f53368a525878e13a410dd43f8545d0d7949901e570f9a6bcba",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:23.404Z"
+  },
+  {
+    "txHash": "0x000cb206299ed31d70c646a8756f4f93b8b5624a6ddfc1de1a8af51385c5dc64",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:23.823Z"
+  },
+  {
+    "txHash": "0xcf07856e86f844cd4617da8894a6d0eed43878dd29cfaf220041e7f39a3f6c2f",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:24.269Z"
+  },
+  {
+    "txHash": "0x2fa7b714d701a1abda67ce3b5bd1ede7c12f2e8a6e04c101193b8596edc171c3",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:24.680Z"
+  },
+  {
+    "txHash": "0xc45f2a7d31d1ecd621dfa794262b2ef117d2c5ead09759a6fbe0c4251a40e508",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:25.092Z"
+  },
+  {
+    "txHash": "0xc192022cd37c2fdc7c80affd8e22943d70c68a3d03d09db1e9fc12212dbd3c03",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:25.499Z"
+  },
+  {
+    "txHash": "0x8ed03717ed9a376dc03e810da2f4d9cb9578f1b0e7625de7fbf8461fd148e6ae",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:25.907Z"
+  },
+  {
+    "txHash": "0x06813c549b11c91df1c5a0012ceeb199b5e1ae6f33a390107ed97c9354e4fe47",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:26.309Z"
+  },
+  {
+    "txHash": "0x0b9b2a14d6476d90918bb81c305cc6c6183a65a7ff1503a1cc602d3bb9b9680c",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:26.716Z"
+  },
+  {
+    "txHash": "0x45a8de8f940f0c8cbed50527db6ef61ff92b9cd491c47200a8d43e756313bad3",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:27.122Z"
+  },
+  {
+    "txHash": "0xbd62a9fd1300eb7b6b6d2dd5c4d794a2f0fa4a2445117f430f6ab42243762500",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:27.535Z"
+  },
+  {
+    "txHash": "0x218803848f5666ead3cc2f875d6bdba5843970c81d486bb2ffb12086ba6511eb",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:27.978Z"
+  },
+  {
+    "txHash": "0xd6c066f2557307d0f04fdc00a9081b7822c2d7cfec4d6def3c8414b28e409678",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:28.437Z"
+  },
+  {
+    "txHash": "0x282dcad2b8ffefb87684a831603a484e52c62a500c7366fcaa51cfa575dc1699",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:28.848Z"
+  },
+  {
+    "txHash": "0x8b406237f76723a2277882b2f92a2089836a0fbc8b2b27cc22f0822c3442ab3e",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:29.318Z"
+  },
+  {
+    "txHash": "0xdc8e43a3bc452dd1d89efba6469c28068b408cecb44b43c3c00e991385977272",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:29.748Z"
+  },
+  {
+    "txHash": "0xc2e746244e4200fda382d44f7a1d3e3ba57ba19440284d161bc5fddcdfbd575b",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:30.214Z"
+  },
+  {
+    "txHash": "0xde39113523444d27f9c93c186b42d7cedad24be0a6f6d44c244b23e29ef27711",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:30.626Z"
+  },
+  {
+    "txHash": "0x4683636aa6e12b2f081874934d296f427034f460bb6f639a8d472223cd41e3e0",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:31.034Z"
+  },
+  {
+    "txHash": "0x76ac5583f7fc7a1714bc94f3875ba22ee258065cd49caef1451195ad891f4759",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:31.444Z"
+  },
+  {
+    "txHash": "0x60deb7667598069288378249c11e59e14b94fb8fc5b1cc70c3eefed14786063c",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:31.896Z"
+  },
+  {
+    "txHash": "0x3be0ce1cdafea7203549e63c3584114be5841936eb966a3615bef40dac637bea",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:32.313Z"
+  },
+  {
+    "txHash": "0x68d175f41a0701dd863efeeaa6beb4b124bc83df79fffefacc0ffa66c85ec1df",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:32.765Z"
+  },
+  {
+    "txHash": "0xc5d327c079f491462a6f52f5534bb53055475c67cdc9b727724fab0b75b19c15",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:33.184Z"
+  },
+  {
+    "txHash": "0x34ad91a99a335a115b0ebb733d60f3279f6df7067e4def2ed667127daf42e8a5",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:33.762Z"
+  },
+  {
+    "txHash": "0xe999f78fe5c0e1bf741ebb5ff66f72d8591fddf68fd74044358697e6a887e882",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:34.231Z"
+  },
+  {
+    "txHash": "0x64b7b02e37ffe75ec6a9f54c40627b339638c41d8d761e7c69b4e835d2eb6656",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:34.665Z"
+  },
+  {
+    "txHash": "0x0f8211038cd7c39b3d831bca52cf043717a3fb6da686fa89815ec60ec12e3183",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:35.078Z"
+  },
+  {
+    "txHash": "0x8e07855a214017f1b1fb16316cb554257837589e0e67e212077236a8a1b25e17",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:35.498Z"
+  },
+  {
+    "txHash": "0x611a035206d5e89b171e6d59d27d17f4a5612fef85719c9dd64846d369f3367c",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:35.916Z"
+  },
+  {
+    "txHash": "0x3cff07371782ab30111bbb551ecb7c9021133c6510e7c508972310274f3c50f5",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:36.336Z"
+  },
+  {
+    "txHash": "0xe131a03d321d6f2d193c451bbcaee9ad30b48fdbd3bbb18b86739427855183a0",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:36.758Z"
+  },
+  {
+    "txHash": "0x77ae9b7ca72e60b698db90be2f739a7892e61a3c60f4bcbf2163f6535b6d863e",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:37.179Z"
+  },
+  {
+    "txHash": "0x32bd5ebc97dfe2dac2b618111c66867e1400da5075b68f78d4adaf231f0305a3",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:37.599Z"
+  },
+  {
+    "txHash": "0xdb0caff718b3e81ceb354ee2867353f50143640abbc226cde950a17f3333a0bd",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:38.018Z"
+  },
+  {
+    "txHash": "0x3768fb24e1985e433494314a262beb3f0f8884da26c69ae42bb90de2250c473e",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:38.456Z"
+  },
+  {
+    "txHash": "0xbe11149c6830373b3b86ce0ce9191d1c3675faa0adb4b9c9519f494daf41dbf6",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:38.888Z"
+  },
+  {
+    "txHash": "0xb97b9d8bcca4a6dec9de4a909455bebf8c53a3a079393051ad36f4d8fe452715",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:39.576Z"
+  },
+  {
+    "txHash": "0xa983a1445a380ca6c285a9805e21b257e430b581abc9e9765675130dbd435410",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:40.009Z"
+  },
+  {
+    "txHash": "0x7ccc660aafa6ab436beeaf4112437afb0fa697468722028286a8016be90d082d",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:40.530Z"
+  },
+  {
+    "txHash": "0x3adf493a1f33baba1f2f2a50231a0581874f9b05b5afe3ef9590b368b27159f5",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:40.973Z"
+  },
+  {
+    "txHash": "0x05dc5de3ff601f9861881388dedb33840a08dcc26291828cbe0784f7f71c1051",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:41.463Z"
+  },
+  {
+    "txHash": "0x09569195f4b4ee8834eb719a881e18244028d407835dd2c37915fd37fd736544",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:41.922Z"
+  },
+  {
+    "txHash": "0xafa5d2864e02ee4b49f2d0dcf855e7813906026af2b5daa30441bc9605e2d2c0",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:42.347Z"
+  },
+  {
+    "txHash": "0xa8c2f1037bc924c1ed66b33a79071dc79329e2c60f1f43c108b61b7d3b40bb6a",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:42.773Z"
+  },
+  {
+    "txHash": "0x01c6ea41568ee26e52b036eadd61491e9485b27a93ed1ff19c4b2ea9223f4558",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:43.192Z"
+  },
+  {
+    "txHash": "0x320187f2b80ffc08a814a7b97339c5979521ba5d4b7f1a8a8f2af3ed1fc0ad6c",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:43.632Z"
+  },
+  {
+    "txHash": "0xd5605a8350a22cec8f84d2262e18d2d6c008955f124a35ed0d2acd6874128cd7",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:44.060Z"
+  },
+  {
+    "txHash": "0xd2fc7b0164020ba0031521a5d2ae51b91b0fc8c67a1d3d1b9b6fbd8b61466e5c",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:44.482Z"
+  },
+  {
+    "txHash": "0x3ba4bc370b3d96dadd662be1df92d3bd37b7f51e975ce890dc95574444207632",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:44.919Z"
+  },
+  {
+    "txHash": "0xcc1692120a9a8cdd2032116c03753c91f69f058e0f505b251301ab5effd8672a",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:45.337Z"
+  },
+  {
+    "txHash": "0x281a8a2dfd2f0052e4ebc749c62f2cb1e3613a4eb02281ac9bb1fdb4b344bb87",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:45.748Z"
+  },
+  {
+    "txHash": "0x0755a3aa59106c3f3cf76e51c2d0272052fbd2220db425bb1596236fc1a48e61",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:46.165Z"
+  },
+  {
+    "txHash": "0x0bdb32ea6333164a67e046d576e3063139cc088b7d8ec03f66ad501de6fe214c",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:46.603Z"
+  },
+  {
+    "txHash": "0x01b594aa62ceabfb462bdda2e631e5a1b02947404fee7883e746ccb0de63fa2c",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:47.333Z"
+  },
+  {
+    "txHash": "0xe43a08b657208b49635cce006188730967f0b50cdc72b9077707b79e01a32130",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:47.747Z"
+  },
+  {
+    "txHash": "0xadc9b40ba8ec758e5e0e6cef22985974efde8914758b3f7adf5112108a6192c2",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:48.178Z"
+  },
+  {
+    "txHash": "0xf57e5ec09483f5e42bc91853ee263c1211a0d139fbf58e22105b2515d52e321e",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:48.732Z"
+  },
+  {
+    "txHash": "0xa54f4a214e84d326629a967e168eff6679f7c3db6ee52bfeebe5f25f0dd7ff41",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:49.235Z"
+  },
+  {
+    "txHash": "0x6afcf530bb6f5924906ef5fdf4d2337e3437626960dea7172b000242ffa463c2",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:49.662Z"
+  },
+  {
+    "txHash": "0xe076ad4bacf7f1295641f8d124ca83c34644229ff683c45f7663bb6f246a9eca",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:50.164Z"
+  },
+  {
+    "txHash": "0xb0030aead55ac16d762f8a466b41fba8d3b82c889f7dbf0dccfcc8b509a6e78a",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:50.588Z"
+  },
+  {
+    "txHash": "0x6133dd4dba6f3260fcc87a3a790d270aecc98593de422241244fc4208d6591d2",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:51.011Z"
+  },
+  {
+    "txHash": "0xa14ea82319012b95bb5406ec0b22b16abf8a99ece1df9f9ce56553e41c72d2a2",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:51.436Z"
+  },
+  {
+    "txHash": "0x6c0d28a198710ef7f804e03168b2d25fca46eeda34c035c18d66f4ec130b53b5",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:51.875Z"
+  },
+  {
+    "txHash": "0x3bb813113f20e7935b1e9b0c5e81090f616729e01a7a39425b0791fcc3a07664",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:52.296Z"
+  },
+  {
+    "txHash": "0xcac8a772abef298a7135331920d09f0bb5352c502936b52dea4a7a24add3c5a2",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:52.771Z"
+  },
+  {
+    "txHash": "0x62e97a0c2121a598a1aaff7508bcabc0700d60ebf6ddd2b8c6b551ca0461ded9",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:53.190Z"
+  },
+  {
+    "txHash": "0x12471de0da4ff510bd91fe8034e5a4d8e8d33557e1ca1e657333ae805cfdf11a",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:53.608Z"
+  },
+  {
+    "txHash": "0xc964426cad33d5aca6d5c8ee0f00b1ed48a0252de8398665709bc522d9660666",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:54.025Z"
+  },
+  {
+    "txHash": "0xb8309a3b49d5242ad1738f4ca3415a8d6b5cbc45ba72af921bf3d8714d1bc6a0",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:54.456Z"
+  },
+  {
+    "txHash": "0x36fb8f2155d0028815a020ec6abffb0556628ad202b94233c9c95ef8e38b0928",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:54.929Z"
+  },
+  {
+    "txHash": "0x7b99f0d065996502b9dda6c90352ef4f1b4d701770f8014bcc2461a936e6d377",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:55.343Z"
+  },
+  {
+    "txHash": "0xe7e61b777bd114c8bed7995ac42e09e42654c733e38ec5b3ce102433cba751d3",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:55.767Z"
+  },
+  {
+    "txHash": "0x96843dd282e94d37f42b558d53b897640ba311d5fee900fae472597773a32f9c",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:56.186Z"
+  },
+  {
+    "txHash": "0x7c31c7060c2d996a74507bfbe4b47e8f46d5e866557adcf08fcc6017ccbc79b2",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:56.608Z"
+  },
+  {
+    "txHash": "0x37e727abb1e9d6f304fe617714455e9af35439594c1af2166d6b1d4bfeec57c0",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:57.026Z"
+  },
+  {
+    "txHash": "0x85878778d0c4ad82d0ce618f92a98f3a0edee4d9d7d430e1107f87515a01a4a3",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:57.444Z"
+  },
+  {
+    "txHash": "0xba242e963c9c45f7a86e2458a0a54d2a3aa618f00c5ab21a6c79fadcf354de57",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:57.857Z"
+  },
+  {
+    "txHash": "0x32fe0339c8c9e8192332a4fa8a5bba1652298bb3ff5271ae3b8d9c19ab55f5de",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:58.277Z"
+  },
+  {
+    "txHash": "0x100471612ae22fae86ba81babb584a2c126cc02565f7ad7f972edc14b2780097",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:58.697Z"
+  },
+  {
+    "txHash": "0x9b72c1b5aa78ab05b6b916ad9a8880a8ec3fbf6e8a067aadfb8e67eb254a0b0f",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:59.119Z"
+  },
+  {
+    "txHash": "0x62b7829d6df0ba012d908a923ebaffb0f4ecdb1a8c6a3177c421aca722dd69e8",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:09:59.573Z"
+  },
+  {
+    "txHash": "0xd2d88a43175d5cf15ad8a414724d0771a0d29db1a631752d8756b260164603d0",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:10:00.058Z"
+  },
+  {
+    "txHash": "0x9575481420986de53a2ee34d9d17997617bd41f3e1e756aabfa850ec77908f9f",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:10:00.503Z"
+  },
+  {
+    "txHash": "0x7a78c270d61eff8d83ce4bfb3326d65152e50ee6f4eb2e5a244017807e4c30a7",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:10:00.919Z"
+  },
+  {
+    "txHash": "0x5fff4e4f7e44247f6ab2de955b1c2293de6207e695e68890d84dae26c8785b0c",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:10:01.329Z"
+  },
+  {
+    "txHash": "0xfc144a7947208607ee34bbd3d1c5487d5c12a574863e04dee916e40772e83b1e",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:10:01.753Z"
+  },
+  {
+    "txHash": "0x1b629275972b8f8533d2ff5ff05e16071aa9a0394046cd20bbadf807173bd359",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:10:02.182Z"
+  },
+  {
+    "txHash": "0x0ccd5d0c7f82c878c8ef996e8ef2866b565fc30cfd1d20fe7dd63634f13452fd",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:10:02.592Z"
+  },
+  {
+    "txHash": "0x73451a653b3c0126dbdc4f9dbaf25cf9e36ae91af699eb3d4473b6a2a92da84f",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:10:03.004Z"
+  },
+  {
+    "txHash": "0x21b2139193d546a8891d0824b413de9dbf7ca754e69e327a679af2c2c1ff6ffe",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:10:03.431Z"
+  },
+  {
+    "txHash": "0xf8cf0161c5833142df9b242e76f6c90b0f1bf8ee8bdf4d696faae027d1995662",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:10:03.933Z"
+  },
+  {
+    "txHash": "0xd406f18facfdeb57c01b3b83027802b15254955dba61ba6dd46c36faf58ebb21",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:10:04.376Z"
+  },
+  {
+    "txHash": "0x99d033af74cd2b9478ceef8d1de82c11d9826e38e910c1b667c03f94d65d90c6",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:10:04.805Z"
+  },
+  {
+    "txHash": "0x4c92633eeee9e375567b7e3486c9264583d9e92d61ab2cf9febf3ca940e2d063",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:10:05.246Z"
+  },
+  {
+    "txHash": "0xd2357be3b783606f9ef96da67c6a9bf19ba7803fa43365d720cda0ef9abb2d84",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:10:05.675Z"
+  },
+  {
+    "txHash": "0x96d6b7dd6699ddcf1344e6187179ddf8dce852db63954dbd993dbfba07c6f714",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:10:06.097Z"
+  },
+  {
+    "txHash": "0xee3eccacd8856bdc2ca0c45b8eb1139dbaf5ceadd2798c27a8c0779662ba17c0",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:10:06.516Z"
+  },
+  {
+    "txHash": "0x469bfacc9e558f5ced8cff3ddb706b08ad1b51a909fe892ceba567ba980b91e4",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:10:06.929Z"
+  },
+  {
+    "txHash": "0x53b12e65124701c5e6c9f2fb92112e18977cff628fddb4b6286232dc0dce3c6b",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:10:07.358Z"
+  },
+  {
+    "txHash": "0xd39bba5ff0ce1b269ae23fe1ca0b1aaf7cabb06b7c804101f3abb2e1b35dd01c",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:10:07.779Z"
+  },
+  {
+    "txHash": "0xe93fa466fcb7ac9713c95a7bef1f276de18f61354c792ea225d11e6b1d86daf5",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:10:08.203Z"
+  },
+  {
+    "txHash": "0x4c19443aa26bab92ab584299e1cd27ce123c93ce0f87de7486c5d24c821f19b2",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:10:08.614Z"
+  },
+  {
+    "txHash": "0xbca681eaf0402ea8d22a256cb6c970da72d9b37e7889eab40bd50e3f514cd4a2",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:10:09.045Z"
+  },
+  {
+    "txHash": "0xb2e533692be30ae375cda5143198e4f9cab13ca3f0b851812f5b6e286cfb3ae3",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:10:09.487Z"
+  },
+  {
+    "txHash": "0x27c76c5d74977549fa96879275287a4632bf0e6ee681448682f06d2c458c4d56",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:10:09.953Z"
+  },
+  {
+    "txHash": "0x66817ad253931a6368557ae1ddaef924b559b8eeebea23586360dc3afc69e565",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:10:10.424Z"
+  },
+  {
+    "txHash": "0xb6069250bab621af897a69bc95400efc4be7a8b494e81834ea66c0b94566f1a6",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:10:10.847Z"
+  },
+  {
+    "txHash": "0x812a8917fc70c13f89d937738f389a8caef0d6bee9d024f37fefb58f49045789",
+    "status": "FINALIZED",
+    "status_name": "FINALIZED",
+    "result_name": "MAJORITY_AGREE",
+    "leader_result": "SUCCESS",
+    "fetch_time_utc": "2026-10-31T16:10:11.271Z"
+  }
+]
