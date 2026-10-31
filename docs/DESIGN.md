@@ -81,3 +81,14 @@ Cover enforces three mathematical invariants across all state mutations (`claim_
    $$\forall p \in \text{products}, \quad \text{reserved}_p \le \text{pool\_balance}_p$$
 3. **Coverage Reservation Equality**:
    $$\forall p \in \text{products}, \quad \text{reserved}_p = \sum_{pol \in \text{ACTIVE}(p)} \text{coverage}_{pol}$$
+
+---
+
+## 5. Prompt Iteration Log
+
+| Iteration | Prompt SHA-256 | Description | Key Changes |
+| :--- | :--- | :--- | :--- |
+| **0** | `26b38c2f1f50ea7ff4a6da7715f33342159c991f8fe73887c95e1eb906cf2c33` | Initial baseline prompt | Extracted status and minutes from incident block. Quote had no duration requirement, leading to 3/10 misses on `s4`. |
+| **1** | `4d7d1ad1b041fe391182f20abc4e50487deed4cc2d580cb51041efd45d1fbe41` | Duration enforcement in quote | Added requirement that quote MUST include the stated duration number (if minutes > 0). Brought `s4` to 10/10 match; `s3` Run 5 had conversational preamble causing 9/10 parse. |
+| **2** | `90be3b95dd867b8cc3a04f9464e3a1ab3b499343d3c4a40664042651092ecca1` | Strict response framing | Added: `"Your whole response must be the JSON object and nothing else: the first character is { and the last is }."` and `"conversational text"` to forbidden outputs. Targets elimination of preambles. |
+
