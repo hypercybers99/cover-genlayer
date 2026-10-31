@@ -107,7 +107,7 @@ Invariant conservation: `underwriter + buyer + pool_balance == total_minted` (20
 Prompt SHA-256: `90be3b95dd867b8cc3a04f9464e3a1ab3b499343d3c4a40664042651092ecca1`
 
 ### Exact Verification Commands:
-To independently verify on-chain source bytecode against repo sources:
+To independently verify on-chain deployed source against repo sources:
 ```bash
 node -e "
 const fs = require('fs');
