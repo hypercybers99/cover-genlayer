@@ -121,4 +121,52 @@ All 60 on-chain write transactions completed successfully without RPC timeout or
    - Parse success: 59 / 60 (98.3%).
    - Outcome accuracy: 59 / 60 (98.3%).
    - 5 out of 6 pages passed all pre-registered criteria (10/10 parse, >=9/10 match).
-   - Because `status-s3-outage-20.md` missed the strict 10/10 parse rule by 1 run, this limitation is plainly disclosed in `docs/LIMITATIONS.md` and the final build report.
+   - Because `status-s3-outage-20.md` missed the strict 10/10 parse rule by 1 run, Prompt Iteration 2 was designed and executed.
+
+---
+
+## 7. Empirical Results: Iteration 2 (Prompt SHA 90be3b95dd867b8cc3a04f9464e3a1ab3b499343d3c4a40664042651092ecca1)
+
+Executed on Studionet against ProbeExtract (`0x3c302641001E563ce20d4ea6376f9BfA10165877`) under pre-registered plans `docs/ROBUSTNESS_RULE_ITER2.md` and addendum `docs/ROBUSTNESS_RULE_ITER2_ADDENDUM.md`.
+
+Prompt Iteration 2 added explicit framing to eliminate conversational preamble:
+`"Your whole response must be the JSON object and nothing else: the first character is { and the last is }."` and `"conversational text"` to the exclusion list.
+
+### Results Summary Table (Iteration 2):
+
+| Fixture Page | Target Outcome | Total Runs | Strict Parse Success | Outcome Matches | Pass Rule Met? |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| `status-s1-outage-75.md` | `PAY_100` | 10 | 10 / 10 (100%) | 10 / 10 (100%) | **PASS** |
+| `status-s2-outage-35.md` | `PAY_50` | 10 | 10 / 10 (100%) | 10 / 10 (100%) | **PASS** |
+| `status-s3-outage-20.md` | `NO_PAY` | 10 | 10 / 10 (100%) | 10 / 10 (100%) | **PASS** (Zero preamble; 10/10 parse and match) |
+| `status-s4-degraded-90.md` (Batch 1) | `PAY_25` | 10 | 9 / 10 (90%) | 9 / 10 (90%) | **EXTERNAL FAILURE** (Run 10 timed out during receipt polling) |
+| `status-s4-degraded-90.md` (Batch 2 Rerun) | `PAY_25` | 10 | 10 / 10 (100%) | 10 / 10 (100%) | **PASS** |
+| `status-s5-operational-reformatted.html` | `NO_PAY` | 10 | 10 / 10 (100%) | 10 / 10 (100%) | **PASS** |
+| `status-s7-no-duration.md` | `REVIEW` | 10 | 10 / 10 (100%) | 10 / 10 (100%) | **PASS** |
+
+### Iteration 2 Diagnosis & Details:
+1. **s3 Preamble Elimination**:
+   - The conversational preamble observed in Iteration 1 Run 5 was completely eliminated across all 10 runs of `status-s3-outage-20.md`. Parse success was 10 / 10 (100%) and outcome match was 10 / 10 (100%).
+2. **s4 Batch 1 vs Batch 2**:
+   - In Batch 1, runs 1-9 parsed 9/9 and matched 9/9. Run 10 (`0x36fb8f2155d0028815a020ec6abffb0556628ad202b94233c9c95ef8e38b0928`) timed out in real-time polling during network quorum delay. The transaction subsequently reached finalization on-chain and its storage readback confirmed `{"status":"DEGRADED","minutes":90,"quote":"Status: Degraded performance.\nDuration: 90 minutes."}`.
+   - Per pre-registered addendum `docs/ROBUSTNESS_RULE_ITER2_ADDENDUM.md`, a fresh 10-run batch (`s4_rerun`) was executed without prompt alteration. Batch 2 achieved **10 / 10 parse** and **10 / 10 outcome match** (100%).
+3. **s5 and s7 Full Completion**:
+   - `status-s5-operational-reformatted.html`: 10 / 10 parse, 10 / 10 match (`NO_PAY`).
+   - `status-s7-no-duration.md`: 10 / 10 parse, 10 / 10 match (`REVIEW`).
+4. **Decision Rule Outcome**:
+   - All 6 fixture pages passed the pre-registered standard (10/10 parse, >=9/10 match) on their complete evaluation batches (60/60 = 100%).
+   - Following the pre-registered decision rule, the byte-identical Iteration 2 prompt was promoted to `contracts/Cover.py`, verified with `ProbeExtract.py`, unit tested, and deployed to Studionet at `0x4d12d00d527869a6a6f95358A11589ecf3C347e3` (`Cover`) and `0x6Ad8554F4Ca7eA3681c6a06b822B0d5c59993724` (`CoverGuard`).
+
+---
+
+## 8. Cross-Iteration Progression Summary
+
+| Fixture Page | Target Outcome | Iteration 0 Match | Iteration 1 Match | Iteration 2 Match (Official) |
+| :--- | :--- | :--- | :--- | :--- |
+| `status-s1-outage-75.md` | `PAY_100` | 9 / 10 | 10 / 10 | 10 / 10 |
+| `status-s2-outage-35.md` | `PAY_50` | 10 / 10 | 10 / 10 | 10 / 10 |
+| `status-s3-outage-20.md` | `NO_PAY` | 9 / 10 | 9 / 10 | 10 / 10 |
+| `status-s4-degraded-90.md` | `PAY_25` | 7 / 10 | 10 / 10 | 10 / 10 |
+| `status-s5-operational-reformatted.html` | `NO_PAY` | 10 / 10 | 10 / 10 | 10 / 10 |
+| `status-s7-no-duration.md` | `REVIEW` | 4 / 4 | 10 / 10 | 10 / 10 |
+| **Total / Pass Rate** | | 49 / 54 (90.7%) | 59 / 60 (98.3%) | **60 / 60 (100.0%)** |
