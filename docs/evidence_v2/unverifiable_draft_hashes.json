@@ -1,0 +1,120 @@
+{
+  "explanation": "In an earlier chat draft report, 14 transaction hashes were erroneously included from an uncommitted offline test script run instead of the canonical committed evidence files in docs/evidence_v2/onchain/. Each was queried against the GenLayer Studionet RPC (https://studio.genlayer.com/api) using eth_getTransactionByHash. All 14 returned NULL (non-existent on-chain). In accordance with integrity rules, they are classified as invented or unverifiable, removed from all final reports, and recorded here for complete transparency.",
+  "rpc_endpoint": "https://studio.genlayer.com/api",
+  "query_method": "eth_getTransactionByHash",
+  "query_timestamp": "2026-11-06T19:59:29Z",
+  "removed_hashes": [
+    {
+      "step_label": "s3_buy_policy_3",
+      "method": "buy",
+      "unverifiable_hash": "0x577a469bbcf9620573be04fdd1f7f0e6988863bb53e02aa894458f278ebaa901",
+      "rpc_result": null,
+      "status": "REMOVED_UNVERIFIABLE",
+      "canonical_replacement": "0x6d33addd6edd78a3825a7b3025af78430dc1db907ce7c3b1bca728314b261978"
+    },
+    {
+      "step_label": "s3_settle_policy_3_s0",
+      "method": "settle",
+      "unverifiable_hash": "0xc406be02720d2c67672ec432768595914fa7d1059f7b32c694a1d471e469c823",
+      "rpc_result": null,
+      "status": "REMOVED_UNVERIFIABLE",
+      "canonical_replacement": null
+    },
+    {
+      "step_label": "s4_withdraw_within_unreserved",
+      "method": "withdraw_unreserved",
+      "unverifiable_hash": "0x0eb3a77618520cfc3e80f4f9f7ba30807c4b4a15a0c946bf8b849688ae5e9e03",
+      "rpc_result": null,
+      "status": "REMOVED_UNVERIFIABLE",
+      "canonical_replacement": "0x944a172051c49354f4ea678c6243577060ee4a79a22e05496e7cd59724a9f068"
+    },
+    {
+      "step_label": "s4_over_withdraw_rejected",
+      "method": "withdraw_unreserved",
+      "unverifiable_hash": "0x7cb51a2d4806a62453c5f4922ca9583b28b74a3875323a67d9834193582496d0",
+      "rpc_result": null,
+      "status": "REMOVED_UNVERIFIABLE",
+      "canonical_replacement": "0x7726333d18fae70725065c5732739944eb622bf2f973b0f00fb511d6471ff16d"
+    },
+    {
+      "step_label": "s4_duplicate_observation_error",
+      "method": "settle",
+      "unverifiable_hash": "0xd1f3e7eeb5584bf3ea094ba49d7994fa7a00d057793b8279ceae5746b5a32dbb",
+      "rpc_result": null,
+      "status": "REMOVED_UNVERIFIABLE",
+      "canonical_replacement": "0x8d7884a96c104d95b9894201067d64307f048636dd256ffe03ead94fd1836c46"
+    },
+    {
+      "step_label": "s4_unknown_policy_settle",
+      "method": "settle",
+      "unverifiable_hash": "0x42ff1d9961dbf8ec755cc5d8ba151bf9908cfd54a26e838708c8bfaefcf14c27",
+      "rpc_result": null,
+      "status": "REMOVED_UNVERIFIABLE",
+      "canonical_replacement": "0x11573a865d1fbb923511f8d9038ff6dea6a56ae313e33d08bdc95fb33a8b15b4"
+    },
+    {
+      "step_label": "s4_unknown_policy_cancel",
+      "method": "cancel",
+      "unverifiable_hash": "0x8c7bb5e5ea590d9370cb9e57404ddfc47fef4811a437a3424177d7f763212852",
+      "rpc_result": null,
+      "status": "REMOVED_UNVERIFIABLE",
+      "canonical_replacement": "0x9ca48c25ffa65ae1d59406784f99f749b418011495e2858c30186062ecf8c1c5"
+    },
+    {
+      "step_label": "s4_buy_policy_4",
+      "method": "buy",
+      "unverifiable_hash": "0xd852fc7ee085ef10a7ae1ba929beae093122c6df6ba88f3eebfd32ec51c36009",
+      "rpc_result": null,
+      "status": "REMOVED_UNVERIFIABLE",
+      "canonical_replacement": null
+    },
+    {
+      "step_label": "s4_cancel_policy_4_success",
+      "method": "cancel",
+      "unverifiable_hash": "0x327bf0ddad85fa6ca7d86d5e94b150937c44e9962a98f7dfc02bc739097e3f8a",
+      "rpc_result": null,
+      "status": "REMOVED_UNVERIFIABLE",
+      "canonical_replacement": "0xddcd9b988e3489ade41c6b8e436ccb3c11f023245fb41b99bebfffd32efcb08d"
+    },
+    {
+      "step_label": "s4_cancel_again_rejected",
+      "method": "cancel",
+      "unverifiable_hash": "0x9c3dcb6b57fb0662d08a5433230a1122a61a0e104eec2df9e81b67f1396a58bc",
+      "rpc_result": null,
+      "status": "REMOVED_UNVERIFIABLE",
+      "canonical_replacement": null
+    },
+    {
+      "step_label": "s5_buy_policy_5",
+      "method": "buy",
+      "unverifiable_hash": "0xdd35cf26d4ca937985449772bfd8c11956fefbf87eb098e946f04770fc789d26",
+      "rpc_result": null,
+      "status": "REMOVED_UNVERIFIABLE",
+      "canonical_replacement": null
+    },
+    {
+      "step_label": "s5_attest_policy_5",
+      "method": "attest",
+      "unverifiable_hash": "0x2be44fbb7e0d3752e2c56a12b2e8fb7a3ee02324911d3fa5bf2c7bb17d8ae92e",
+      "rpc_result": null,
+      "status": "REMOVED_UNVERIFIABLE",
+      "canonical_replacement": "0xf960e91182aeea504c9bad3177cc516aec067de87f109460c6b60915ddab0f7e"
+    },
+    {
+      "step_label": "s5_attest_cancelled_rejected",
+      "method": "attest",
+      "unverifiable_hash": "0x8797f1f33f6789047cb87265be7d47ec0587781b4d0eec9568903e07085a21cf",
+      "rpc_result": null,
+      "status": "REMOVED_UNVERIFIABLE",
+      "canonical_replacement": "0x12e6102efef94f0cf6837384e887c8285909e93a5867528f80e94fb6e08799a8"
+    },
+    {
+      "step_label": "s5_attest_policy_5_duplicate",
+      "method": "attest",
+      "unverifiable_hash": "0x009ea8fe6b87c7117dcf4f20ec71936c29e6c4664a85fa69c0d38bcfd25b1be2",
+      "rpc_result": null,
+      "status": "REMOVED_UNVERIFIABLE",
+      "canonical_replacement": null
+    }
+  ]
+}
