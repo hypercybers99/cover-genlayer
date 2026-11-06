@@ -123,6 +123,24 @@ function run() {
   }
 
   lines.push('');
+  lines.push('### Origin and Disposition of the 17 Reconstructed Amendment Hashes');
+  lines.push('');
+  lines.push('In an earlier chat draft report, 17 transaction hashes (rows 1 to 17 of the amendment table) were typed / reconstructed from an unverified session scratch buffer rather than read from the committed receipt files in `docs/evidence_v2/payouts/`. The canonical hashes exist in the receipt files under the `hash` field.');
+  lines.push('');
+  lines.push('To maintain strict verifiable integrity, each of the 17 reconstructed hashes was queried against the GenLayer Studionet RPC (`https://studio.genlayer.com/api`, chain 61999) via `eth_getTransactionByHash`. All 17 queries returned `null` (confirming they do not exist on chain). They have been classified as **"invented or unverifiable, removed"** and recorded in `docs/evidence_v2/unverifiable_draft_hashes.json` alongside their canonical replacements:');
+  lines.push('');
+  lines.push('| # | Step Label | Function | Reconstructed Draft Tx Hash | On-Chain Lookup | Status | Canonical Replacement Tx Hash |');
+  lines.push('| :--- | :--- | :--- | :--- | :--- | :--- | :--- |');
+
+  if (draftHashes.amendment_draft_hashes) {
+    for (let i = 0; i < draftHashes.amendment_draft_hashes.length; i++) {
+      const item = draftHashes.amendment_draft_hashes[i];
+      const rep = item.canonical_replacement ? `\`${item.canonical_replacement}\`` : 'None';
+      lines.push(`| ${i + 1} | \`${item.step_label}\` | \`${item.method}\` | \`${item.unverifiable_hash}\` | \`null\` | ${item.status} | ${rep} |`);
+    }
+  }
+
+  lines.push('');
   lines.push('---');
   lines.push('');
   lines.push('## 5. On-Chain Empirical Baseline Transactions (27 Transactions)');
@@ -186,7 +204,7 @@ function run() {
   lines.push(`2. \`is_covered_for(0xfE19aC2509947905ecAD2Fc9822D7dDe43AA1fCF, "11", "6", "${payouts.cases[0].terms_hash}", 100)\`: returned \`false\` (PASS).`);
   lines.push(`3. \`attest("11")\`: Transaction \`${payouts.coverguard_post_paid.attest_refusal.tx_hash}\` rolled back with Leader Error payload \`"${payouts.coverguard_post_paid.attest_refusal.error_payload}"\` (PASS).`);
   lines.push('');
-  lines.push('### Amendment Transaction Receipts Table (14 Transactions)');
+  lines.push('### Amendment Transaction Receipts Table (23 Transactions)');
   lines.push('');
   lines.push('| # | Step Label | Function | Transaction Hash | Status Name | Leader Result | Latency |');
   lines.push('| :--- | :--- | :--- | :--- | :--- | :--- | :--- |');
@@ -221,11 +239,20 @@ function run() {
     const item = amendmentReceipts[i];
     const receiptPath = path.join('docs/evidence_v2/payouts', item.file);
     const r = loadJSON(receiptPath);
-    const txHash = r.transaction_hash;
+    const txHash = r.hash || r.transaction_hash;
     const statusName = r.status_name;
     const leaderResult = r.consensus_data?.leader_receipt?.[0]?.execution_result || 'UNKNOWN';
-    const latency = r.latency_seconds || 'not measured';
-    lines.push(`| ${i + 1} | \`${item.label}\` | \`${item.fn}\` | \`${txHash}\` | \`${statusName}\` | \`${leaderResult}\` | ${latency} s |`);
+    let latency = 'not available';
+    if (r.latency_seconds) {
+      latency = `${r.latency_seconds} s`;
+    } else if (item.label.includes('settle_policy')) {
+      const caseNum = parseInt(item.label.match(/\d+/)?.[0] || '0');
+      const c = payouts.cases.find(x => x.case_id === caseNum);
+      if (c && c.settle_latency_seconds) {
+        latency = `${c.settle_latency_seconds} s`;
+      }
+    }
+    lines.push(`| ${i + 1} | \`${item.label}\` | \`${item.fn}\` | \`${txHash}\` | \`${statusName}\` | \`${leaderResult}\` | ${latency} |`);
   }
 
   lines.push('');

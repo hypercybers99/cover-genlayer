@@ -116,5 +116,160 @@
       "status": "REMOVED_UNVERIFIABLE",
       "canonical_replacement": null
     }
+  ],
+  "amendment_draft_hashes": [
+    {
+      "step_label": "payout_claim_underwriter",
+      "method": "claim_demo_credits",
+      "unverifiable_hash": "0xecf8ebc8a514d79cb86bf8f47b2b0058b88eb3a613dcf50f589999a770cf089e",
+      "rpc_result": null,
+      "status": "REMOVED_UNVERIFIABLE",
+      "canonical_replacement": "0x8d0c0991ac92ff34049e62bd2531e9b5aa0a383f382aefbb3908574dc25dc1bc",
+      "receipt_file": "docs/evidence_v2/payouts/payout_claim_underwriter_receipt.json"
+    },
+    {
+      "step_label": "payout_claim_buyer",
+      "method": "claim_demo_credits",
+      "unverifiable_hash": "0xa7d82500c5eead4ec93e36e3d240d4f3b7fc1c5cf14e7a330c88dd98cb0ce402",
+      "rpc_result": null,
+      "status": "REMOVED_UNVERIFIABLE",
+      "canonical_replacement": "0x7846557eb403fa6a3e66e7673c6cc8b3108ecc98b777ca2f8b1d150408e7fe2f",
+      "receipt_file": "docs/evidence_v2/payouts/payout_claim_buyer_receipt.json"
+    },
+    {
+      "step_label": "case1_create_product",
+      "method": "create_product",
+      "unverifiable_hash": "0xa7d57053075c3ef5d0cc154ff46227fe6046e3ea408d626806e57cc43e339b1a",
+      "rpc_result": null,
+      "status": "REMOVED_UNVERIFIABLE",
+      "canonical_replacement": "0x8a44ca211d7d287f285493d3ee43a4b2178f46229d2b45afd506ddaccf675a2a",
+      "receipt_file": "docs/evidence_v2/payouts/case1_create_product_receipt.json"
+    },
+    {
+      "step_label": "case1_fund_product",
+      "method": "fund_product",
+      "unverifiable_hash": "0x91d923769c27732a13c32b50424564539e083c261fe024225a0a382e7bdfd92f",
+      "rpc_result": null,
+      "status": "REMOVED_UNVERIFIABLE",
+      "canonical_replacement": "0xb68146046a0d0a5f7eac1d08245c7cd741292b8902955a1d5c3044f480eff59f",
+      "receipt_file": "docs/evidence_v2/payouts/case1_fund_product_receipt.json"
+    },
+    {
+      "step_label": "case1_buy_policy",
+      "method": "buy",
+      "unverifiable_hash": "0xc3e65593c660f699042b781ce73bfe4c0cb80572fa809ef96a4a6125039be412",
+      "rpc_result": null,
+      "status": "REMOVED_UNVERIFIABLE",
+      "canonical_replacement": "0x345d05d55a8981d3c54c11c9ee73438f453364899e1695e3629a41a6f05d54f7",
+      "receipt_file": "docs/evidence_v2/payouts/case1_buy_policy_receipt.json"
+    },
+    {
+      "step_label": "case2_create_product",
+      "method": "create_product",
+      "unverifiable_hash": "0xfa4a20b7c768995a1200155b9a71db3f0e0d55642d9992f444c5ba7eb982c732",
+      "rpc_result": null,
+      "status": "REMOVED_UNVERIFIABLE",
+      "canonical_replacement": "0x0aa5e7e67a6accfe93e585ee02685675f9d998ec8ee36973d9961ccace58c05e",
+      "receipt_file": "docs/evidence_v2/payouts/case2_create_product_receipt.json"
+    },
+    {
+      "step_label": "case2_fund_product",
+      "method": "fund_product",
+      "unverifiable_hash": "0x7a300d8bc3a4ec0e2a2fb8ba6336e885d9fa531b46a7cefe1464b73b5a1b32bb",
+      "rpc_result": null,
+      "status": "REMOVED_UNVERIFIABLE",
+      "canonical_replacement": "0x24de392e8fa7a02c59ddbae93b323e85a332aad913fd086024be63ed05835bc2",
+      "receipt_file": "docs/evidence_v2/payouts/case2_fund_product_receipt.json"
+    },
+    {
+      "step_label": "case2_buy_policy",
+      "method": "buy",
+      "unverifiable_hash": "0x93202eb238b72e505cc3e06efbc2eaae4c76b1f2ef3b918ae8770b20531c19d4",
+      "rpc_result": null,
+      "status": "REMOVED_UNVERIFIABLE",
+      "canonical_replacement": "0xed18a053c7a131711703ce7947e2ab6a0ddb43d2c6e45e367e7ba5ec4cc4dcbf",
+      "receipt_file": "docs/evidence_v2/payouts/case2_buy_policy_receipt.json"
+    },
+    {
+      "step_label": "case3_create_product",
+      "method": "create_product",
+      "unverifiable_hash": "0x8ae595604111fe80695bf5c604be4480c55490412852264560b45d2fef872ea1",
+      "rpc_result": null,
+      "status": "REMOVED_UNVERIFIABLE",
+      "canonical_replacement": "0xd1083a609c9ff2c5eee738ef73d550af0095a9a3f6f1cb3ca83688ea7a076a6e",
+      "receipt_file": "docs/evidence_v2/payouts/case3_create_product_receipt.json"
+    },
+    {
+      "step_label": "case3_fund_product",
+      "method": "fund_product",
+      "unverifiable_hash": "0xcab64c8c775798993ebfe095ff3c70f074a3f12cc69ebef732a3ec253457e930",
+      "rpc_result": null,
+      "status": "REMOVED_UNVERIFIABLE",
+      "canonical_replacement": "0x91d2556693f66331fc7ee4dd261c6bf964575b41efbdc6462678ca397920934d",
+      "receipt_file": "docs/evidence_v2/payouts/case3_fund_product_receipt.json"
+    },
+    {
+      "step_label": "case3_buy_policy",
+      "method": "buy",
+      "unverifiable_hash": "0xd84976c6ae948c2bc164ca6e0018f3a388ff05aa50fbcfdc6cc651030e46a7fa",
+      "rpc_result": null,
+      "status": "REMOVED_UNVERIFIABLE",
+      "canonical_replacement": "0x2e3260781b5af9e3a851f791e8879379f18dbef588f83871b3fae34a465931dc",
+      "receipt_file": "docs/evidence_v2/payouts/case3_buy_policy_receipt.json"
+    },
+    {
+      "step_label": "case4_create_product",
+      "method": "create_product",
+      "unverifiable_hash": "0xd8aa7fdf2b45e7f2aa25ce681ef563e46c9a296e8555e71780447fa0d2386a34",
+      "rpc_result": null,
+      "status": "REMOVED_UNVERIFIABLE",
+      "canonical_replacement": "0x907772f72fc21ac57efd164e0960cd2a1dd5ab3dddf770fbdf313008892ead45",
+      "receipt_file": "docs/evidence_v2/payouts/case4_create_product_receipt.json"
+    },
+    {
+      "step_label": "case4_fund_product",
+      "method": "fund_product",
+      "unverifiable_hash": "0xa0e75fb04b9015c92c30089a42a033b0cfc8621481e3a763d3f9e9cf271dfb68",
+      "rpc_result": null,
+      "status": "REMOVED_UNVERIFIABLE",
+      "canonical_replacement": "0xbc9a5284516224059f6c86d27d39cb0817852c598cecd36559a077314f78b65a",
+      "receipt_file": "docs/evidence_v2/payouts/case4_fund_product_receipt.json"
+    },
+    {
+      "step_label": "case4_buy_policy",
+      "method": "buy",
+      "unverifiable_hash": "0x0eb349a46bb00e47fe1ae1b3593dfdb645d94e24ef54ea010f37b120c8d11631",
+      "rpc_result": null,
+      "status": "REMOVED_UNVERIFIABLE",
+      "canonical_replacement": "0x23b182ccb994c004ec6fde5d7c4d9cc57203e530344d86c90cac3619b76c545f",
+      "receipt_file": "docs/evidence_v2/payouts/case4_buy_policy_receipt.json"
+    },
+    {
+      "step_label": "case5_create_product",
+      "method": "create_product",
+      "unverifiable_hash": "0x64fcba92233f2081f9a0c7fcffc099eec3851532f3fcfd84d5df63630f9ec39e",
+      "rpc_result": null,
+      "status": "REMOVED_UNVERIFIABLE",
+      "canonical_replacement": "0x9a66fa5e68420566aee248774b714fbd5e06ad6086a3b5fb153f34b71de1d3e6",
+      "receipt_file": "docs/evidence_v2/payouts/case5_create_product_receipt.json"
+    },
+    {
+      "step_label": "case5_fund_product",
+      "method": "fund_product",
+      "unverifiable_hash": "0xba71c5040e340db4283ee91e6057a16dbd7830cbbf94ff6f104332bf11894d0e",
+      "rpc_result": null,
+      "status": "REMOVED_UNVERIFIABLE",
+      "canonical_replacement": "0x0addd17fe2df1a5d05130e532dd7d99b5b9047d56992854f5eca07b66a4c121f",
+      "receipt_file": "docs/evidence_v2/payouts/case5_fund_product_receipt.json"
+    },
+    {
+      "step_label": "case5_buy_policy",
+      "method": "buy",
+      "unverifiable_hash": "0x981600f7278d91c782759e51c855a7949ecb3ea2fffa0fa08b15518b2f9f1ff4",
+      "rpc_result": null,
+      "status": "REMOVED_UNVERIFIABLE",
+      "canonical_replacement": "0xaad812bd3b793dcbc5c934a3d20c0508cc50c41821550a48c2d8e7bad70deb52",
+      "receipt_file": "docs/evidence_v2/payouts/case5_buy_policy_receipt.json"
+    }
   ]
 }

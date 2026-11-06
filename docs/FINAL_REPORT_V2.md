@@ -115,6 +115,32 @@ The disposition of these 14 hashes is formally classified as **"invented or unve
 | 13 | `s5_attest_cancelled_rejected` | `attest` | `0x8797f1f33f6789047cb87265be7d47ec0587781b4d0eec9568903e07085a21cf` | `null` | REMOVED_UNVERIFIABLE | `0x12e6102efef94f0cf6837384e887c8285909e93a5867528f80e94fb6e08799a8` |
 | 14 | `s5_attest_policy_5_duplicate` | `attest` | `0x009ea8fe6b87c7117dcf4f20ec71936c29e6c4664a85fa69c0d38bcfd25b1be2` | `null` | REMOVED_UNVERIFIABLE | None (No equivalent executed) |
 
+### Origin and Disposition of the 17 Reconstructed Amendment Hashes
+
+In an earlier chat draft report, 17 transaction hashes (rows 1 to 17 of the amendment table) were typed / reconstructed from an unverified session scratch buffer rather than read from the committed receipt files in `docs/evidence_v2/payouts/`. The canonical hashes exist in the receipt files under the `hash` field.
+
+To maintain strict verifiable integrity, each of the 17 reconstructed hashes was queried against the GenLayer Studionet RPC (`https://studio.genlayer.com/api`, chain 61999) via `eth_getTransactionByHash`. All 17 queries returned `null` (confirming they do not exist on chain). They have been classified as **"invented or unverifiable, removed"** and recorded in `docs/evidence_v2/unverifiable_draft_hashes.json` alongside their canonical replacements:
+
+| # | Step Label | Function | Reconstructed Draft Tx Hash | On-Chain Lookup | Status | Canonical Replacement Tx Hash |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| 1 | `payout_claim_underwriter` | `claim_demo_credits` | `0xecf8ebc8a514d79cb86bf8f47b2b0058b88eb3a613dcf50f589999a770cf089e` | `null` | REMOVED_UNVERIFIABLE | `0x8d0c0991ac92ff34049e62bd2531e9b5aa0a383f382aefbb3908574dc25dc1bc` |
+| 2 | `payout_claim_buyer` | `claim_demo_credits` | `0xa7d82500c5eead4ec93e36e3d240d4f3b7fc1c5cf14e7a330c88dd98cb0ce402` | `null` | REMOVED_UNVERIFIABLE | `0x7846557eb403fa6a3e66e7673c6cc8b3108ecc98b777ca2f8b1d150408e7fe2f` |
+| 3 | `case1_create_product` | `create_product` | `0xa7d57053075c3ef5d0cc154ff46227fe6046e3ea408d626806e57cc43e339b1a` | `null` | REMOVED_UNVERIFIABLE | `0x8a44ca211d7d287f285493d3ee43a4b2178f46229d2b45afd506ddaccf675a2a` |
+| 4 | `case1_fund_product` | `fund_product` | `0x91d923769c27732a13c32b50424564539e083c261fe024225a0a382e7bdfd92f` | `null` | REMOVED_UNVERIFIABLE | `0xb68146046a0d0a5f7eac1d08245c7cd741292b8902955a1d5c3044f480eff59f` |
+| 5 | `case1_buy_policy` | `buy` | `0xc3e65593c660f699042b781ce73bfe4c0cb80572fa809ef96a4a6125039be412` | `null` | REMOVED_UNVERIFIABLE | `0x345d05d55a8981d3c54c11c9ee73438f453364899e1695e3629a41a6f05d54f7` |
+| 6 | `case2_create_product` | `create_product` | `0xfa4a20b7c768995a1200155b9a71db3f0e0d55642d9992f444c5ba7eb982c732` | `null` | REMOVED_UNVERIFIABLE | `0x0aa5e7e67a6accfe93e585ee02685675f9d998ec8ee36973d9961ccace58c05e` |
+| 7 | `case2_fund_product` | `fund_product` | `0x7a300d8bc3a4ec0e2a2fb8ba6336e885d9fa531b46a7cefe1464b73b5a1b32bb` | `null` | REMOVED_UNVERIFIABLE | `0x24de392e8fa7a02c59ddbae93b323e85a332aad913fd086024be63ed05835bc2` |
+| 8 | `case2_buy_policy` | `buy` | `0x93202eb238b72e505cc3e06efbc2eaae4c76b1f2ef3b918ae8770b20531c19d4` | `null` | REMOVED_UNVERIFIABLE | `0xed18a053c7a131711703ce7947e2ab6a0ddb43d2c6e45e367e7ba5ec4cc4dcbf` |
+| 9 | `case3_create_product` | `create_product` | `0x8ae595604111fe80695bf5c604be4480c55490412852264560b45d2fef872ea1` | `null` | REMOVED_UNVERIFIABLE | `0xd1083a609c9ff2c5eee738ef73d550af0095a9a3f6f1cb3ca83688ea7a076a6e` |
+| 10 | `case3_fund_product` | `fund_product` | `0xcab64c8c775798993ebfe095ff3c70f074a3f12cc69ebef732a3ec253457e930` | `null` | REMOVED_UNVERIFIABLE | `0x91d2556693f66331fc7ee4dd261c6bf964575b41efbdc6462678ca397920934d` |
+| 11 | `case3_buy_policy` | `buy` | `0xd84976c6ae948c2bc164ca6e0018f3a388ff05aa50fbcfdc6cc651030e46a7fa` | `null` | REMOVED_UNVERIFIABLE | `0x2e3260781b5af9e3a851f791e8879379f18dbef588f83871b3fae34a465931dc` |
+| 12 | `case4_create_product` | `create_product` | `0xd8aa7fdf2b45e7f2aa25ce681ef563e46c9a296e8555e71780447fa0d2386a34` | `null` | REMOVED_UNVERIFIABLE | `0x907772f72fc21ac57efd164e0960cd2a1dd5ab3dddf770fbdf313008892ead45` |
+| 13 | `case4_fund_product` | `fund_product` | `0xa0e75fb04b9015c92c30089a42a033b0cfc8621481e3a763d3f9e9cf271dfb68` | `null` | REMOVED_UNVERIFIABLE | `0xbc9a5284516224059f6c86d27d39cb0817852c598cecd36559a077314f78b65a` |
+| 14 | `case4_buy_policy` | `buy` | `0x0eb349a46bb00e47fe1ae1b3593dfdb645d94e24ef54ea010f37b120c8d11631` | `null` | REMOVED_UNVERIFIABLE | `0x23b182ccb994c004ec6fde5d7c4d9cc57203e530344d86c90cac3619b76c545f` |
+| 15 | `case5_create_product` | `create_product` | `0x64fcba92233f2081f9a0c7fcffc099eec3851532f3fcfd84d5df63630f9ec39e` | `null` | REMOVED_UNVERIFIABLE | `0x9a66fa5e68420566aee248774b714fbd5e06ad6086a3b5fb153f34b71de1d3e6` |
+| 16 | `case5_fund_product` | `fund_product` | `0xba71c5040e340db4283ee91e6057a16dbd7830cbbf94ff6f104332bf11894d0e` | `null` | REMOVED_UNVERIFIABLE | `0x0addd17fe2df1a5d05130e532dd7d99b5b9047d56992854f5eca07b66a4c121f` |
+| 17 | `case5_buy_policy` | `buy` | `0x981600f7278d91c782759e51c855a7949ecb3ea2fffa0fa08b15518b2f9f1ff4` | `null` | REMOVED_UNVERIFIABLE | `0xaad812bd3b793dcbc5c934a3d20c0508cc50c41821550a48c2d8e7bad70deb52` |
+
 ---
 
 ## 5. On-Chain Empirical Baseline Transactions (27 Transactions)
@@ -200,33 +226,33 @@ CoverGuard was verified against Policy 11 immediately after its 100 demo credit 
 2. `is_covered_for(0xfE19aC2509947905ecAD2Fc9822D7dDe43AA1fCF, "11", "6", "7edc573ddc5ed64b4574a61ec963e0639422e92273098e2d1d415586d372e95f", 100)`: returned `false` (PASS).
 3. `attest("11")`: Transaction `0x2fbbe2a7aff2e15a2ea2335a869ddecdcd212e5f8e704f51f60e2a330dc018e3` rolled back with Leader Error payload `"not covered: PAID"` (PASS).
 
-### Amendment Transaction Receipts Table (14 Transactions)
+### Amendment Transaction Receipts Table (23 Transactions)
 
 | # | Step Label | Function | Transaction Hash | Status Name | Leader Result | Latency |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| 1 | `payout_claim_underwriter` | `claim_demo_credits` | `undefined` | `ACCEPTED` | `SUCCESS` | not measured s |
-| 2 | `payout_claim_buyer` | `claim_demo_credits` | `undefined` | `ACCEPTED` | `SUCCESS` | not measured s |
-| 3 | `case1_create_product` | `create_product` | `undefined` | `ACCEPTED` | `SUCCESS` | not measured s |
-| 4 | `case1_fund_product` | `fund_product` | `undefined` | `ACCEPTED` | `SUCCESS` | not measured s |
-| 5 | `case1_buy_policy` | `buy` | `undefined` | `ACCEPTED` | `SUCCESS` | not measured s |
-| 6 | `case2_create_product` | `create_product` | `undefined` | `ACCEPTED` | `SUCCESS` | not measured s |
-| 7 | `case2_fund_product` | `fund_product` | `undefined` | `ACCEPTED` | `SUCCESS` | not measured s |
-| 8 | `case2_buy_policy` | `buy` | `undefined` | `ACCEPTED` | `SUCCESS` | not measured s |
-| 9 | `case3_create_product` | `create_product` | `undefined` | `ACCEPTED` | `SUCCESS` | not measured s |
-| 10 | `case3_fund_product` | `fund_product` | `undefined` | `ACCEPTED` | `SUCCESS` | not measured s |
-| 11 | `case3_buy_policy` | `buy` | `undefined` | `ACCEPTED` | `SUCCESS` | not measured s |
-| 12 | `case4_create_product` | `create_product` | `undefined` | `ACCEPTED` | `SUCCESS` | not measured s |
-| 13 | `case4_fund_product` | `fund_product` | `undefined` | `ACCEPTED` | `SUCCESS` | not measured s |
-| 14 | `case4_buy_policy` | `buy` | `undefined` | `ACCEPTED` | `SUCCESS` | not measured s |
-| 15 | `case5_create_product` | `create_product` | `undefined` | `ACCEPTED` | `SUCCESS` | not measured s |
-| 16 | `case5_fund_product` | `fund_product` | `undefined` | `ACCEPTED` | `SUCCESS` | not measured s |
-| 17 | `case5_buy_policy` | `buy` | `undefined` | `ACCEPTED` | `SUCCESS` | not measured s |
-| 18 | `case1_settle_policy` | `settle` | `undefined` | `ACCEPTED` | `SUCCESS` | not measured s |
-| 19 | `case2_settle_policy` | `settle` | `undefined` | `ACCEPTED` | `SUCCESS` | not measured s |
-| 20 | `case3_settle_policy` | `settle` | `undefined` | `ACCEPTED` | `SUCCESS` | not measured s |
-| 21 | `case4_settle_policy` | `settle` | `undefined` | `ACCEPTED` | `SUCCESS` | not measured s |
-| 22 | `case5_settle_policy` | `settle` | `undefined` | `ACCEPTED` | `SUCCESS` | not measured s |
-| 23 | `case1_attest_refused_paid` | `attest` | `undefined` | `ACCEPTED` | `ERROR` | not measured s |
+| 1 | `payout_claim_underwriter` | `claim_demo_credits` | `0x8d0c0991ac92ff34049e62bd2531e9b5aa0a383f382aefbb3908574dc25dc1bc` | `ACCEPTED` | `SUCCESS` | not available |
+| 2 | `payout_claim_buyer` | `claim_demo_credits` | `0x7846557eb403fa6a3e66e7673c6cc8b3108ecc98b777ca2f8b1d150408e7fe2f` | `ACCEPTED` | `SUCCESS` | not available |
+| 3 | `case1_create_product` | `create_product` | `0x8a44ca211d7d287f285493d3ee43a4b2178f46229d2b45afd506ddaccf675a2a` | `ACCEPTED` | `SUCCESS` | not available |
+| 4 | `case1_fund_product` | `fund_product` | `0xb68146046a0d0a5f7eac1d08245c7cd741292b8902955a1d5c3044f480eff59f` | `ACCEPTED` | `SUCCESS` | not available |
+| 5 | `case1_buy_policy` | `buy` | `0x345d05d55a8981d3c54c11c9ee73438f453364899e1695e3629a41a6f05d54f7` | `ACCEPTED` | `SUCCESS` | not available |
+| 6 | `case2_create_product` | `create_product` | `0x0aa5e7e67a6accfe93e585ee02685675f9d998ec8ee36973d9961ccace58c05e` | `ACCEPTED` | `SUCCESS` | not available |
+| 7 | `case2_fund_product` | `fund_product` | `0x24de392e8fa7a02c59ddbae93b323e85a332aad913fd086024be63ed05835bc2` | `ACCEPTED` | `SUCCESS` | not available |
+| 8 | `case2_buy_policy` | `buy` | `0xed18a053c7a131711703ce7947e2ab6a0ddb43d2c6e45e367e7ba5ec4cc4dcbf` | `ACCEPTED` | `SUCCESS` | not available |
+| 9 | `case3_create_product` | `create_product` | `0xd1083a609c9ff2c5eee738ef73d550af0095a9a3f6f1cb3ca83688ea7a076a6e` | `ACCEPTED` | `SUCCESS` | not available |
+| 10 | `case3_fund_product` | `fund_product` | `0x91d2556693f66331fc7ee4dd261c6bf964575b41efbdc6462678ca397920934d` | `ACCEPTED` | `SUCCESS` | not available |
+| 11 | `case3_buy_policy` | `buy` | `0x2e3260781b5af9e3a851f791e8879379f18dbef588f83871b3fae34a465931dc` | `ACCEPTED` | `SUCCESS` | not available |
+| 12 | `case4_create_product` | `create_product` | `0x907772f72fc21ac57efd164e0960cd2a1dd5ab3dddf770fbdf313008892ead45` | `ACCEPTED` | `SUCCESS` | not available |
+| 13 | `case4_fund_product` | `fund_product` | `0xbc9a5284516224059f6c86d27d39cb0817852c598cecd36559a077314f78b65a` | `ACCEPTED` | `SUCCESS` | not available |
+| 14 | `case4_buy_policy` | `buy` | `0x23b182ccb994c004ec6fde5d7c4d9cc57203e530344d86c90cac3619b76c545f` | `ACCEPTED` | `SUCCESS` | not available |
+| 15 | `case5_create_product` | `create_product` | `0x9a66fa5e68420566aee248774b714fbd5e06ad6086a3b5fb153f34b71de1d3e6` | `ACCEPTED` | `SUCCESS` | not available |
+| 16 | `case5_fund_product` | `fund_product` | `0x0addd17fe2df1a5d05130e532dd7d99b5b9047d56992854f5eca07b66a4c121f` | `ACCEPTED` | `SUCCESS` | not available |
+| 17 | `case5_buy_policy` | `buy` | `0xaad812bd3b793dcbc5c934a3d20c0508cc50c41821550a48c2d8e7bad70deb52` | `ACCEPTED` | `SUCCESS` | not available |
+| 18 | `case1_settle_policy` | `settle` | `0xef40cf1b8b2e07fd48093233c51dfbd8975cf518b21c742e268007a7415bd4b0` | `ACCEPTED` | `SUCCESS` | 17.49 s |
+| 19 | `case2_settle_policy` | `settle` | `0x75f31aacca5c4f88858fe074d6109ed254bc27214c26f6932cf25fa5bcf4be14` | `ACCEPTED` | `SUCCESS` | 13.73 s |
+| 20 | `case3_settle_policy` | `settle` | `0x9485a7c0dc20be729d6f6cde6e18236a56c5e47a550427008e4f24c0c498a368` | `ACCEPTED` | `SUCCESS` | 13.30 s |
+| 21 | `case4_settle_policy` | `settle` | `0x6c3d27a68fda8b7c0a7e336740e012ca38277f8810317e9335b3c37744832418` | `ACCEPTED` | `SUCCESS` | 17.43 s |
+| 22 | `case5_settle_policy` | `settle` | `0xc21d97d9a8b01172b1580c216fae678ac5512351d7153a93c05ff572c513a6cc` | `ACCEPTED` | `SUCCESS` | 28.45 s |
+| 23 | `case1_attest_refused_paid` | `attest` | `0x2fbbe2a7aff2e15a2ea2335a869ddecdcd212e5f8e704f51f60e2a330dc018e3` | `ACCEPTED` | `ERROR` | not available |
 
 ### Ledger Conservation Invariant (Amendment Run)
 
