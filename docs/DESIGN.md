@@ -1,6 +1,6 @@
-# Architecture and Consensus Design: Cover
+# Architecture and Consensus Design: Cover V2
 
-This document specifies the technical architecture, consensus model, security invariants, and failure handling of **Cover**.
+This document specifies the technical architecture, consensus model, security invariants, and failure handling of **Cover V2** and **CoverGuard V2**.
 
 ---
 
@@ -55,25 +55,27 @@ flowchart TD
 
 ---
 
-## 3. Storage Architecture and Canonical Encoding
+## 3. Storage Architecture and Canonical Encoding (V2)
 
 All persistent contract state is stored in `TreeMap[str, str]` containing sorted, canonical JSON with `"schema_version": "1"`. Decimal strings represent all numeric balances and counters.
 
 ### Schemas:
 1. `products[product_id]`:
-   - `id`, `creator`, `name`, `url`, `host`, `dir_path`, `rule_text`, `min_full`, `min_half`, `premium_bps`, `terms_hash`, `pool_balance`, `reserved`, `policy_count`, `source_history`, `seq`.
+   - `id`, `creator`, `name`, `url`, `host`, `dir_path`, `decision_rule`, `term`, `min_full`, `min_half`, `premium_bps`, `terms_hash`, `pool_balance`, `reserved`, `policy_count`, `source_history`, `seq`.
 2. `policies[policy_id]`:
-   - `id`, `product_id`, `holder`, `coverage`, `premium`, `status` (`ACTIVE` | `PAID` | `CANCELLED`), `buy_norm_hash16`, `paid_amount`, `attempts`, `seq`.
+   - Permanent purchase-time bindings: `id`, `product_id`, `holder`, `coverage`, `premium`, `status` (`ACTIVE` | `PAID` | `CANCELLED`), `buy_norm_hash16`, `paid_amount`, `payout`, `settlement_id`, `cancel_refund`, `terms_hash`, `evidence_url`, `decision_rule`, `min_full`, `min_half`, `premium_bps`, `term`, `attempts`, `seq`.
 3. `settlements[settlement_id]`:
-   - `id`, `policy_id`, `caller`, `url_used`, `outcome`, `norm_hash16`, `status`, `minutes`, `quote`, `gate`, `tripwire`, `leader_reported`, `seq`.
+   - `id`, `policy_id`, `product_id`, `caller`, `terms_hash`, `evidence_url`, `url_used`, `coverage`, `payout`, `status`, `minutes`, `quote`, `outcome`, `gate`, `tripwire`.
 4. `seen`:
-   - `sha256(policy_id|norm_hash16)` -> `settlement_id`. Rejects duplicate settlement attempts on the exact same page state.
+   - `sha256(policy_id|norm_hash16)` -> `settlement_id`. Rejects duplicate settlement attempts on identical non-purchase observation.
+5. `attestations[attestation_id]` (CoverGuard):
+   - `id`, `attester`, `policy_id`, `product_id`, `coverage`, `terms_hash`, `evidence_url_hash`.
 
 ---
 
 ## 4. Solvency and Conservation Invariants
 
-Cover enforces three mathematical invariants across all state mutations (`claim_demo_credits`, `fund_product`, `buy`, `settle`, `cancel`, `withdraw_unreserved`):
+Cover V2 enforces three mathematical invariants across all state mutations (`claim_demo_credits`, `fund_product`, `buy`, `settle`, `cancel`, `withdraw_unreserved`):
 
 1. **Global Conservation of Credits**:
    $$\sum \text{balances} + \sum \text{pool\_balance} = \text{total\_minted}$$
@@ -84,11 +86,15 @@ Cover enforces three mathematical invariants across all state mutations (`claim_
 
 ---
 
-## 5. Prompt Iteration Log
+## 5. Reviewer Alignments Implemented in V2
 
-| Iteration | Prompt SHA-256 | Description | Key Changes |
-| :--- | :--- | :--- | :--- |
-| **0** | `26b38c2f1f50ea7ff4a6da7715f33342159c991f8fe73887c95e1eb906cf2c33` | Initial baseline prompt | Extracted status and minutes from incident block. Quote had no duration requirement, leading to 3/10 misses on `s4`. |
-| **1** | `4d7d1ad1b041fe391182f20abc4e50487deed4cc2d580cb51041efd45d1fbe41` | Duration enforcement in quote | Added requirement that quote MUST include the stated duration number (if minutes > 0). Brought `s4` to 10/10 match; `s3` Run 5 had conversational preamble causing 9/10 parse. |
-| **2** | `90be3b95dd867b8cc3a04f9464e3a1ab3b499343d3c4a40664042651092ecca1` | Strict response framing | Added: `"Your whole response must be the JSON object and nothing else: the first character is { and the last is }."` and `"conversational text"` to forbidden outputs. Targets elimination of preambles. |
-
+1. **Policy Purchase-Time Term Binding**:
+   - `buy` writes immutable purchase-time terms (`terms_hash`, `evidence_url`, `min_full`, `min_half`, `decision_rule`, `term`) directly to the policy record.
+   - `settle` reads exclusively from the policy record, preventing product source mutation from affecting existing policies.
+2. **Deterministic Decision Rule & Explicit Term**:
+   - Free-text `rule_text` parameter removed.
+   - `DECISION_RULE_V2 = "OUTAGE >= min_full minutes: 100% | OUTAGE >= min_half: 50% | DEGRADED >= min_full: 25% | otherwise 0%; unreadable or unclear: REVIEW"`
+   - `COVERAGE_TERM_V2 = "OPEN_UNTIL_SETTLED_OR_CANCELLED"`
+3. **CoverGuard Signatures and Attestation**:
+   - `is_covered_for(holder, policy_id, product_id, terms_hash, min_coverage)` asserts exact policy-bound terms hash.
+   - `attest(policy_id)` stores policy purchase-time `terms_hash` and `evidence_url_hash`.

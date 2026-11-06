@@ -17,14 +17,15 @@ It records design trade-offs, scope boundaries, and operational constraints of t
 - **English-First Language Task**: Incident extraction prompts are formatted in English. Non-English status pages may produce unparseable responses or tripwires, triggering safe `REVIEW`.
 
 ## 3. Policy Lifecycle and Timing Boundaries
-- **No On-Chain Clock**: GenVM on studionet does not expose a real-time block timestamp. Consequently, Cover policies do not have an automated expiration timestamp or waiting period.
+- **No On-Chain Clock**: GenVM on studionet does not expose a real-time block timestamp. Consequently, Cover policies do not have an automated expiration timestamp or waiting period; the explicit term is `"OPEN_UNTIL_SETTLED_OR_CANCELLED"`.
 - **Buy-Time Gate Protection**: Protection against retroactive claims (buying cover during an ongoing incident) is enforced by the buy-time validator check, which reads the current status page and refuses purchase if status is not `OPERATIONAL`.
 - **Page-Changed Gate**: If `settle` is called when the page text has the exact same normalized hash as recorded at purchase time (`buy_norm_hash16`), Cover immediately resolves to `NO_PAY` without invoking the LLM.
-- **No Premium Refund on Cancellation**: If a policyholder invokes `cancel`, the policy enters `CANCELLED` status and unreserves coverage, but the upfront premium is retained in the underwriter pool.
+- **No Premium Refund on Cancellation**: If a policyholder invokes `cancel`, the policy enters `CANCELLED` status and unreserves coverage, but the upfront premium is retained in the underwriter pool (`cancel_refund = "0"`).
 - **Multiple Settlement Attempts**: A settlement yielding `NO_PAY` or `REVIEW` leaves the policy in `ACTIVE` status so that genuine subsequent outages can be settled. However, repeated identical observations (same policy ID and normalized page hash) are rejected with a duplicate observation UserError.
 
-## 4. Underwriter Privileges (update_source)
-- **Source URL Updates**: The contract allows the product creator (underwriter) to call `update_source` to point to a new status page URL, provided the parsed host and directory path match the immutable terms hash. This allows tracking moving status feeds or archive paths, but represents an underwriter trust boundary: the underwriter designates which path represents the living status feed. Every settlement records the exact URL used.
+## 4. Underwriter Privileges and Scope of update_source
+- **Source URL Updates Apply Only to Future Policies**: In Cover V2, calling `update_source` updates the product's living status feed for policies bought *after* the update. Existing policies remain permanently bound to their purchase-time evidence URL and thresholds.
+- **Host and Directory Matching**: New URLs passed to `update_source` must share the exact hostname and directory path validated at product creation time. Every settlement records both `evidence_url` and `url_used` mirroring the policy-bound URL.
 
 ## 5. Model Variance and Consensus Threshold
 - **Multi-Validator Majority Consensus**: Non-deterministic execution runs across independent GenLayer validators. By comparing only the strict consensus token `<OUTCOME>|<norm_hash16>`, validators remain unaffected by minor differences in leader-extracted quotes or explanation phrasing.

@@ -21,9 +21,9 @@
 - [x] contracts/CoverGuardV2.py
 - [x] Extraction prompt & parse_extraction sha256 equality verification
 - [x] Pre-deploy unit & regression tests (a-i) (38 tests passed)
-- [ ] Deploy V2 pair to Studionet
-- [ ] On-chain S1-S5 empirical execution
-- [ ] Docs & Address Registry update
+- [x] Deploy V2 pair to Studionet (Cover 0x3d26...fdE3, CoverGuard 0xfEeb...3A1A)
+- [x] On-chain S1-S5 empirical execution (receipts and snapshots captured)
+- [x] Docs & Address Registry update (CHANGELOG, DESIGN, INTEGRATION, LIMITATIONS, VERIFICATION, README)
 - [ ] CI run verification & tag cover-v2
 
 ## Part B: App V2

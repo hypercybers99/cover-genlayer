@@ -1,38 +1,46 @@
-# Integration Guide: Cover & CoverGuard
+# Integration Guide: Cover & CoverGuard V2
 
-This guide provides frontend and smart contract developers with the technical specification for integrating with `Cover` and `CoverGuard` on GenLayer studionet.
+This guide provides frontend and smart contract developers with the technical specification for integrating with `Cover` (V2) and `CoverGuard` (V2) on GenLayer Studionet.
 
 ---
 
-## 1. Network & Contract Addresses
+## 1. Network & Active Contract Addresses
 
 - **Network**: GenLayer Studionet
 - **Chain ID**: 61999
 - **RPC Endpoint**: `https://studio.genlayer.com/api`
-- **Explorer Base**: `https://explorer-studio.genlayer.com/address/<address>`
 - **Client SDK**: `genlayer-js@^1.1.8`
+- **Active Contracts**:
+  - **`Cover` (V2)**: `0x3d2698cED9292689f68b401e888fbA1d18CBfdE3`
+    - Explorer: [https://explorer-studio.genlayer.com/address/0x3d2698cED9292689f68b401e888fbA1d18CBfdE3](https://explorer-studio.genlayer.com/address/0x3d2698cED9292689f68b401e888fbA1d18CBfdE3)
+  - **`CoverGuard` (V2)**: `0xfEebb7147Dd65b5EbEa7C6634ed4549B45993A1A`
+    - Explorer: [https://explorer-studio.genlayer.com/address/0xfEebb7147Dd65b5EbEa7C6634ed4549B45993A1A](https://explorer-studio.genlayer.com/address/0xfEebb7147Dd65b5EbEa7C6634ed4549B45993A1A)
 
 ---
 
-## 2. Public Methods (`Cover`)
+## 2. Public Methods: `Cover` (V2)
 
 ### Writes
 1. `claim_demo_credits() -> str`:
    - Claims 1,000 demo credits (one claim per address).
-2. `create_product(name: str, url: str, rule_text: str, min_full: int, min_half: int, premium_bps: int) -> str`:
-   - Creates a cover product. Returns generated `product_id`.
+2. `create_product(name: str, url: str, min_full: int, min_half: int, premium_bps: int) -> str`:
+   - Creates a cover product with deterministic terms hash and explicit term `"OPEN_UNTIL_SETTLED_OR_CANCELLED"`.
+   - Returns string `product_id`.
 3. `fund_product(product_id: str, amount: int) -> None`:
    - Underwriter deposits credits into the product payout pool.
 4. `withdraw_unreserved(product_id: str, amount: int) -> None`:
    - Creator withdraws unreserved credits from the pool (`amount <= pool_balance - reserved`).
 5. `update_source(product_id: str, new_url: str) -> None`:
-   - Updates target status page URL (host and directory path must match immutable terms).
+   - Updates target status page URL for future policies (host and directory path must match immutable product terms).
+   - Does NOT alter evidence source for existing policies.
 6. `buy(product_id: str, coverage: int) -> str`:
-   - Purchases cover policy. Returns generated `policy_id`.
+   - Purchases cover policy. Copies purchase-time terms, thresholds, and evidence URL permanently into policy record.
+   - Returns string `policy_id`.
 7. `settle(policy_id: str) -> str`:
-   - Anyone can call. Evaluates page and triggers payout. Returns `outcome` (`PAY_100`, `PAY_50`, `PAY_25`, `NO_PAY`, `REVIEW`).
+   - Evaluates policy against strictly its purchase-time evidence URL and thresholds.
+   - Returns string `outcome` (`PAY_100`, `PAY_50`, `PAY_25`, `NO_PAY`, `REVIEW`).
 8. `cancel(policy_id: str) -> None`:
-   - Holder cancels active policy and unreserves coverage.
+   - Holder cancels active policy. Reserved pool coverage is released to free liquidity; premium stays in pool.
 
 ### Views
 - `balance_of(addr: str) -> str`: Decimal string credit balance.
@@ -44,12 +52,58 @@ This guide provides frontend and smart contract developers with the technical sp
 - `get_settlement(settlement_id: str) -> str`: JSON settlement record.
 - `pool_health(product_id: str) -> str`: Returns `{"pool_balance", "reserved", "free", "coverage_ratio_bps"}`.
 - `quote_premium(coverage: int, premium_bps: int) -> str`: Pure premium calculation.
-- `get_stats() -> str`: Platform counts (`total_minted`, `next_product`, etc.).
+- `get_stats() -> str`: Platform counts (`total_minted`, `next_product`, `next_policy`, `next_settlement`).
 - `get_limits() -> str`: Contract parameters and thresholds.
 
 ---
 
-## 3. Receipt Verification Rule
+## 3. Public Methods: `CoverGuard` (V2)
+
+### Views
+1. `is_covered(holder: str, policy_id: str) -> str`:
+   - Returns JSON: `{"covered": "true"|"false", "reason": "OK"|"NOT_HOLDER"|"NO_POLICY"|"PAID"|"CANCELLED"|"POOL_SHORT", "policy_status": "ACTIVE"|"PAID"|"CANCELLED", "coverage": "...", "product_id": "...", "terms_hash": "..."}`.
+2. `is_covered_for(holder: str, policy_id: str, product_id: str, terms_hash: str, min_coverage: int) -> bool`:
+   - Verifies holder, policy status is `"ACTIVE"`, `product_id` matches, policy coverage >= `min_coverage`, pool solvency >= coverage, and policy purchase-time `terms_hash` matches provided hash.
+   - Returns boolean `true` or `false`.
+3. `get_attestation(attestation_id: str) -> str`:
+   - Returns JSON attestation record containing `id`, `attester`, `policy_id`, `product_id`, `coverage`, `terms_hash`, and `evidence_url_hash`.
+4. `list_attestations(addr: str, limit: int = 10) -> list[str]`:
+   - Returns list of JSON attestation records for address.
+
+### Writes
+1. `attest(policy_id: str) -> str`:
+   - Attests active coverage for caller. Binds to policy purchase-time `terms_hash` and SHA-256 hash of policy `evidence_url`.
+   - Returns string `attestation_id`.
+
+---
+
+## 4. Code Sample: Verification via `CoverGuard`
+
+```javascript
+import { createClient, chains } from "genlayer-js";
+
+const COVER_GUARD_ADDRESS = "0xfEebb7147Dd65b5EbEa7C6634ed4549B45993A1A";
+
+async function verifyCoverage(client, holderAddress, policyId, productId, termsHash, minCoverage) {
+  const isCovered = await client.readContract({
+    address: COVER_GUARD_ADDRESS,
+    functionName: "is_covered_for",
+    args: [
+      holderAddress,
+      String(policyId).trim(),
+      String(productId).trim(),
+      termsHash,
+      Number(minCoverage),
+    ],
+  });
+
+  return Boolean(isCovered);
+}
+```
+
+---
+
+## 5. Receipt Verification Rule
 
 A write transaction is successful **only if**:
 ```javascript
@@ -59,39 +113,3 @@ const isSuccess = (
   receipt.consensus_data?.leader_receipt?.[0]?.execution_result === "SUCCESS"
 );
 ```
-
-When checking write transaction receipts:
-```javascript
-const receipt = await client.waitForTransactionReceipt({
-  hash: txHash,
-  retries: 120,
-  interval: 3000,
-});
-```
-
----
-
-## 4. UserError Messages Reference
-
-| Method | UserError String | Cause |
-| :--- | :--- | :--- |
-| `claim_demo_credits` | `already claimed demo credits` | Address has already claimed 1,000 demo credits. |
-| `create_product` | `bad name` | Name length not 3-60 or contains non-ASCII characters. |
-| `create_product` | `bad rule text` | Rule text length not 10-200 or contains non-ASCII characters. |
-| `create_product` | `bad thresholds` | `min_full` not 2-10080 or `min_half` not in range 1 to `min_full - 1`. |
-| `create_product` | `bad premium rate` | `premium_bps` not 100-5000. |
-| URL Validation | `bad URL: length must be between 1 and 300 characters` | URL exceeds length limit. |
-| URL Validation | `bad URL: scheme must be https` | URL scheme is not https. |
-| URL Validation | `bad URL: userinfo not allowed` | URL contains username/password (`user@host`). |
-| URL Validation | `bad URL: fragment not allowed` | URL contains hash fragment `#...`. |
-| URL Validation | `bad URL: missing host` | URL lacks valid hostname. |
-| URL Validation | `bad URL: IP literals not allowed` | URL host is an IPv4 or IPv6 address. |
-| URL Validation | `bad URL: port must be 443 or omitted` | URL specifies port other than 443. |
-| `update_source` | `host or directory mismatch on update_source` | New URL host or directory differs from product terms. |
-| `fund_product` | `insufficient balance` | Sender does not have enough demo credits. |
-| `buy` | `pool cannot cover this coverage` | `pool_balance - reserved < coverage` before purchase. |
-| `buy` | `event already in progress or status unclear at purchase` | Status page is not `OPERATIONAL` during purchase check. |
-| `settle` | `policy not active` | Policy status is not `ACTIVE` (`PAID` or `CANCELLED`). |
-| `settle` | `duplicate observation: <settlement_id>` | Repeated identical page text settled against the same policy. |
-| `settle` | `page unreadable` | Cleaned text extracted from page is under 200 characters. |
-| `withdraw_unreserved` | `withdraw exceeds unreserved` | Attempted withdrawal exceeds `pool_balance - reserved`. |

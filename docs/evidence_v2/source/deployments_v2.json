@@ -1,0 +1,45 @@
+{
+  "network": "studionet",
+  "chain_id": 61999,
+  "rpc": "https://studio.genlayer.com/api",
+  "explorer_urls": {
+    "cover": "https://explorer-studio.genlayer.com/address/0x3d2698cED9292689f68b401e888fbA1d18CBfdE3",
+    "cover_guard": "https://explorer-studio.genlayer.com/address/0xfEebb7147Dd65b5EbEa7C6634ed4549B45993A1A"
+  },
+  "addresses": {
+    "cover": "0x3d2698cED9292689f68b401e888fbA1d18CBfdE3",
+    "cover_guard": "0xfEebb7147Dd65b5EbEa7C6634ed4549B45993A1A"
+  },
+  "deploy_txs": {
+    "cover": "0x3f4ef296da9e609ba83dc5ed5c866910e26fd7eb9055273142683618b5e8a8a8",
+    "cover_guard": "0xdecd58ff74a091ed5b1e7ddb8f188402d1e06ebf92517147cb92199e14fd0b3e"
+  },
+  "prompt_sha256": "5a8c842c53e4329313d349afa6932672980dd1e8466af75118eeb8df010daa1d",
+  "parse_extraction_sha256": "c44e054a7af6a9abb30fbc536895ce61532bf2edf016497d23a53ab094370978",
+  "source_shas": {
+    "cover": "0b2f91d2b64dee1dce4aa13c15c19c274546dd64fff8b738325067c37a12b296",
+    "cover_guard": "e0546c62266e7ab13b0aaa70489ada2625849742f004cb21732aaef03cd901a1"
+  },
+  "source_verification": {
+    "cover": {
+      "first16": "232076302e322e31360a23207b202244",
+      "last16": "436f7665725632203d20436f7665720a",
+      "byteLength": 33405,
+      "match": true,
+      "deployedSha256": "0b2f91d2b64dee1dce4aa13c15c19c274546dd64fff8b738325067c37a12b296",
+      "localSha256": "0b2f91d2b64dee1dce4aa13c15c19c274546dd64fff8b738325067c37a12b296"
+    },
+    "cover_guard": {
+      "first16": "232076302e322e31360a23207b202244",
+      "last16": "5632203d20436f76657247756172640a",
+      "byteLength": 7145,
+      "match": true,
+      "deployedSha256": "e0546c62266e7ab13b0aaa70489ada2625849742f004cb21732aaef03cd901a1",
+      "localSha256": "e0546c62266e7ab13b0aaa70489ada2625849742f004cb21732aaef03cd901a1"
+    }
+  },
+  "latencies": {
+    "cover": "8.78",
+    "cover_guard": "5.83"
+  }
+}

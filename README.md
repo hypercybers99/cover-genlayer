@@ -4,7 +4,9 @@
 
 Cover is an intelligent contract on GenLayer that provides algorithmic, oracle-free parametric cover for software dependencies that publish their operational health on public web pages.
 
-An underwriter creates a **PRODUCT** defining a status page URL, a plain-words outage rule, duration thresholds, and a premium rate, and funds the product payout pool with credits. A buyer purchases a **POLICY** by paying an upfront premium for coverage. When a service disruption occurs, anyone can trigger `settle`. Independent GenLayer validators fetch the status page, extract the status and incident duration using an on-chain LLM, verify the extracted quote character-by-character against the raw web text using deterministic Python logic, apply payout thresholds, and distribute credits directly from the pool.
+An underwriter creates a **PRODUCT** defining a status page URL, duration thresholds, and a premium rate, and funds the product payout pool with credits. A buyer purchases a **POLICY** by paying an upfront premium for coverage. When a service disruption occurs, anyone can trigger `settle`. Independent GenLayer validators fetch the status page, extract the status and incident duration using an on-chain LLM, verify the extracted quote character-by-character against the raw web text using deterministic Python logic, apply payout thresholds, and distribute credits directly from the pool.
+
+In Cover V2, each policy permanently binds to its purchase-time coverage term, settlement rules, thresholds, and evidence source URL upon `buy`. Product source updates affect only policies bought afterwards.
 
 ---
 
@@ -15,6 +17,7 @@ An underwriter creates a **PRODUCT** defining a status page URL, a plain-words o
 - **Strict Consensus Primitive**: Validators compare a single canonical consensus token:
   $$\text{Consensus Token} = \langle\text{OUTCOME}\rangle \mid \langle\text{norm\_hash16}\rangle$$
   where `OUTCOME` $\in \{\text{PAY\_100}, \text{PAY\_50}, \text{PAY\_25}, \text{NO\_PAY}, \text{REVIEW}\}$ and `norm_hash16` is the first 16 hex characters of $\text{SHA256}(\text{norm\_text}(\text{page}))$.
+- **Purchase-Time Term Binding**: Every policy records immutable purchase-time terms: `terms_hash`, `evidence_url`, `min_full`, `min_half`, `decision_rule`, `term`, `coverage`, `premium`. Settle reads strictly policy-bound values.
 - **Credits Only**: All accounting is conducted using an internal credit ledger. No real currency, ERC-20 tokens, or native GEN tokens are locked.
 
 ---
@@ -30,7 +33,7 @@ A centralized web scraper creates a single point of failure and makes the operat
 ## 3. Non-Goals & Limitations
 
 1. **Credits Only**: No real money or regulated insurance.
-2. **No On-Chain Clock**: Policies do not have automated timestamp expiration; purchase-time operational checks and `PAGE_UNCHANGED` gates protect against retroactive purchases.
+2. **Explicit Coverage Term**: The term is explicitly `"OPEN_UNTIL_SETTLED_OR_CANCELLED"`. There is no on-chain clock or automated expiration timestamp.
 3. **Explicit Minutes Duration**: Status pages must state an explicit integer duration in minutes for a single incident block. Pages requiring JavaScript execution or reporting only clock timestamps fail safe to `REVIEW` or UserError.
 4. **Provider-Written Pages**: Cover evaluates what the provider admits on their status page; it does not independently test network sockets.
 5. **Fictional Fixtures**: Test fixtures utilize fictional provider "Nimbus Cloud" (`status.nimbus.example`).
@@ -39,23 +42,22 @@ A centralized web scraper creates a single point of failure and makes the operat
 
 ## 4. Repository Structure
 
-- `contracts/Cover.py`: Core intelligent contract (products, policies, settlements, credit ledger).
-- `contracts/CoverGuard.py`: Consumer contract performing synchronous cross-contract view checks and attestations.
-- `contracts/Probe.py`: Runtime probe contract for Milestone 0.
-- `contracts/ProbeExtract.py`: Standalone model extraction probe contract.
+- `contracts/CoverV2.py`: Core V2 intelligent contract (products, policies, settlements, credit ledger).
+- `contracts/CoverGuardV2.py`: Consumer V2 contract performing synchronous cross-contract view checks and attestations.
+- `contracts/Cover.py`: Superseded V1 contract (kept for history).
+- `contracts/CoverGuard.py`: Superseded V1 contract (kept for history).
 - `fixtures/pages/`: Reference status page fixtures for Nimbus Cloud.
 - `docs/`:
-  - `PRIOR_ART.md`: Comparative landscape analysis (Etherisc, Nexus Mutual, Arbol).
+  - `ADDRESS_REGISTRY.md`: Complete deployment history and active contract addresses.
   - `DESIGN.md`: Architecture, consensus token design, and security invariants.
   - `LIMITATIONS.md`: Comprehensive constraint documentation.
   - `INTEGRATION.md`: Frontend developer reference with exact schemas and receipt rules.
-  - `RUNTIME_NOTES.md`: Empirical Studionet runtime probe measurements.
   - `VERIFICATION.md`: Cryptographic source verification report.
   - `ERROR_CODES.md`: Complete catalog of UserError strings.
-  - `ROBUSTNESS.md`: Pre-registered robustness plan.
-  - `EXPECTED_VS_ACTUAL.md`: Pre-registered vs actual outcome matrix.
-- `tests/`: 23 layered unit tests covering pure helpers, star trap comparisons, mock lifecycle, and consensus agreement.
-- `scripts/`: Deployment, robustness runner, facts reporting, and evidence extraction scripts.
+  - `EXPECTED_V2.md`: Pre-registered expected values and outcomes for V2 on-chain scenarios.
+  - `REVIEW_V2_PLAN.md`: Full architectural specification for reviewer fixes.
+- `tests/`: 38 unit and regression tests covering pure helpers, star trap comparisons, mock lifecycle, consensus agreement, and V2 pre-deploy properties (a-i).
+- `scripts/`: Deployment, verification, facts reporting, and evidence extraction scripts.
 
 ---
 
@@ -63,16 +65,13 @@ A centralized web scraper creates a single point of failure and makes the operat
 
 - **Network**: GenLayer Studionet (Chain ID: 61999)
 - **RPC Endpoint**: `https://studio.genlayer.com/api`
-- **ACTIVE Cover Contract**: [`0x4d12d00d527869a6a6f95358A11589ecf3C347e3`](https://explorer-studio.genlayer.com/address/0x4d12d00d527869a6a6f95358A11589ecf3C347e3)
-- **ACTIVE CoverGuard Consumer**: [`0x6Ad8554F4Ca7eA3681c6a06b822B0d5c59993724`](https://explorer-studio.genlayer.com/address/0x6Ad8554F4Ca7eA3681c6a06b822B0d5c59993724)
-- **ProbeExtract (Iteration 2 Probe)**: [`0x3c302641001E563ce20d4ea6376f9BfA10165877`](https://explorer-studio.genlayer.com/address/0x3c302641001E563ce20d4ea6376f9BfA10165877)
-- **ProbeExtract (Iteration 1 Probe)**: [`0x8ED26b3925D50EabFFbCe6778315eBCbaB4e7745`](https://explorer-studio.genlayer.com/address/0x8ED26b3925D50EabFFbCe6778315eBCbaB4e7745)
-- **Probe Contract (Milestone 0)**: [`0xa4a7a596246b0bcBfbeB05ae31922cD43fc68C31`](https://explorer-studio.genlayer.com/address/0xa4a7a596246b0bcBfbeB05ae31922cD43fc68C31)
+- **ACTIVE Cover Contract (V2)**: [`0x3d2698cED9292689f68b401e888fbA1d18CBfdE3`](https://explorer-studio.genlayer.com/address/0x3d2698cED9292689f68b401e888fbA1d18CBfdE3)
+- **ACTIVE CoverGuard Consumer (V2)**: [`0xfEebb7147Dd65b5EbEa7C6634ed4549B45993A1A`](https://explorer-studio.genlayer.com/address/0xfEebb7147Dd65b5EbEa7C6634ed4549B45993A1A)
 - **Address Registry**: See [`docs/ADDRESS_REGISTRY.md`](docs/ADDRESS_REGISTRY.md) for full deployment history and transaction hashes.
 - **Fixtures Repository**: [https://github.com/hypercybers99/cover-fixtures](https://github.com/hypercybers99/cover-fixtures) (Pinned Commit: `92c69bc636517656b9e7ee031a503adfb2d26bb4`)
 
 ### How to Verify Deployed Source
-To verify that deployed contracts match the local source code byte-for-byte, fetch the deployment transaction via RPC and compare the base64-decoded `contract_code` against `contracts/Cover.py` and `contracts/CoverGuard.py`:
+To verify that deployed contracts match the local source code byte-for-byte, fetch the deployment transaction via RPC and compare the base64-decoded `contract_code` against `contracts/CoverV2.py` and `contracts/CoverGuardV2.py`:
 ```bash
 node -e "
 const fs = require('fs');
@@ -84,11 +83,11 @@ async function verify(txHash, localFile) {
   });
   const data = await res.json();
   const deployedBuf = Buffer.from(data.result.data.contract_code, 'base64');
-  const localBuf = fs.readFileSync(localFile);
+  const localBuf = Buffer.from(fs.readFileSync(localFile, 'utf8').replace(/\r\n/g, '\n'), 'utf8');
   console.log(localFile, 'match:', deployedBuf.equals(localBuf), 'length:', deployedBuf.length);
 }
-verify('0xa1716bdbd49effa2e7bb7d2330ea8cb3f1162c5020cb921f980335255a3b7492', 'contracts/Cover.py');
-verify('0xa7ece9780281e84f6d118de02b14a62cbe9abe9d73b5068521fa36d85f7ee101', 'contracts/CoverGuard.py');
+verify('0x3f4ef296da9e609ba83dc5ed5c866910e26fd7eb9055273142683618b5e8a8a8', 'contracts/CoverV2.py');
+verify('0xdecd58ff74a091ed5b1e7ddb8f188402d1e06ebf92517147cb92199e14fd0b3e', 'contracts/CoverGuardV2.py');
 "
 ```
 
@@ -96,19 +95,14 @@ verify('0xa7ece9780281e84f6d118de02b14a62cbe9abe9d73b5068521fa36d85f7ee101', 'co
 
 ## 6. How to Run Tests
 
-### Running Unit Tests
+### Running Unit & Regression Tests (38 Tests)
 ```bash
-python -m unittest discover -s tests -p "test_*.py"
+pytest -v
 ```
 
-### Running the Consumer Demo
+### Running Extraction Prompt & Parser SHA Verification
 ```bash
-python examples/consumer/consumer_demo.py
-```
-
-### Reporting Verified Facts
-```bash
-node scripts/report_facts.js
+python scripts/verify_extraction_sha.py
 ```
 
 ---
