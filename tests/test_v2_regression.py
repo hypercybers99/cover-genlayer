@@ -252,7 +252,7 @@ class TestV2Regression(unittest.TestCase):
         # Valid call with correct terms_hash returns True
         self.assertTrue(self.guard.is_covered_for(buyer, pol_id, pid, correct_terms_hash, 100))
 
-        # Tampered / different terms_hash returns False
+        # Altered / different terms_hash returns False
         fake_terms_hash = "f" * 64
         self.assertFalse(self.guard.is_covered_for(buyer, pol_id, pid, fake_terms_hash, 100))
 
