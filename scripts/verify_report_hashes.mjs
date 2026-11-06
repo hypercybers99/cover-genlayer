@@ -31,7 +31,7 @@ function collectRepoHexStrings() {
 }
 
 function verifyReport() {
-  const reportPath = 'docs/FINAL_REPORT.md';
+  const reportPath = process.argv[2] || 'docs/FINAL_REPORT.md';
   if (!fs.existsSync(reportPath)) {
     console.error(`Error: ${reportPath} does not exist`);
     process.exit(1);
