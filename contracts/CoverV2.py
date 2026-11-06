@@ -254,13 +254,14 @@ def compute_terms_hash(terms_dict: dict) -> str:
 
 class Cover(gl.Contract):
     balances: TreeMap[str, str]
+    minted: TreeMap[str, str]
+    meta: TreeMap[str, str]
     products: TreeMap[str, str]
     policies: TreeMap[str, str]
     settlements: TreeMap[str, str]
+    seen: TreeMap[str, str]
     by_holder: TreeMap[str, str]
     by_product: TreeMap[str, str]
-    minted: TreeMap[str, str]
-    meta: TreeMap[str, str]
 
     def __init__(self):
         pass
@@ -810,15 +811,15 @@ class Cover(gl.Contract):
         tripwire = eval_dict["tripwire"]
         curr_nh16 = eval_dict["norm_hash16"]
 
-        # Duplicate observation check: cannot settle twice against identical non-purchase observation
-        last_obs = pol.get("last_settle_norm_hash16", "")
-        if last_obs and last_obs == curr_nh16:
-            raise gl.vm.UserError(f"duplicate observation: {curr_nh16}")
-        pol["last_settle_norm_hash16"] = curr_nh16
+        # Duplicate observation check: sha256(policy_id|norm_hash16)
+        obs_key = hashlib.sha256(f"{pol_id}|{curr_nh16}".encode("utf-8")).hexdigest()
+        if obs_key in self.seen:
+            existing_sid = self.seen[obs_key]
+            raise gl.vm.UserError(f"duplicate observation: {existing_sid}")
 
-        # Allocate settlement ID
         sid = self.meta.get("next_settlement", "1")
         self.meta["next_settlement"] = str(int(sid) + 1)
+        self.seen[obs_key] = sid
 
         pid = pol["product_id"]
         prod = json.loads(self.products[pid])
@@ -842,6 +843,7 @@ class Cover(gl.Contract):
             holder = pol["holder"]
             self.balances[holder] = str(int(self.balances.get(holder, "0")) + payout)
         elif outcome in ["NO_PAY", "REVIEW"]:
+            pol["settlement_id"] = sid
             pol["attempts"] = str(int(pol.get("attempts", "0")) + 1)
 
         pol["seq"] = str(int(pol.get("seq", "1")) + 1)
@@ -853,6 +855,7 @@ class Cover(gl.Contract):
             "id": sid,
             "policy_id": pol_id,
             "product_id": pid,
+            "caller": caller,
             "terms_hash": pol["terms_hash"],
             "evidence_url": evidence_url,
             "url_used": evidence_url,
@@ -867,7 +870,7 @@ class Cover(gl.Contract):
         }
         self.settlements[sid] = json.dumps(settlement_record, sort_keys=True, separators=(",", ":"))
 
-        return sid
+        return outcome
 
     @gl.public.write
     def cancel(self, policy_id: str) -> None:

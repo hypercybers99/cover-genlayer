@@ -20,7 +20,7 @@
 - [x] contracts/CoverV2.py
 - [x] contracts/CoverGuardV2.py
 - [x] Extraction prompt & parse_extraction sha256 equality verification
-- [ ] Pre-deploy unit & regression tests (a-i)
+- [x] Pre-deploy unit & regression tests (a-i) (38 tests passed)
 - [ ] Deploy V2 pair to Studionet
 - [ ] On-chain S1-S5 empirical execution
 - [ ] Docs & Address Registry update
