@@ -1,0 +1,46 @@
+================================================================================
+DEFECT 6 REPRODUCTION: CoverGuard View Signature Mismatch & Attest Terms Hash Source
+================================================================================
+Location: contracts/CoverGuard.py, cover-app/src/pages/CoverGuardPage.tsx
+
+1. Contract CoverGuard.py is_covered_for definition:
+NOT_FOUND
+   Takes 5 arguments: (self, holder, policy_id, product_id, terms_hash, min_coverage)
+
+2. App CoverGuardPage code sample displayed to developers:
+if not guard.is_covered_for(user_address, 100):
+   Incorrectly calls: guard.is_covered_for(user_address, 100) with only 2 arguments!
+
+3. CoverGuard.py attest terms_hash source:
+def attest(self, policy_id: str) -> str:
+        sender = gl.message.sender_address.as_hex.lower()
+        pid = str(policy_id).strip()
+
+        check_raw = self.is_covered(sender, pid)
+        check = json.loads(check_raw)
+        if check.get("covered") != "true":
+            raise gl.vm.UserError(f"not covered: {check.get('reason')}")
+
+        cover_contract = gl.get_contract_at(self.cover_address)
+        pol_raw = cover_contract.view().get_policy(pid)
+        pol = json.loads(pol_raw)
+        pr_id = pol["product_id"]
+
+        prod_raw = cover_contract.view().get_product(pr_id)
+        prod = json.loads(prod_raw)
+
+        aid = self.meta.get("next_attestation", "1")
+        self.meta["next_attestation"] = str(int(aid) + 1)
+
+        record = {
+            "schema_version": "1",
+            "id": aid,
+            "attester": sender,
+            "policy_id": pid,
+            "product_id": pr_id,
+            "coverage": pol["coverage"],
+            "terms_hash": prod["terms_hash"],
+        }
+   Attest reads prod = cover_contract.view().get_product(pr_id) and stores prod['terms_hash'].
+   It does NOT read or store the terms_hash bound to the policy at purchase time.
+================================================================================

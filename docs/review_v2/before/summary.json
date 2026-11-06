@@ -1,0 +1,32 @@
+{
+  "reproduced_at": "2026-11-06T18:20:00Z",
+  "repo_contract_head": "de8ca89",
+  "repo_app_head": "5ee3ccc",
+  "results": [
+    {
+      "defect": 1,
+      "status": "CONFIRMED_DEFECT"
+    },
+    {
+      "defect": 2,
+      "status": "CONFIRMED_DEFECT"
+    },
+    {
+      "defect": 3,
+      "status": "CONFIRMED_DEFECT"
+    },
+    {
+      "defect": 4,
+      "status": "CONFIRMED_DEFECT"
+    },
+    {
+      "defect": 5,
+      "status": "CONFIRMED_DEFECT"
+    },
+    {
+      "defect": 6,
+      "status": "CONFIRMED_DEFECT"
+    }
+  ],
+  "all_defects_confirmed": true
+}

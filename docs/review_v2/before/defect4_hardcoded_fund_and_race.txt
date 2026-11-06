@@ -1,0 +1,22 @@
+================================================================================
+DEFECT 4 REPRODUCTION: Hardcoded Fund Target ('1') & Swallowed Errors / Race in E2E
+================================================================================
+Location: cover-app/src/context/WalletContext.tsx, cover-app/scripts/e2e_full_chain.mjs
+
+1. WalletContext.tsx Hardcoded Fund Call:
+if (createRes.status === 'SUCCESS' && deposit && deposit > 0) {
+          // If initial deposit specified, fund product #1 or newly created product
+          try {
+            await fundProduct(client, '1', deposit);
+          }
+
+2. scripts/e2e_full_chain.mjs Next Product Derivation:
+const statsAfterCreate = await getStats();
+  const createdProductId = String(parseInt(statsAfterCreate.next_product, 10) - 1);
+
+Analysis:
+- WalletContext calls 'fundProduct(client, \'1\', deposit)' regardless of which product id was created.
+- Wrapped inside an empty try { } catch {}, silently swallowing funding failures.
+- E2E script derives product id via 'next_product - 1' rather than parsing the returned id
+  from the create_product transaction receipt, which is race-prone under concurrency.
+================================================================================

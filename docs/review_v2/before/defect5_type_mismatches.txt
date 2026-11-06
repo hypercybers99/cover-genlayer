@@ -1,0 +1,17 @@
+================================================================================
+DEFECT 5 REPRODUCTION: App Types Mismatches Against Contract Outputs
+================================================================================
+Location: cover-app/src/types/contract.ts
+
+Mismatched Fields Identified:
+- PolicyRecord.settlement_id: typed as present, but Cover.py pol_record lacks settlement_id.
+- PolicyRecord.cancel_refund: typed as present, but Cover.py pol_record lacks cancel_refund.
+- PolicyRecord.created_at: typed as optional, but contract has no timestamp.
+- PolicyRecord.terms_hash: typed as optional, but Cover.py pol_record lacks terms_hash.
+- SettlementRecord.product_id: typed as present, but Cover.py settlement_record lacks product_id.
+- SettlementRecord.payout: typed as present, but Cover.py settlement_record stores no payout (policy has paid_amount).
+- SettlementRecord.url_used: present in contract but missing/inconsistent in app.
+- PlatformLimits: types assume max_name_chars, max_rule_chars, min_bps, etc., but Cover.py get_limits() returns:
+  {'demo_credits', 'max_coverage', 'min_coverage', 'max_page_bytes', 'min_text_chars', 'max_list_limit'}.
+- UI functions accept '_days' / duration parameters despite contract having no clock or duration limit.
+================================================================================

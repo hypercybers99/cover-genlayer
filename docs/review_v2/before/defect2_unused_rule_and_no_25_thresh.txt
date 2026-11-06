@@ -1,0 +1,19 @@
+================================================================================
+DEFECT 2 REPRODUCTION: rule_text Stored But Never Read; PAY_25 Lacks 25% Threshold
+================================================================================
+Location: contracts/Cover.py (decide, settle)
+
+1. Function 'decide':
+NOT_FOUND
+
+2. Calls to 'decide' in contract:
+decide(status: str, minutes: int, min_full: int, min_half: int, quote_ok: bool, tripwire: bool)
+decide(st, m, min_full, min_half, q_ok, has_tripwire)
+
+Analysis:
+- 'rule_text' passed to decide: False
+- 'rule_text' referenced in decision logic: False
+- 25% threshold parameter in decide: False (uses min_full threshold for DEGRADED)
+- In contract: PAY_25 is awarded when status == 'DEGRADED' and minutes >= min_full.
+  There is NO separate 25% duration/outage threshold parameter in the contract.
+================================================================================

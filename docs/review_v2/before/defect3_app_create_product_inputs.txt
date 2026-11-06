@@ -1,0 +1,100 @@
+================================================================================
+DEFECT 3 REPRODUCTION: App CreateProductPage 25% Control Dropped & Misleading Labels
+================================================================================
+Location: cover-app/src/pages/CreateProductPage.tsx, cover-app/src/context/WalletContext.tsx
+
+1. CreateProductPage Form Inputs:
+Payout Thresholds (Ordered: 100% &ge; 50% &ge; 25%)
+          </span>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="flex flex-col gap-1">
+              <label htmlFor="threshold100" className="text-xs font-medium text-ink-muted">
+                100% Payout Threshold (1–100)
+              </label>
+              <input
+                id="threshold100"
+                name="threshold100"
+                type="number"
+                min="1"
+                max="100"
+                value={formData.threshold100}
+                onChange={handleChange}
+                className="px-3 py-2 rounded-lg border border-sand-border bg-page text-ink font-mono"
+              />
+            </div>
+            <div className="flex flex-col gap-1">
+              <label htmlFor="threshold50" className="text-xs font-medium text-ink-muted">
+                50% Payout Threshold (1–100)
+              </label>
+              <input
+                id="threshold50"
+                name="threshold50"
+                type="number"
+                min="1"
+                max="100"
+                value={formData.threshold50}
+                onChange={handleChange}
+                className="px-3 py-2 rounded-lg border border-sand-border bg-page text-ink font-mono"
+              />
+            </div>
+            <div className="flex flex-col gap-1">
+              <label htmlFor="threshold25" className="text-xs font-medium text-ink-muted">
+                25% Payout Threshold (1–100)
+              </label>
+              <input
+                id="threshold25"
+                name="threshold25"
+                type="number"
+                min="1"
+                max="100"
+                value={formData.threshold25}
+                onChange={handleChange}
+                className="px-3 py-2 rounded-lg border border-sand-border bg-page text-ink font-mono"
+              />
+            </div>
+          </div>
+        </div>
+
+2. WalletContext.createProduct implementation:
+createProduct: async (
+        name,
+        url,
+        ruleText,
+        thresh100,
+        thresh50,
+        _thresh25,
+        premiumBps,
+        deposit,
+        onState
+      ) => {
+        const createRes = await wrapTx(
+          (cb) =>
+            createProduct(
+              client,
+              name,
+              url,
+              ruleText,
+              thresh100,
+              thresh50,
+              premiumBps,
+              cb
+            ),
+          onState
+        );
+        if (createRes.status === 'SUCCESS' && deposit && deposit > 0) {
+          // If initial deposit specified, fund product #1 or newly created product
+          try {
+            await fundProduct(client, '1', deposit);
+          } catch {}
+        }
+        return createRes;
+      },
+
+Analysis:
+- CreateProductPage accepts threshold100, threshold50, threshold25 as percentages (1-100).
+- WalletContext.createProduct takes '_thresh25' parameter but completely drops it:
+  createProduct(client, name, url, ruleText, thresh100, thresh50, premiumBps, cb)
+- Contract receives 100% and 50% values directly as minutes (min_full, min_half), not percentages.
+- Landing page claims payouts are 'configured per product' including 25%, whereas contract code
+  has hardcoded PAY_25 = DEGRADED >= min_full.
+================================================================================

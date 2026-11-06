@@ -1,0 +1,55 @@
+================================================================================
+DEFECT 1 REPRODUCTION: Policy Unbound to Purchase-Time Terms & Source Mutation
+================================================================================
+Location: contracts/Cover.py (buy, settle, update_source)
+
+1. Policy Record Constructed at 'buy':
+pol_record = {
+            "schema_version": "1",
+            "id": pol_id,
+            "product_id": pid,
+            "holder": sender,
+            "coverage": str(coverage),
+            "premium": str(prem),
+            "status": "ACTIVE",
+            "buy_norm_hash16": nh16,
+            "paid_amount": "0",
+            "attempts": "0",
+            "seq": "1",
+        }
+
+Analysis:
+- 'terms_hash' stored in policy: False
+- 'evidence_url' stored in policy: False
+- 'min_full' stored in policy: False
+- 'min_half' stored in policy: False
+- 'term' stored in policy: False
+- 'decision_rule' stored in policy: False
+
+2. Resolution at 'settle':
+def settle(self, policy_id: str) -> str:
+        caller = gl.message.sender_address.as_hex.lower()
+        pol_id = str(policy_id).strip()
+        if pol_id not in self.policies:
+            raise gl.vm.UserError("unknown policy")
+
+        pol = json.loads(self.policies[pol_id])
+        if pol["status"] != "ACTIVE":
+            raise gl.vm.UserError("policy not active")
+
+        pid = pol["product_id"]
+        prod = json.loads(self.products[pid])
+
+        prod_url = prod["url"]
+        buy_nh16 = pol["buy_norm_hash16"]
+        min_full = int(prod["min_full"])
+        min_half = int(prod["min_half"])
+        coverage = int(pol["coverage"])
+
+Analysis:
+- Settle re-reads current product state: prod = json.loads(self.products[pid])
+- Settle reads current URL: prod_url = prod["url"]
+- Settle reads current thresholds: min_full = int(prod["min_full"]), min_half = int(prod["min_half"])
+- Result: If 'update_source' modified prod["url"] or terms between buy and settle,
+  the policy is evaluated against the NEW URL, NOT the purchase-time source URL.
+================================================================================
