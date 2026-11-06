@@ -1,25 +1,25 @@
 # Cover V2 Migration Progress
 
 ## Status
-- Initialized progress tracker
-- Pre-checks and defect reproductions in progress
+- Plan, defect reproductions, and expected docs committed
+- CoverV2 and CoverGuardV2 contracts authored and extraction hashes verified
 
 ## Defect Checklist
-- [ ] Defect 1: Policy unbound to terms, source mutation affects settlement, no explicit term
-- [ ] Defect 2: rule_text unused in decide, no 25% threshold
+- [x] Defect 1: Policy unbound to terms, source mutation affects settlement, no explicit term
+- [x] Defect 2: rule_text unused in decide, no 25% threshold
 - [ ] Defect 3: CreateProductPage 25% input dropped, threshold labels
 - [ ] Defect 4: Hardcoded fundProduct('1'), next_product - 1 race
 - [ ] Defect 5: Type mismatches between app and contract outputs
-- [ ] Defect 6: CoverGuard view argument mismatch and attest terms_hash source
+- [x] Defect 6: CoverGuard view argument mismatch and attest terms_hash source
 
 ## Plan & Expected Docs
-- [ ] docs/REVIEW_V2_PLAN.md
-- [ ] docs/EXPECTED_V2.md
+- [x] docs/REVIEW_V2_PLAN.md
+- [x] docs/EXPECTED_V2.md
 
 ## Part A: Contracts V2
-- [ ] contracts/CoverV2.py
-- [ ] contracts/CoverGuardV2.py
-- [ ] Extraction prompt & parse_extraction sha256 equality verification
+- [x] contracts/CoverV2.py
+- [x] contracts/CoverGuardV2.py
+- [x] Extraction prompt & parse_extraction sha256 equality verification
 - [ ] Pre-deploy unit & regression tests (a-i)
 - [ ] Deploy V2 pair to Studionet
 - [ ] On-chain S1-S5 empirical execution

@@ -39,3 +39,16 @@ if __name__ == "__main__":
     print(f"parse_extraction SHA256: {v1_info['parse_extraction_sha256']}")
     print(f"extraction prompt SHA256:{v1_info['extraction_prompt_sha256']}")
     print("======================================================")
+
+    v2_path = r"E:\Cover_V2.1\contracts\CoverV2.py"
+    if os.path.exists(v2_path):
+        v2_info = get_hashes(v2_path)
+        print("V2 EXTRACTION PROMPT & PARSE_EXTRACTION HASHES")
+        print("======================================================")
+        print(f"File:                    {v2_info['file']}")
+        print(f"parse_extraction SHA256: {v2_info['parse_extraction_sha256']}")
+        print(f"extraction prompt SHA256:{v2_info['extraction_prompt_sha256']}")
+        print("======================================================")
+        assert v1_info['parse_extraction_sha256'] == v2_info['parse_extraction_sha256'], "parse_extraction SHA mismatch!"
+        assert v1_info['extraction_prompt_sha256'] == v2_info['extraction_prompt_sha256'], "extraction prompt SHA mismatch!"
+        print("MATCH VERIFIED: CoverV2 preserves exact parse_extraction and extraction prompt.")
