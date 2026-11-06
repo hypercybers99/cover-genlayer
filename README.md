@@ -17,7 +17,7 @@ In Cover V2, each policy permanently binds to its purchase-time coverage term, s
 - **Strict Consensus Primitive**: Validators compare a single canonical consensus token:
   $$\text{Consensus Token} = \langle\text{OUTCOME}\rangle \mid \langle\text{norm\_hash16}\rangle$$
   where `OUTCOME` $\in \{\text{PAY\_100}, \text{PAY\_50}, \text{PAY\_25}, \text{NO\_PAY}, \text{REVIEW}\}$ and `norm_hash16` is the first 16 hex characters of $\text{SHA256}(\text{norm\_text}(\text{page}))$.
-- **Purchase-Time Term Binding**: Every policy records immutable purchase-time terms: `terms_hash`, `evidence_url`, `min_full`, `min_half`, `decision_rule`, `term`, `coverage`, `premium`. Settle reads strictly policy-bound values.
+- **Purchase-Time Term Binding**: Every policy records immutable purchase-time terms: `terms_hash`, `evidence_url`, `min_full`, `min_half`, `decision_rule`, `term`, `coverage`, `premium`. Settle reads strictly policy-bound values. The `terms_hash` covers the decision rule, host, directory, min_full, min_half, premium_bps, and term; the exact status URL is bound separately in `evidence_url` and in each attestation's `evidence_url_hash`. Because `terms_hash` canonicalizes the host and directory path rather than the specific filename, Policies 1 and 2 share the identical `terms_hash` while each binding their distinct purchase-time `evidence_url` and distinct attestation `evidence_url_hash`.
 - **Credits Only**: All accounting is conducted using an internal credit ledger. No real currency, ERC-20 tokens, or native GEN tokens are locked.
 
 ---

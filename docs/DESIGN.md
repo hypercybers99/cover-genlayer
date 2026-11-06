@@ -98,3 +98,25 @@ Cover V2 enforces three mathematical invariants across all state mutations (`cla
 3. **CoverGuard Signatures and Attestation**:
    - `is_covered_for(holder, policy_id, product_id, terms_hash, min_coverage)` asserts exact policy-bound terms hash.
    - `attest(policy_id)` stores policy purchase-time `terms_hash` and `evidence_url_hash`.
+
+---
+
+## 6. Terms Hash Specification and Evidence URL Binding
+
+In Cover V2, terms verification and evidence sourcing operate across two coordinated cryptographic layers:
+
+1. **`terms_hash` Scope**:
+   The `terms_hash` is computed as the SHA-256 digest of the canonical JSON representation of:
+   - `decision_rule`: The deterministic evaluation rule string (`DECISION_RULE_V2`).
+   - `host`: The normalized hostname of the status source (e.g., `raw.githubusercontent.com`).
+   - `dir_path`: The normalized directory path containing status endpoints (e.g., `/hypercybers99/cover-fixtures/main/`).
+   - `min_full`: Threshold duration in minutes for 100% full payout (e.g., `60`).
+   - `min_half`: Threshold duration in minutes for 50% partial payout (e.g., `30`).
+   - `premium_bps`: Product premium rate in basis points (e.g., `200` or `1000`).
+   - `term`: The coverage term string (`COVERAGE_TERM_V2`).
+
+2. **Policy and Attestation Evidence URL Binding**:
+   - The exact, fully qualified status URL is bound separately in the policy record as `evidence_url` at purchase time.
+   - Each on-chain attestation in `CoverGuard` records both the policy's `terms_hash` and `evidence_url_hash = sha256(policy.evidence_url)`.
+   - **Multi-Fixture Term Invariant**: Because `terms_hash` canonicalizes the host and directory path rather than the specific filename, Policies 1 and 2 share the identical `terms_hash` while each binding their distinct purchase-time `evidence_url` and distinct attestation `evidence_url_hash`.
+
