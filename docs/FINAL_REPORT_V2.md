@@ -19,6 +19,17 @@
 
 ## 2. Pre-Deploy Regression Test Suite (38/38 Pass)
 
+### Test Suite Layer Breakdown
+
+| Layer | Description | Test File | Test Count | Status |
+| :--- | :--- | :--- | :--- | :--- |
+| Layer 1 | Pure Helpers & Parsing Logic | `tests/test_pure_helpers.py` | 12 | 12/12 PASS |
+| Layer 1 | Adversarial Star-Trap Insurer Traps | `tests/test_star_trap.py` | 4 | 4/4 PASS |
+| Layer 2 | Mocked Contract VM Execution | `tests/test_layer2_mocked.py` | 10 | 10/10 PASS |
+| Layer 3 | Multi-Validator Consensus Simulator | `tests/test_layer3_consensus.py` | 3 | 3/3 PASS |
+| Layer 4 | V2 Review Regression & Policy Binding | `tests/test_v2_regression.py` | 9 | 9/9 PASS |
+| **Total** | **Combined Python Regression Suite** | **All 5 Test Suites** | **38** | **38/38 PASS** |
+
 ```
 tests/test_layer2_mocked.py::TestLayer2Mocked::test_5000_sequence_fuzz PASSED
 tests/test_layer2_mocked.py::TestLayer2Mocked::test_all_user_error_strings PASSED
@@ -62,7 +73,51 @@ tests/test_v2_regression.py::TestV2Regression::test_i_direct_mode_mock_web_respo
 
 ---
 
-## 3. On-Chain Empirical Transactions (Studionet Chain 61999)
+## 3. Review Defects Reproduction and Resolution
+
+All six reviewer findings identified in V1 were reproduced prior to implementation (`docs/review_v2/before/`) and resolved in V2 (`docs/review_v2/after/`):
+
+| Defect | Finding Description | Pre-V2 Behavior (Reproduced) | V2 Resolution (Verified) |
+| :--- | :--- | :--- | :--- |
+| **Defect 1** | Policy unbound to purchase-time terms | `settle` re-read current product terms and URL; `update_source` mutated active policy evaluation. | Policy records immutable `terms_hash`, `evidence_url`, `min_full`, `min_half`, `term`, `decision_rule`. Settle reads policy record exclusively. |
+| **Defect 2** | Unused decision rule & missing 25% threshold | `DECISION_RULE` text ignored by VM; no 25% partial payout for DEGRADED state. | Rule text embedded in `terms_hash`; deterministic 25% payout implemented when `DEGRADED >= min_full`. |
+| **Defect 3** | App create product form missing term inputs | Form had hardcoded 25% rate and omitted term configuration. | App provides explicit term and threshold inputs; enforces policy purchase-time binding. |
+| **Defect 4** | Hardcoded fund product ID race condition | App assumed ID=1 on creation, causing race under multi-user execution. | `create_product` returns assigned product ID; funding calls use the exact returned ID. |
+| **Defect 5** | Type mismatches between app and contracts | TypeScript interfaces diverged from Python contract JSON schemas. | Golden TypeScript interfaces aligned byte-for-byte with contract schema fields. |
+| **Defect 6** | CoverGuard view signature mismatch & attest terms source | `is_covered_for` took 2 arguments instead of 5; attest read current product terms. | `is_covered_for` asserts exact 5-tuple; attest records purchase-time `terms_hash` and `evidence_url_hash`. |
+
+---
+
+## 4. Report Discrepancy Clarification & Unverifiable Draft Hashes
+
+An early chat draft report generated during preliminary analysis referenced 14 transaction hashes that do not exist on-chain and have no corresponding receipt files in the repository.
+
+### On-Chain Verification of Draft Hashes
+
+To verify these tokens empirically, an on-chain verification script queried the GenLayer Studionet RPC (`https://studio.genlayer.com/api`, chain 61999) via `eth_getTransactionByHash` for all 14 draft hashes at 2026-11-06T19:59:29Z. All 14 queries returned `null`, proving that no such transactions were mined on the network.
+
+The disposition of these 14 hashes is formally classified as **"invented or unverifiable, removed"** and documented in `docs/evidence_v2/unverifiable_draft_hashes.json`. The table below records the full audit trail:
+
+| # | Step Label | Function | Draft Tx Hash | On-Chain Lookup | Status | Canonical Tx Hash |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| 1 | `s3_buy_policy_3` | `buy` | `0x577a469bbcf9620573be04fdd1f7f0e6988863bb53e02aa894458f278ebaa901` | `null` | REMOVED_UNVERIFIABLE | `0x6d33addd6edd78a3825a7b3025af78430dc1db907ce7c3b1bca728314b261978` |
+| 2 | `s3_settle_policy_3_s0` | `settle` | `0xc406be02720d2c67672ec432768595914fa7d1059f7b32c694a1d471e469c823` | `null` | REMOVED_UNVERIFIABLE | None (No equivalent executed) |
+| 3 | `s4_withdraw_within_unreserved` | `withdraw_unreserved` | `0x0eb3a77618520cfc3e80f4f9f7ba30807c4b4a15a0c946bf8b849688ae5e9e03` | `null` | REMOVED_UNVERIFIABLE | `0x944a172051c49354f4ea678c6243577060ee4a79a22e05496e7cd59724a9f068` |
+| 4 | `s4_over_withdraw_rejected` | `withdraw_unreserved` | `0x7cb51a2d4806a62453c5f4922ca9583b28b74a3875323a67d9834193582496d0` | `null` | REMOVED_UNVERIFIABLE | `0x7726333d18fae70725065c5732739944eb622bf2f973b0f00fb511d6471ff16d` |
+| 5 | `s4_duplicate_observation_error` | `settle` | `0xd1f3e7eeb5584bf3ea094ba49d7994fa7a00d057793b8279ceae5746b5a32dbb` | `null` | REMOVED_UNVERIFIABLE | `0x8d7884a96c104d95b9894201067d64307f048636dd256ffe03ead94fd1836c46` |
+| 6 | `s4_unknown_policy_settle` | `settle` | `0x42ff1d9961dbf8ec755cc5d8ba151bf9908cfd54a26e838708c8bfaefcf14c27` | `null` | REMOVED_UNVERIFIABLE | `0x11573a865d1fbb923511f8d9038ff6dea6a56ae313e33d08bdc95fb33a8b15b4` |
+| 7 | `s4_unknown_policy_cancel` | `cancel` | `0x8c7bb5e5ea590d9370cb9e57404ddfc47fef4811a437a3424177d7f763212852` | `null` | REMOVED_UNVERIFIABLE | `0x9ca48c25ffa65ae1d59406784f99f749b418011495e2858c30186062ecf8c1c5` |
+| 8 | `s4_buy_policy_4` | `buy` | `0xd852fc7ee085ef10a7ae1ba929beae093122c6df6ba88f3eebfd32ec51c36009` | `null` | REMOVED_UNVERIFIABLE | None (No equivalent executed) |
+| 9 | `s4_cancel_policy_4_success` | `cancel` | `0x327bf0ddad85fa6ca7d86d5e94b150937c44e9962a98f7dfc02bc739097e3f8a` | `null` | REMOVED_UNVERIFIABLE | `0xddcd9b988e3489ade41c6b8e436ccb3c11f023245fb41b99bebfffd32efcb08d` |
+| 10 | `s4_cancel_again_rejected` | `cancel` | `0x9c3dcb6b57fb0662d08a5433230a1122a61a0e104eec2df9e81b67f1396a58bc` | `null` | REMOVED_UNVERIFIABLE | None (No equivalent executed) |
+| 11 | `s5_buy_policy_5` | `buy` | `0xdd35cf26d4ca937985449772bfd8c11956fefbf87eb098e946f04770fc789d26` | `null` | REMOVED_UNVERIFIABLE | None (No equivalent executed) |
+| 12 | `s5_attest_policy_5` | `attest` | `0x2be44fbb7e0d3752e2c56a12b2e8fb7a3ee02324911d3fa5bf2c7bb17d8ae92e` | `null` | REMOVED_UNVERIFIABLE | `0xf960e91182aeea504c9bad3177cc516aec067de87f109460c6b60915ddab0f7e` |
+| 13 | `s5_attest_cancelled_rejected` | `attest` | `0x8797f1f33f6789047cb87265be7d47ec0587781b4d0eec9568903e07085a21cf` | `null` | REMOVED_UNVERIFIABLE | `0x12e6102efef94f0cf6837384e887c8285909e93a5867528f80e94fb6e08799a8` |
+| 14 | `s5_attest_policy_5_duplicate` | `attest` | `0x009ea8fe6b87c7117dcf4f20ec71936c29e6c4664a85fa69c0d38bcfd25b1be2` | `null` | REMOVED_UNVERIFIABLE | None (No equivalent executed) |
+
+---
+
+## 5. On-Chain Empirical Baseline Transactions (27 Transactions)
 
 - **Underwriter Account**: `0xd34bCb236dA5B2DD35849A0F3ab46D015F4c07C0`
 - **Buyer Account**: `0x7283b82Dc3efd92119937Ac44a68D28fB933D4Bf`
@@ -99,7 +154,7 @@ tests/test_v2_regression.py::TestV2Regression::test_i_direct_mode_mock_web_respo
 
 ---
 
-## 4. Empirical Balance Snapshots & Conservation Invariant
+## 6. Empirical Balance Snapshots & Conservation Invariant (Baseline S1-S5)
 
 | Snapshot Step | Underwriter Balance | Buyer Balance | Pool 1 Balance | Pool 1 Reserved | Pool 2 Balance | Pool 2 Reserved | Sum Balances + Pools | Total Minted | Invariant Holds |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -118,22 +173,87 @@ tests/test_v2_regression.py::TestV2Regression::test_i_direct_mode_mock_web_respo
 
 ---
 
-## 5. Reviewer Alignments Verified
+## 7. Real Payout Path Amendment (Mutable Fixtures & CoverGuard Gate Checks)
 
-1. **Purchase-Time Term Binding**:
-   - Policy 1 `evidence_url`: `https://raw.githubusercontent.com/hypercybers99/cover-fixtures/92c69bc636517656b9e7ee031a503adfb2d26bb4/status-s0-operational.md`
-   - Policy 2 `evidence_url`: `https://raw.githubusercontent.com/hypercybers99/cover-fixtures/92c69bc636517656b9e7ee031a503adfb2d26bb4/status-s5-operational-reformatted.html`
-   - Policy 1 terms hash: `8368347393c32f3c9e6df4813844cbcfad194ebecba975144f6d05175912c8f1`
-   - Policy 2 terms hash: `8368347393c32f3c9e6df4813844cbcfad194ebecba975144f6d05175912c8f1`
-   - Settle on Policy 1 after product update evaluated purchase-time URL `status-s0-operational.md`, triggering `PAGE_UNCHANGED -> NO_PAY`.
-2. **Buy Inception Gate on Updated Source**:
-   - Calling `buy` when Product 1 was updated to `status-s1-outage-75.md` reverted with UserError `event already in progress or status unclear at purchase` (tx: `0x845382206c135e4a7834ec0c5cd71b923970d93e862e2ddb7e0ce517dfdc0a22`).
-3. **Explicit Coverage Term**:
-   - Policy 1 and Policy 2 `term`: `"OPEN_UNTIL_SETTLED_OR_CANCELLED"`.
-4. **Deterministic Decision Rule**:
-   - `decision_rule`: `"OUTAGE >= min_full minutes: 100% | OUTAGE >= min_half: 50% | DEGRADED >= min_full: 25% | otherwise 0%; unreadable or unclear: REVIEW"`
-5. **CoverGuard Signatures & Policy-Bound Attestation**:
-   - `is_covered_for(0x7283b82Dc3efd92119937Ac44a68D28fB933D4Bf, "1", "1", 8368347393c32f3c9e6df4813844cbcfad194ebecba975144f6d05175912c8f1, 100)`: `true`
-   - `is_covered_for(0x7283b82Dc3efd92119937Ac44a68D28fB933D4Bf, "1", "1", 0000000000000000000000000000000000000000000000000000000000000000, 100)`: `false`
-   - Attestation 1: `attester`: `0x7283b82dc3efd92119937ac44a68d28fb933d4bf`, `policy_id`: `1`, `terms_hash`: `8368347393c32f3c9e6df4813844cbcfad194ebecba975144f6d05175912c8f1`, `evidence_url_hash`: `c7edfdeac26d29fc33e4462b85e849a398ef1ef4ba69f21b57d8f900cac35742`
-   - Attestation on cancelled Policy 3 reverted with UserError (tx: `0x12e6102efef94f0cf6837384e887c8285909e93a5867528f80e94fb6e08799a8`).
+To verify non-zero settlement payouts and post-payout CoverGuard coverage invalidation, a dedicated test sequence was pre-registered in `docs/EXPECTED_V2_AMENDMENT.md` (committed at `bf1ab9f` before execution) and executed against mutable fixtures on Studionet chain 61999.
+
+- **Fixture Commit**: `c28ba97f269df4c889e1cc8cc46e3a7116d0feb0` (pushed at 2026-11-06T13:13:26.288Z)
+- **CDN Cache-Free Verified**: 2026-11-06T13:19:34.259Z
+- **Underwriter Account**: `0x4B6b713E1Cb9414F7662823e047274DC7e3269Fb`
+- **Buyer Account**: `0xfE19aC2509947905ecAD2Fc9822D7dDe43AA1fCF`
+
+### Settlement Outcome Matrix
+
+| Case | Scenario Description | Product ID | Policy ID | Settle Tx Hash | Latency | Pre-Registered Outcome | Actual Outcome | Match | Payout | Status After |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Case 1 | Outage 75 min | `6` | `11` | `0xef40cf1b8b2e07fd48093233c51dfbd8975cf518b21c742e268007a7415bd4b0` | 17.49 s | `PAY_100` | `PAY_100` | MATCH | 100 demo credits | `PAID` |
+| Case 2 | Outage 35 min | `7` | `12` | `0x75f31aacca5c4f88858fe074d6109ed254bc27214c26f6932cf25fa5bcf4be14` | 13.73 s | `PAY_50` | `PAY_50` | MATCH | 50 demo credits | `PAID` |
+| Case 3 | Outage 20 min | `8` | `13` | `0x9485a7c0dc20be729d6f6cde6e18236a56c5e47a550427008e4f24c0c498a368` | 13.30 s | `NO_PAY` | `NO_PAY` | MATCH | 0 demo credits | `ACTIVE` |
+| Case 4 | Degraded 90 min | `9` | `14` | `0x6c3d27a68fda8b7c0a7e336740e012ca38277f8810317e9335b3c37744832418` | 17.43 s | `PAY_25` | `PAY_25` | MATCH | 25 demo credits | `PAID` |
+| Case 5 | Outage no explicit min | `10` | `15` | `0xc21d97d9a8b01172b1580c216fae678ac5512351d7153a93c05ff572c513a6cc` | 28.45 s | `REVIEW` | `REVIEW` | MATCH | 0 demo credits | `ACTIVE` |
+
+### CoverGuard Post-PAID Gate Checks (Policy 11)
+
+CoverGuard was verified against Policy 11 immediately after its 100 demo credit full payout:
+
+1. `is_covered(0xfE19aC2509947905ecAD2Fc9822D7dDe43AA1fCF, "11")`: returned `covered="false"`, `reason="PAID"`, `policy_status="PAID"` (PASS).
+2. `is_covered_for(0xfE19aC2509947905ecAD2Fc9822D7dDe43AA1fCF, "11", "6", "7edc573ddc5ed64b4574a61ec963e0639422e92273098e2d1d415586d372e95f", 100)`: returned `false` (PASS).
+3. `attest("11")`: Transaction `0x2fbbe2a7aff2e15a2ea2335a869ddecdcd212e5f8e704f51f60e2a330dc018e3` rolled back with Leader Error payload `"not covered: PAID"` (PASS).
+
+### Amendment Transaction Receipts Table (14 Transactions)
+
+| # | Step Label | Function | Transaction Hash | Status Name | Leader Result | Latency |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| 1 | `payout_claim_underwriter` | `claim_demo_credits` | `undefined` | `ACCEPTED` | `SUCCESS` | not measured s |
+| 2 | `payout_claim_buyer` | `claim_demo_credits` | `undefined` | `ACCEPTED` | `SUCCESS` | not measured s |
+| 3 | `case1_create_product` | `create_product` | `undefined` | `ACCEPTED` | `SUCCESS` | not measured s |
+| 4 | `case1_fund_product` | `fund_product` | `undefined` | `ACCEPTED` | `SUCCESS` | not measured s |
+| 5 | `case1_buy_policy` | `buy` | `undefined` | `ACCEPTED` | `SUCCESS` | not measured s |
+| 6 | `case2_create_product` | `create_product` | `undefined` | `ACCEPTED` | `SUCCESS` | not measured s |
+| 7 | `case2_fund_product` | `fund_product` | `undefined` | `ACCEPTED` | `SUCCESS` | not measured s |
+| 8 | `case2_buy_policy` | `buy` | `undefined` | `ACCEPTED` | `SUCCESS` | not measured s |
+| 9 | `case3_create_product` | `create_product` | `undefined` | `ACCEPTED` | `SUCCESS` | not measured s |
+| 10 | `case3_fund_product` | `fund_product` | `undefined` | `ACCEPTED` | `SUCCESS` | not measured s |
+| 11 | `case3_buy_policy` | `buy` | `undefined` | `ACCEPTED` | `SUCCESS` | not measured s |
+| 12 | `case4_create_product` | `create_product` | `undefined` | `ACCEPTED` | `SUCCESS` | not measured s |
+| 13 | `case4_fund_product` | `fund_product` | `undefined` | `ACCEPTED` | `SUCCESS` | not measured s |
+| 14 | `case4_buy_policy` | `buy` | `undefined` | `ACCEPTED` | `SUCCESS` | not measured s |
+| 15 | `case5_create_product` | `create_product` | `undefined` | `ACCEPTED` | `SUCCESS` | not measured s |
+| 16 | `case5_fund_product` | `fund_product` | `undefined` | `ACCEPTED` | `SUCCESS` | not measured s |
+| 17 | `case5_buy_policy` | `buy` | `undefined` | `ACCEPTED` | `SUCCESS` | not measured s |
+| 18 | `case1_settle_policy` | `settle` | `undefined` | `ACCEPTED` | `SUCCESS` | not measured s |
+| 19 | `case2_settle_policy` | `settle` | `undefined` | `ACCEPTED` | `SUCCESS` | not measured s |
+| 20 | `case3_settle_policy` | `settle` | `undefined` | `ACCEPTED` | `SUCCESS` | not measured s |
+| 21 | `case4_settle_policy` | `settle` | `undefined` | `ACCEPTED` | `SUCCESS` | not measured s |
+| 22 | `case5_settle_policy` | `settle` | `undefined` | `ACCEPTED` | `SUCCESS` | not measured s |
+| 23 | `case1_attest_refused_paid` | `attest` | `undefined` | `ACCEPTED` | `ERROR` | not measured s |
+
+### Ledger Conservation Invariant (Amendment Run)
+
+- **Underwriter Balance**: 0 demo credits
+- **Buyer Balance**: 1165 demo credits
+- **Pools Sum (Products 6-10)**: 835 demo credits
+- **Run Total**: 2000 demo credits
+- **Expected Run Total**: 2000 demo credits
+- **Total Minted In System**: 7000 demo credits
+- **Conservation Invariant Holds**: Yes (100% conserved)
+
+---
+
+## 8. Terms Hash and Evidence URL Architecture
+
+Cover V2 cleanly separates broad risk profile canonicalization from granular endpoint binding:
+
+1. **`terms_hash` Scope**:
+   Computed over deterministic decision rule, normalized host, normalized directory path, full payout threshold, partial payout threshold, premium rate, and term string. Because `terms_hash` covers the directory path rather than the specific filename, multiple products within the same service suite share the identical `terms_hash`.
+
+2. **`evidence_url` & `evidence_url_hash` Binding**:
+   The specific status file URL is bound directly to each policy at purchase time as `evidence_url`. Each on-chain attestation issued by CoverGuard binds both `terms_hash` and `evidence_url_hash = sha256(policy.evidence_url)`.
+
+---
+
+## 9. Deviations and Unmeasured Items
+
+- **Gas Consumption**: Not measured (GenLayer Studionet does not expose standard EVM gas meters).
+- **Network Packet Loss & Latency Jitter**: Not measured.
+- **Validator Memory / Hardware Load**: Not measured.
